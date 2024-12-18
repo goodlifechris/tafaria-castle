@@ -1,0 +1,123 @@
+import React, { useState } from "react";
+import Modal from "react-modal";
+import { FaSearch } from "react-icons/fa";
+import Select from "react-select";
+
+// Styles for the modal
+const modalStyles = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "90%",
+    maxWidth: "500px",
+    borderRadius: "12px",
+    padding: "20px",
+    border: "none",
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+  },
+};
+
+const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedActivities, setSelectedActivities] = useState([]);
+
+  const activitiesOptions = [
+    { value: "swimming", label: "Swimming" },
+    { value: "diving", label: "Diving" },
+    { value: "eating", label: "Eating" },
+    { value: "drinking", label: "Drinking" },
+  ];
+
+  const handleSelect = (selected) => {
+    setSelectedActivities(selected || []);
+  };
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  return (
+    <>
+      <header className="w-full bg-white py-4 shadow-md">
+        <div className="container mx-auto flex flex-wrap sm:flex-nowrap items-center justify-between space-y-4 sm:space-y-0 sm:flex-row sm:px-4">
+          {/* Logo */}
+          <div className="flex items-center justify-center sm:justify-start w-1/4">
+            <img
+              src="./logo.png"
+              alt="Tafaria Castle Logo"
+              className="w-16 h-16 sm:w-24 sm:h-24"
+            />
+          </div>
+
+          {/* Search Button */}
+          <div className="flex-1 flex justify-center">
+            <button
+              onClick={openModal}
+              className="flex items-center bg-gray-200 text-gray-600 px-4 py-2 rounded-full shadow hover:bg-gray-300"
+            >
+              <FaSearch className="mr-2" />
+             Tafaria's Experience
+            </button>
+          </div>
+
+          {/* Book Now Button */}
+          <div className="w-1/4 flex justify-center sm:justify-end mr-3">
+            <button className="bg-[#94723C] text-white px-4 py-2 text-sm sm:text-base sm:px-6 sm:py-2 rounded-md font-semibold hover:bg-[#902729]">
+           book
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Modal for Activity Selection */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        style={modalStyles}
+        contentLabel="Activity Selection"
+        ariaHideApp={false}
+      >
+        <h2 className="text-lg font-bold text-center mb-4 text-[#902729]">
+         Search Tafaria's Castle Experience
+        </h2>
+        <Select
+          isMulti
+          options={activitiesOptions}
+          value={selectedActivities}
+          onChange={handleSelect}
+          placeholder="Search and select activities..."
+          className="text-black"
+          classNamePrefix="react-select"
+          styles={{
+            control: (provided) => ({
+              ...provided,
+              borderRadius: "6px",
+              borderColor: "#d1d5db",
+              boxShadow: "none",
+            }),
+            menu: (provided) => ({
+              ...provided,
+              zIndex: 9999,
+            }),
+          }}
+        />
+        <div className="text-center mt-4">
+          <button
+            onClick={closeModal}
+            className="bg-[#94723C] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#902729]"
+          >
+            Done
+          </button>
+        </div>
+      </Modal>
+    </>
+  );
+};
+
+export default Header;
