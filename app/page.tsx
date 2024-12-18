@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Head from "next/head";
-import { FaSearch, FaHeart, FaComment, FaShare, FaWhatsapp } from "react-icons/fa";
+import { FaHeart, FaComment, FaShare, FaWhatsapp } from "react-icons/fa";
 import TabComponent from "./components/tabs";
 import Introduction from "./components/introduction";
 import WhatsAppButton from "./components/whatsappbutton";
