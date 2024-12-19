@@ -28,3 +28,6 @@ body {
   -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
   scrollbar-width: none;    /* Hide scrollbar in Firefox */
 }
+.ReactModal__Content.ReactModal__Content--after-open {
+  inset: 0px !important;
+}
