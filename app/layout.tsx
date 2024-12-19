@@ -4,10 +4,7 @@ import "./globals.css";
 import Head from "next/head";
 import Header from "./components/header";
 import Stories from "./components/stories";
-import Introduction from "./components/introduction";
 import WhatsAppButton from "./components/whatsappbutton";
-import TabComponent from "./components/tabs";
-import Link from "next/link";
 
 // Import Montserrat font
 const montserrat = Montserrat({
