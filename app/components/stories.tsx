@@ -6,7 +6,7 @@ const Stories = () => {
   const categories = [
     { img: "images/status_images/1.png", title: "Hospitality" },
     { img: "images/status_images/2.png", title: "Education" },
-    { img: "images/status_images/3.png", title: "conferencing" },
+    { img: "images/status_images/3.png", title: "Conferencing" },
     { img: "images/arts.png", title: "Arts" },
     { img: "images/status_images/4.png", title: "Tafaria Experience" },
   ];
