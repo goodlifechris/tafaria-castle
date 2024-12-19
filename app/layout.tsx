@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Head from "next/head";
+import Header from "./components/header";
+import Stories from "./components/stories";
+import Introduction from "./components/introduction";
+import WhatsAppButton from "./components/whatsappbutton";
+import TabComponent from "./components/tabs";
+import Link from "next/link";
 
 // Import Montserrat font
 const montserrat = Montserrat({
@@ -21,7 +28,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.variable} antialiased`}>
-        {children}
+      <div className="bg-white min-h-screen flex flex-col items-center">
+      <Head>
+        <title>Tafaria Castle</title>
+        <meta
+          name="description"
+          content="Tafaria Castle - Once upon a Dream"
+        />
+      </Head>
+
+<div className="sticky top-0 z-10 w-full">
+  {/* Header */}
+  <Header/>
+
+  {/* Stories */}
+<Stories/>
+</div>
+
+{children}
+
+
+        <WhatsAppButton/>
+        </div>
       </body>
     </html>
   );

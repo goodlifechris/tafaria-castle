@@ -7,8 +7,8 @@ const Stories = () => {
     { img: "images/status_images/1.png", title: "Hospitality" },
     { img: "images/status_images/2.png", title: "Education" },
     { img: "images/status_images/3.png", title: "conferencing" },
-    { img: "images/status_images/4.png", title: "Arts" },
-    { img: "images/status_images/1.png", title: "Tafaria Experience" },
+    { img: "images/arts.png", title: "Arts" },
+    { img: "images/status_images/4.png", title: "Tafaria Experience" },
   ];
   return (
     
@@ -17,7 +17,7 @@ const Stories = () => {
       {Array.from(categories).map((img) => (
         <div
           key={img.img}
-          className="flex-shrink-0 flex flex-col items-center space-y-1"
+          className="flex-shrink-0 flex flex-col items-center space-y-1 py-2"
         >
           <img
             className="w-11 h-11  sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full ring-1 ring-gray-300"

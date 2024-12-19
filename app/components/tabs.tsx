@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState } from "react";
 
 const TabComponent = () => {
@@ -58,12 +59,16 @@ const TabComponent = () => {
         {(activeTab === "All" || activeTab === "Images") && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {images.map((src, index) => (
-              <img
+          <Link href="/categories">
+          <img
                 key={index}
                 src={src}
                 alt={`Image ${index + 1}`}
                 className="rounded-md shadow-md"
               />
+        </Link>
+            
+      
             ))}
           </div>
         )}
@@ -71,6 +76,8 @@ const TabComponent = () => {
         {(activeTab === "All" || activeTab === "Videos") && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             {videos.map((video) => (
+                        <Link href="/categories">
+
               <div
                 key={video.id}
                 className="bg-white rounded-md shadow-md border p-4"
@@ -84,6 +91,8 @@ const TabComponent = () => {
                   {video.title}
                 </h3>
               </div>
+              </Link>
+
             ))}
           </div>
         )}
@@ -91,6 +100,8 @@ const TabComponent = () => {
         {(activeTab === "All" || activeTab === "Blogs") && (
           <div className="mt-4 space-y-4">
             {blogs.map((blog) => (
+                                      <Link href="/categories">
+
               <div
                 key={blog.id}
                 className="p-4 bg-white rounded-md shadow-md border"
@@ -102,6 +113,7 @@ const TabComponent = () => {
                   This is a brief description of {blog.title}.
                 </p>
               </div>
+              </Link>
             ))}
           </div>
         )}

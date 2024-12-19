@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,11 +16,11 @@ const Introduction = () => {
     <>
       {/* Parallax Section */}
       <div
-        className="relative w-full h-[400px] aspect-[16/9] bg-no-repeat bg-cover bg-center"
+        className="relative w-full h-[500px] aspect-[16/9] bg-no-repeat bg-cover bg-center"
         style={{ backgroundImage: `url('/images/final.png')` }}
       >
         <Link href="https://apps.hti-systems.com/hostech/tafaria/desktop.html?locale=en_US">
-          <Image
+          <img
             src="/images/checkin.png"
             width={500}
             height={500}
@@ -34,11 +35,14 @@ const Introduction = () => {
                 Our story
               </h1>
               {!showAfterIntroduction && (
+                <br/>
+              )}
+              {!showAfterIntroduction && (
                 <p>
                   Eunice and I founded the Tafaria Castle in 2012AD to transform
                   this village where I grew up. My family settled here in 1979
                   making us the earliest settlers after the Deighton Downs
-                  ranch was subdivided...
+                  ranch was subdivided... {!showAfterIntroduction && <span   onClick={toggleReadMore} className="underline text-blue-600">read more</span>}
                 </p>
               )}
             </div>
@@ -61,13 +65,8 @@ const Introduction = () => {
       </AnimatePresence>
 
       {/* Read More/Read Less Button */}
-      <div className="text-center mt-4">
-        <button
-          onClick={toggleReadMore}
-          className="text-[#902729] font-bold hover:underline"
-        >
-          {showAfterIntroduction ? "read less" : "read more"}
-        </button>
+      <div className="text-center">
+        {showAfterIntroduction  && <span   onClick={toggleReadMore} className="underline text-blue-600">read less</span>}
       </div>
     </>
   );
