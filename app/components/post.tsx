@@ -2,12 +2,10 @@
 
 import React, { useState } from "react";
 
-const PostCard = () => {
+
+const PostCard = ({ imageUrl, text}: { imageUrl: string; text: string }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [showMore, setShowMore] = useState(false);
-
-  const postContent =
-    "Standing proudly beside the golf course is Jach, a stallion 🐎, with the plinth of honor attached to him, engraved with the names of those who helped build Tafaria castle.";
 
   const toggleLike = () => setIsLiked(!isLiked);
 
@@ -16,7 +14,7 @@ const PostCard = () => {
       {/* Image */}
       <div className="relative">
         <img
-          src="/images/jach.png" // Replace with your image path
+          src={imageUrl}
           alt="Post Image"
           className="w-full object-cover"
         />
@@ -41,10 +39,10 @@ const PostCard = () => {
 
         {/* Post Description */}
         <p className="text-gray-700 leading-relaxed">
-          {showMore || postContent.length <= 100
-            ? postContent
-            : `${postContent.substring(0, 100)}... `}
-          {postContent.length > 100 && (
+          {showMore || text.length <= 100
+            ? text
+            : `${text.substring(0, 100)}... `}
+          {text.length > 100 && (
             <button
               onClick={() => setShowMore(!showMore)}
               className="text-blue-500 hover:underline"
@@ -64,3 +62,4 @@ const PostCard = () => {
 };
 
 export default PostCard;
+

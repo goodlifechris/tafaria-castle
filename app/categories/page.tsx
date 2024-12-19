@@ -8,10 +8,10 @@ export default function Categories() {
       <div className="flex items-center justify-between px-4 py-2 bg-white shadow-md">
   {/* Back Button */}
   <button
-    className="text-[#902729] text-lg font-semibold flex items-center hover:underline"
+    className="text-[#902729] text-lg font-semibold flex items-center hover:underline pr-5"
     onClick={() => window.history.back()} // Navigate back
   >
-    &#8592; Back
+    &#8592; 
   </button>
 
 
@@ -19,15 +19,28 @@ export default function Categories() {
   <Link href="https://apps.hti-systems.com/hostech/tafaria/desktop.html?locale=en_US">
     <img
       src="/images/checkin.png"
-      className="w-10 h-10 object-cover rounded-full"
+      className=" h-10 "
       alt="Check-in Image"
     />
   </Link>
 </div>
   
+<PostCard
+  imageUrl="/images/posts/1.png"
+  text="Standing proudly beside the golf course is Jach, a stallion 🐎, with the plinth of honor attached to him, engraved with the names of those who helped build Tafaria castle."
+/>
 
-<PostCard/>
-<PostCard/>
-<PostCard/>
+<PostCard
+  imageUrl="/images/posts/2.png"
+  text="Standing proudly beside the golf course is Jach, a stallion 🐎, with the plinth of honor attached to him, engraved with the names of those who helped build Tafaria castle."
+/>
+<PostCard
+  imageUrl="/images/3.png"
+  text="Standing proudly beside the golf course is Jach, a stallion 🐎, with the plinth of honor attached to him, engraved with the names of those who helped build Tafaria castle."
+/>
+<PostCard
+  imageUrl="/images/2.png"
+  text="Standing proudly beside the golf course is Jach, a stallion 🐎, with the plinth of honor attached to him, engraved with the names of those who helped build Tafaria castle."
+/>
   </div>
   }
