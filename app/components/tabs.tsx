@@ -57,7 +57,7 @@ const TabComponent = () => {
         {(activeTab === "All" || activeTab === "Images") && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {images.map((src, index) => (
-          <Link href="/categories">
+          <Link href="/categories"  key={index}>
           <img
                 key={index}
                 src={src}
@@ -74,7 +74,7 @@ const TabComponent = () => {
         {(activeTab === "All" || activeTab === "Videos") && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             {videos.map((video) => (
-                        <Link href="/categories">
+                        <Link href="/categories"  key={video.id}>
 
               <div
                 key={video.id}
@@ -98,7 +98,7 @@ const TabComponent = () => {
         {(activeTab === "All" || activeTab === "Blogs") && (
           <div className="mt-4 space-y-4">
             {blogs.map((blog) => (
-                                      <Link href="/categories">
+                                      <Link href="/categories"  key={blog.id}>
 
               <div
                 key={blog.id}
