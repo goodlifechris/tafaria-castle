@@ -4,36 +4,16 @@ import Modal from "react-modal";
 import { FaSearch } from "react-icons/fa";
 import Select from "react-select";
 
-// Styles for the modal
-const modalStyles = {
-  overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "90%",
-    maxWidth: "500px",
-    borderRadius: "12px",
-    padding: "20px",
-    border: "none",
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-  },
-};
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedActivities, setSelectedActivities] = useState([]);
 
   const activitiesOptions = [
-    { value: "swimming", label: "Swimming" },
-    { value: "diving", label: "Diving" },
-    { value: "eating", label: "Eating" },
-    { value: "drinking", label: "Drinking" },
+    { value: "hospitality", label: "Hospitality" },
+    { value: "education", label: "Education" },
+    { value: "conferencing", label: "Conferencing" },
+    { value: "arts", label: "Arts" },
   ];
 
   const handleSelect = (selected) => {
@@ -86,6 +66,8 @@ const Header = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      inset:"0px important!" , 
+
     },
     content: {
       position: "relative",
@@ -118,6 +100,8 @@ const Header = () => {
         borderRadius: "6px",
         borderColor: "#d1d5db",
         boxShadow: "none",
+        inset:"0px important!" , 
+
       }),
       menu: (provided) => ({
         ...provided,
