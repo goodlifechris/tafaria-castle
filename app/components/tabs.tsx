@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState } from "react";
 
 const TabComponent = () => {
@@ -29,9 +30,9 @@ const TabComponent = () => {
   ];
 
   const blogs = [
-    { id: 1, title: "Blog Post 1" },
-    { id: 2, title: "Blog Post 2" },
-    { id: 3, title: "Blog Post 3" },
+    { id: 1, title: "Blog Post 1" ,imageUrl:"/images/1.png" },
+    { id: 2, title: "Blog Post 2",imageUrl:"/images/2.png" },
+    { id: 3, title: "Blog Post 3",imageUrl:"/images/3.png" },
   ];
 
   return (
@@ -58,6 +59,7 @@ const TabComponent = () => {
         {(activeTab === "All" || activeTab === "Images") && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {images.map((src, index) => (
+              
               <img
                 key={index}
                 src={src}
@@ -92,16 +94,26 @@ const TabComponent = () => {
           <div className="mt-4 space-y-4">
             {blogs.map((blog) => (
               <div
-                key={blog.id}
-                className="p-4 bg-white rounded-md shadow-md border"
-              >
-                <h3 className="text-lg font-semibold text-purple-600">
-                  {blog.title}
-                </h3>
-                <p className="text-gray-600">
-                  This is a brief description of {blog.title}.
-                </p>
-              </div>
+  key={blog.id}
+  className="p-4 bg-white rounded-md shadow-md border flex flex-col sm:flex-row items-center sm:items-start gap-4"
+>
+  {/* Image Section */}
+  <div className="w-full sm:w-1/3">
+    <img
+      src={blog.imageUrl || "https://via.placeholder.com/150"}
+      alt={blog.title}
+      className="w-full h-auto rounded-md object-cover"
+    />
+  </div>
+
+  {/* Content Section */}
+  <div className="w-full sm:w-2/3">
+    <h3 className="text-lg font-semibold text-purple-600">{blog.title}</h3>
+    <p className="text-gray-600 mt-2">
+      This is a brief description of {blog.title}.
+    </p>
+  </div>
+</div>
             ))}
           </div>
         )}

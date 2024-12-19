@@ -8,12 +8,12 @@ const Stories = () => {
     { img: "images/status_images/2.png", title: "Education" },
     { img: "images/status_images/3.png", title: "conferencing" },
     { img: "images/status_images/4.png", title: "Arts" },
-    { img: "images/status_images/1.png", title: "Tafaria Experience" },
+    { img: "images/status_images/arts.png", title: "Tafaria Experience" },
   ];
   return (
     
-    <div className="w-full bg-[#902729] shadow py-4 flex justify-center">
-    <div className="flex overflow-x-scroll no-scrollbar space-x-6 px-4">
+    <div className="w-full fixed top-28 z-10  bg-[#902729] shadow py-4 flex justify-center">
+    <div className="flex overflow-x-scroll no-scrollbar space-x-6 px-4 pt-4">
       {Array.from(categories).map((img) => (
         <div
           key={img.img}

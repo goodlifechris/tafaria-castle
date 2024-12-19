@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { FaSearch } from "react-icons/fa";
@@ -44,7 +45,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full bg-white py-4 shadow-md">
+      <header className="w-full fixed z-10 bg-white py-4 shadow-md">
         <div className="container mx-auto flex flex-wrap sm:flex-nowrap items-center justify-between space-y-4 sm:space-y-0 sm:flex-row sm:px-4">
           {/* Logo */}
           <div className="flex items-center justify-center sm:justify-start w-1/4">
