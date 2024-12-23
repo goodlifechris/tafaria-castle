@@ -4,7 +4,6 @@ import Modal from "react-modal";
 import { FaSearch } from "react-icons/fa";
 import Select from "react-select";
 
-
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedActivities, setSelectedActivities] = useState([]);

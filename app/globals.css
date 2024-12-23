@@ -31,3 +31,25 @@ body {
 .ReactModal__Content.ReactModal__Content--after-open {
   inset: 0px !important;
 }
+
+/* For Mobile */
+@media screen and (max-width: 540px) {
+  .bartop{
+    top: 12rem !important;
+    width: 100vh;
+    }
+}
+
+/* For Tablets */
+@media screen and (min-width: 540px) and (max-width: 780px) {
+  .bartop{
+    top: 16rem !important;
+    width: 100vh;
+  }
+}
+
+.bartop{
+  width: 100%;
+  top: 16em;
+}
+

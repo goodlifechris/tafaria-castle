@@ -32,9 +32,7 @@ const PostCard = ({ imageUrl, text}: { imageUrl: string; text: string }) => {
           >
             ♥
           </button>
-          <button className="text-2xl text-gray-500 hover:text-gray-700">
-            ✈️
-          </button>
+       
         </div>
 
         {/* Post Description */}

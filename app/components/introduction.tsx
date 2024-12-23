@@ -3,7 +3,20 @@ import React, { useState } from "react";
 import Link from "next/link";
 import AfterIntroduction from "./afterintroduction";
 import { motion, AnimatePresence } from "framer-motion";
+import { Barlow_Condensed } from 'next/font/google'
+import { Montaga } from 'next/font/google'
 
+//👇 Configure our font object
+const barlow_condensed = Barlow_Condensed({
+  weight: '400',  // Add this line
+  subsets: ['latin'],
+  display: 'swap',
+})
+const montaga = Montaga({
+  weight: '400',  // Add this line
+  subsets: ['latin'],
+  display: 'swap',
+})
 const Introduction = () => {
   const [showAfterIntroduction, setShowAfterIntroduction] = useState(false);
 
@@ -30,14 +43,14 @@ const Introduction = () => {
         <div className="flex absolute bottom-0 w-full text-white py-2 text-center">
           <div className="w-screen flex justify-center items-center">
             <div className="text-gray-800 text-center mx-4 md:mx-20 lg:mx-40 text-sm md:text-base lg:text-lg">
-              <h1 className="font-inter text-2xl font-extrabold tracking-tight text-[#902729]">
+              <h1 className={`font-inter text-4xl font-extrabold tracking-tight text-[#902729] ${barlow_condensed.className}`}>
                 Our story
               </h1>
               {!showAfterIntroduction && (
                 <br/>
               )}
               {!showAfterIntroduction && (
-                <p>
+                <p className={montaga.className} >
                   Eunice and I founded the Tafaria Castle in 2012AD to transform
                   this village where I grew up. My family settled here in 1979
                   making us the earliest settlers after the Deighton Downs
@@ -64,9 +77,9 @@ const Introduction = () => {
       </AnimatePresence>
 
       {/* Read More/Read Less Button */}
-      <div className="text-center">
+      {/* <div className="text-center">
         {showAfterIntroduction  && <span   onClick={toggleReadMore} className="underline text-blue-600">read less</span>}
-      </div>
+      </div> */}
     </>
   );
 };
