@@ -16,7 +16,6 @@ const parisienne = Parisienne({
   subsets: ['latin'],
   display: 'swap',
 })
-
 const AfterIntroduction = () => {
   
   return (
