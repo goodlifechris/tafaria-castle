@@ -32,7 +32,6 @@ const TabComponent = () => {
     "/images/6.png",
     "/images/7.png",
     "/images/8.png",
-
   ];
 
     // ... more videos
