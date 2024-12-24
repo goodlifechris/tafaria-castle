@@ -29,6 +29,7 @@ const SubMenu = ({ title,description }: { title: string ,description:string}) =>
               <h1 className={`font-inter text-4xl font-extrabold tracking-tight text-[#902729] ${barlow_condensed.className}`}>
                 {title}
               </h1>
+              <br/>
                 <p className={montaga.className} >
                   {description} heellelle
                   </p>
