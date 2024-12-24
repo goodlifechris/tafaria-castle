@@ -4,7 +4,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Barlow_Condensed } from 'next/font/google'
 import VideoCard from "./videocard";
-import BlogPostCard from "./blogpostcards";
+import BlogPostCard from "./BlogPostCard";
+import VideoCards from "./videocards";
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -123,7 +124,7 @@ const TabComponent = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
             {videos.map((video) => (  // Changed parameter name to 'video'
               <div className="bg-white rounded-md shadow-md border p-4" key={video.id}>
-                <VideoCard
+                <VideoCards
                   key={video.id}
                   title={video.title}
                   date={video.date || "2024-03-20"}  // Provide default if not in data
