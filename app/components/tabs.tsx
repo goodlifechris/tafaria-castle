@@ -35,16 +35,6 @@ const TabComponent = () => {
 
   ];
 
-  const video =
-  {
-    id: 1,
-    title: "Castle Tour",
-    date: "2024-03-20",
-    description: "Take a virtual tour through the magnificent halls of Tafaria Castle.",
-    thumbnail: "/images/video-thumbnail-1.jpg",
-    duration: "5:30",
-    link: "/videos/castle-tour"
-  }
     // ... more videos
     ;
   const videos = [

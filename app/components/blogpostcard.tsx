@@ -20,7 +20,7 @@ const montaga = Montaga({
   subsets: ['latin'],
   display: 'swap',
 })
-const BlogPostCard = ({ title, date, description, imageUrl, link }: BlogPostCardProps) => {
+const BlogPostCard = ({ title, date, description, imageUrl }: BlogPostCardProps) => {
   return (
     <div className="w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
         {/* Image at the top */}
