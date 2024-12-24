@@ -17,7 +17,6 @@ const parisienne = Parisienne({
   display: 'swap',
 })
 const AfterIntroduction = () => {
-  
   return (
     <div className={`p-4 w-screen flex justify-center items-center ${montaga.className}`}>
       <div className="text-gray-800 text-center  mx-4 md:mx-20 lg:mx-40 text-sm md:text-base lg:text-lg">
