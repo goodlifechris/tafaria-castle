@@ -3,8 +3,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Barlow_Condensed } from 'next/font/google'
-import BlogPostCards from "./blogpostcards";
 import VideoCard from "./videocard";
+import BlogPostCards from "./blogpostcards";
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
