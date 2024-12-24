@@ -1,7 +1,5 @@
 "use client"
-import React, { useState } from "react";
-import AfterIntroduction from "./afterintroduction";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
 import { Barlow_Condensed } from 'next/font/google'
 import { Montaga } from 'next/font/google'
 
