@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Barlow_Condensed } from 'next/font/google'
 import VideoCard from "./videocard";
-import BlogPostCards from "./blogpostcards";
+import BlogPostCard from "./blogpostcards";
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -29,6 +29,10 @@ const TabComponent = () => {
     "/images/12.png",
     "/images/13.png",
     "/images/jach.png",
+    "/images/6.png",
+    "/images/7.png",
+    "/images/8.png",
+
   ];
 
   const video =
@@ -62,6 +66,12 @@ const TabComponent = () => {
       duration: "3:45",
       description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/3.png"
     },
+    {
+      id: 4, title: "Video 1",
+      date: "2024-03-20",
+      duration: "3:45",
+      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/3.png"
+    },
     // { id: 4, title: "Video 2", thumbnail: "/images/videos/1.png" },
   ];
 
@@ -69,6 +79,7 @@ const TabComponent = () => {
     { id: 1, title: "Blog Post 1" },
     { id: 2, title: "Blog Post 2" },
     { id: 3, title: "Blog Post 3" },
+    { id: 4, title: "Blog Post 3" },
   ];
 
   return (
@@ -127,10 +138,10 @@ const TabComponent = () => {
         )}
 
         {(activeTab === "All" || activeTab === "Blogs") && (
-          <div className="mt-4 space-y-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {blogs.map((blog) => (
               <div key={blog.id}>
-                <BlogPostCards
+                <BlogPostCard
                   key={blog.id}
                   title="Uncover Tafaria's Heritage"
                   date="2024-09-18"
