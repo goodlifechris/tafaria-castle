@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Barlow_Condensed, Montaga } from 'next/font/google';
+// import { Barlow_Condensed, Montaga } from 'next/font/google';
 
 
 interface VideoCardProps {
@@ -12,7 +12,7 @@ interface VideoCardProps {
   link: string;
 }
 
-const VideoCard = ({ title, date, description, thumbnailUrl, duration, link }: VideoCardProps) => {
+const VideoCard = ({ title, thumbnailUrl, duration, link }: VideoCardProps) => {
   return (
     <Link href={link} className="flex flex-col h-full">
       <div className="w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
