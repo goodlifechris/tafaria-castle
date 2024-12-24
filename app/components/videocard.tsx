@@ -2,17 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Barlow_Condensed, Montaga } from 'next/font/google';
 
-const barlow_condensed = Barlow_Condensed({
-  weight: '600',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const montaga = Montaga({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 interface VideoCardProps {
   title: string;
@@ -23,12 +12,12 @@ interface VideoCardProps {
   link: string;
 }
 
-const VideoCards = ({ title, date, description, thumbnailUrl, duration, link }: VideoCardProps) => {
+const VideoCard = ({ title, date, description, thumbnailUrl, duration, link }: VideoCardProps) => {
   return (
     <Link href={link} className="flex flex-col h-full">
       <div className="w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
         {/* Thumbnail with duration */}
-        <div className="relative w-full h-48">
+        <div className="relative w-full h-96">
           <Image
             src={thumbnailUrl}
             alt={title}
@@ -42,7 +31,7 @@ const VideoCards = ({ title, date, description, thumbnailUrl, duration, link }: 
         </div>
         
         {/* Content */}
-        <div className="p-4">
+        {/* <div className="p-4">
           <h3 className={`text-xl text-[#902729] mb-2 hover:text-[#b33235] transition-colors duration-200 ${barlow_condensed.className}`}>
             {title}
           </h3>
@@ -61,9 +50,9 @@ const VideoCards = ({ title, date, description, thumbnailUrl, duration, link }: 
           <p className={`text-gray-600 text-sm line-clamp-2 ${montaga.className}`}>
             {description}
           </p>
-        </div>
+        </div> */}
       </div>
     </Link>
   );
 };
-export default VideoCards;
+export default VideoCard;
