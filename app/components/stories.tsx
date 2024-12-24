@@ -20,7 +20,7 @@ const StoriesContent = () => {
     { img: "images/status_images/2.png", title: "Education" },
     { img: "images/status_images/3.png", title: "Conferencing" },
     { img: "images/status_images/4.png", title: "Tafaria Experience" },
-    { img: "images/arts.png", title: "Arts" },
+    { img: "images/status_images/5.png", title: "Arts" },
   ];
 
   return (
