@@ -17,7 +17,7 @@ const montaga = Montaga({
   subsets: ['latin'],
   display: 'swap',
 })
-const SubMenu = ({ title }: { title: string }) => {
+const SubMenu = ({ title,description }: { title: string ,description:string}) => {
   const [showAfterIntroduction, setShowAfterIntroduction] = useState(false);
 
   const toggleReadMore = () => {
@@ -41,12 +41,9 @@ const SubMenu = ({ title }: { title: string }) => {
               )}
               {!showAfterIntroduction && (
                 <p className={montaga.className} >
-                 The Tafaria Nano Herbarium offers a unique, educational experience, guiding visitors toward environmental consciousness and a deeper understanding of botany promoting conservation through the Arts. 
-
-<br/>
-Led by either the resident botanist or expert guides, visitors explore essential botanical skills, from specimen collection to species identification, labeling, cataloging, and data recording. This uniquely styled display herbarium, simplifies complex botanical concepts through the Tafaria Taxonomy which is an innovative approach that blends science and art. 
-<br/>
-Tafaria Nano Herbarium is a valuable resource for fostering ecological awareness and inspiring a commitment to conservation.                </p>
+                  {description} heellelle
+                  </p>
+                
               )}
             </div>
           </div>

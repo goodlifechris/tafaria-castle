@@ -1,6 +1,4 @@
 "use client"
-import Link from "next/link";
-import PostCard from "../components/post";
 import BlogCard from "../components/blogcard";
 
 import { useSearchParams } from 'next/navigation';
