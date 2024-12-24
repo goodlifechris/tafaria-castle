@@ -22,7 +22,6 @@ const StoriesContent = () => {
     { img: "images/status_images/4.png", title: "Tafaria Experience" },
     { img: "images/status_images/5.png", title: "Arts" },
   ];
-
   return (
     <div className="flex overflow-x-scroll no-scrollbar space-x-6 px-4">
       {Array.from(categories).map((img) => (
