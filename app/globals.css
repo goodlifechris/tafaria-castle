@@ -35,7 +35,7 @@ body {
 /* For Mobile */
 @media screen and (max-width: 540px) {
   .bartop{
-    top: 12rem !important;
+    top: 13rem !important;
     width: 100vh;
     }
 }
@@ -53,3 +53,7 @@ body {
   top: 16em;
 }
 
+
+.our-story-background{
+  background: linear-gradient(to bottom, transparent 0%, white 50%) !important;
+}

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { FaSearch } from "react-icons/fa";
 import Select from "react-select";
+import Link from "next/link";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,11 +29,13 @@ const Header = () => {
         <div className="container mx-auto flex flex-wrap sm:flex-nowrap items-center justify-between space-y-4 sm:space-y-0 sm:flex-row sm:px-4">
           {/* Logo */}
           <div className="flex items-center justify-center sm:justify-start w-1/4">
+          <Link href="/">
             <img
               src="./logo.png"
               alt="Tafaria Castle Logo"
               className="w-16 h-16 sm:w-24 sm:h-24"
             />
+                  </Link>
           </div>
 
           {/* Search Button */}

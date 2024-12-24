@@ -28,7 +28,7 @@ const Introduction = () => {
     <>
       {/* Parallax Section */}
       <div
-        className="relative w-full h-[500px] aspect-[16/9] bg-no-repeat bg-cover bg-center"
+        className="relative w-full h-[500px]   aspect-[16/9] bg-no-repeat bg-cover bg-center"
         style={{ backgroundImage: `url('/images/final.png')` }}
       >
         <Link href="https://apps.hti-systems.com/hostech/tafaria/desktop.html?locale=en_US">
@@ -40,7 +40,7 @@ const Introduction = () => {
             alt="Check-in Image"
           />
         </Link>
-        <div className="flex absolute bottom-0 w-full text-white py-2 text-center">
+        <div className="flex absolute bottom-0 w-full text-white py-2 text-center our-story-background">
           <div className="w-screen flex justify-center items-center">
             <div className="text-gray-800 text-center mx-4 md:mx-20 lg:mx-40 text-sm md:text-base lg:text-lg">
               <h1 className={`font-inter text-4xl font-extrabold tracking-tight text-[#902729] ${barlow_condensed.className}`}>

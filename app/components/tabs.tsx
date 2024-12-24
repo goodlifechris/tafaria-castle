@@ -3,6 +3,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Barlow_Condensed } from 'next/font/google'
+import BlogPostCards from "./blogpostcards";
+import VideoCard from "./videocard";
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -29,9 +31,38 @@ const TabComponent = () => {
     "/images/jach.png",
   ];
 
+  const video =
+  {
+    id: 1,
+    title: "Castle Tour",
+    date: "2024-03-20",
+    description: "Take a virtual tour through the magnificent halls of Tafaria Castle.",
+    thumbnail: "/images/video-thumbnail-1.jpg",
+    duration: "5:30",
+    link: "/videos/castle-tour"
+  }
+    // ... more videos
+    ;
   const videos = [
-    { id: 1, title: "Video 1", thumbnail: "/images/5.png" },
-    { id: 2, title: "Video 2", thumbnail: "/images/6.png" },
+    {
+      id: 1, title: "Video 1",
+      date: "2024-03-20",
+      duration: "3:45",
+      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/1.png"
+    },
+    {
+      id: 2, title: "Video 2",
+      date: "2024-03-20",
+      duration: "3:45",
+      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/2.png"
+    },
+    {
+      id: 3, title: "Video 1",
+      date: "2024-03-20",
+      duration: "3:45",
+      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/3.png"
+    },
+    // { id: 4, title: "Video 2", thumbnail: "/images/videos/1.png" },
   ];
 
   const blogs = [
@@ -49,11 +80,10 @@ const TabComponent = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`py-2 px-4 font-bold ${barlow_condensed.className} ${
-                activeTab === tab
+              className={`py-2 px-4 font-bold ${barlow_condensed.className} ${activeTab === tab
                   ? "border-b-4 border-[#902729] text-[#902729]"
                   : "text-gray-500 hover:text-purple-600"
-              }`}
+                }`}
             >
               {tab}
             </button>
@@ -62,7 +92,7 @@ const TabComponent = () => {
       </div>
 
       {/* Content - Moved outside sticky container */}
-      <div className="mt-6 px-4">
+      <div className="mt-6 px-4 w-full">
         {(activeTab === "All" || activeTab === "Images") && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {images.map((src, index) => (
@@ -77,38 +107,38 @@ const TabComponent = () => {
           </div>
         )}
 
+
         {(activeTab === "All" || activeTab === "Videos") && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            {videos.map((video) => (
-              <Link href="/categories" key={video.id}>
-                <div className="bg-white rounded-md shadow-md border p-4">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="w-full h-48 object-cover rounded-md"
-                  />
-                  <h3 className="mt-2 text-lg font-semibold text-purple-600">
-                    {video.title}
-                  </h3>
-                </div>
-              </Link>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+            {videos.map((video) => (  // Changed parameter name to 'video'
+              <div className="bg-white rounded-md shadow-md border p-4" key={video.id}>
+                <VideoCard
+                  key={video.id}
+                  title={video.title}
+                  date={video.date || "2024-03-20"}  // Provide default if not in data
+                  description={video.description || "Take a virtual tour through the magnificent halls of Tafaria Castle."}  // Provide default if not in data
+                  thumbnailUrl={video.thumbnail}
+                  duration={video.duration || "5:30"}  // Provide default if not in data
+                  link="/categories"
+                />
+              </div>
             ))}
           </div>
         )}
 
         {(activeTab === "All" || activeTab === "Blogs") && (
-          <div className="mt-4 space-y-4">
+          <div className="mt-4 space-y-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {blogs.map((blog) => (
-              <Link href="/categories" key={blog.id}>
-                <div className="p-4 bg-white rounded-md shadow-md border">
-                  <h3 className="text-lg font-semibold text-purple-600">
-                    {blog.title}
-                  </h3>
-                  <p className="text-gray-600">
-                    This is a brief description of {blog.title}.
-                  </p>
-                </div>
-              </Link>
+              <div key={blog.id}>
+                <BlogPostCards
+                  key={blog.id}
+                  title="Uncover Tafaria's Heritage"
+                  date="2024-09-18"
+                  description="Explore the rich history and cultural significance of Tafaria Castle, from its architecture to the local legends."
+                  imageUrl="/images/1.png"
+                  link="/categories"
+                />
+              </div>
             ))}
           </div>
         )}
