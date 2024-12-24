@@ -109,20 +109,20 @@ const TabComponent = () => {
 
 
         {(activeTab === "All" || activeTab === "Videos") && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
-            {videos.map((video) => (  // Changed parameter name to 'video'
-              <div className="bg-white rounded-md shadow-md border p-4" key={video.id}>
+          <div className="container mx-auto px-4 mt-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {videos.map((video) => (
                 <VideoCard
                   key={video.id}
                   title={video.title}
-                  date={video.date || "2024-03-20"}  // Provide default if not in data
-                  description={video.description || "Take a virtual tour through the magnificent halls of Tafaria Castle."}  // Provide default if not in data
+                  date={video.date}
+                  description={video.description}
                   thumbnailUrl={video.thumbnail}
-                  duration={video.duration || "5:30"}  // Provide default if not in data
-                  link="/categories"
+                  duration={video.duration}
+                  link={`/videos/${video.id}`}
                 />
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
 

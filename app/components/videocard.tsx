@@ -14,7 +14,7 @@ interface VideoCardProps {
 
 const VideoCard = ({ title, thumbnailUrl, duration, link }: VideoCardProps) => {
   return (
-    <Link href={link} className="flex flex-col h-full">
+    <Link href={link} className="flex flex-col h-full mb-2">
       <div className="w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
         {/* Thumbnail with duration */}
         <div className="relative w-full h-96">
@@ -22,7 +22,7 @@ const VideoCard = ({ title, thumbnailUrl, duration, link }: VideoCardProps) => {
             src={thumbnailUrl}
             alt={title}
             fill
-            className="object-cover rounded-t-lg"
+            className="object-cover rounded-t-lg rounded"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
           <div className="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-sm">
