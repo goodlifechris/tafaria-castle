@@ -5,6 +5,7 @@ import Header from "./components/header";
 import Stories from "./components/stories";
 import WhatsAppButton from "./components/whatsappbutton";
 import Footer from "./components/footer";
+import BlogCard from "./components/blogcard";
 
 
 
@@ -36,6 +37,7 @@ export default function RootLayout({
 
   {/* Stories */}
 <Stories/>
+
 </div>
 
 {children}
