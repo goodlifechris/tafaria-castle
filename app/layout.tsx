@@ -5,6 +5,7 @@ import Header from "./components/header";
 import Stories from "./components/stories";
 import WhatsAppButton from "./components/whatsappbutton";
 import Footer from "./components/footer";
+import { GoogleTagManager } from '@next/third-parties/google'
 
 
 
@@ -20,6 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+        <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
       <body>
       <div className="bg-white min-h-screen flex flex-col items-center">
       <Head>
