@@ -28,7 +28,7 @@ const TabComponent = () => {
     "/images/11.png",
     "/images/12.png",
     "/images/13.png",
-    "/images/jach.png",
+    "/images/1.png",
     "/images/6.png",
     "/images/7.png",
     "/images/8.png",
