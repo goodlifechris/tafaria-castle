@@ -1,7 +1,6 @@
 "use client";
 import React, { Suspense } from "react"; // Add Suspense import
 import { Montaga } from 'next/font/google'
-import BlogCard from "./blogcard";
 import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
 
