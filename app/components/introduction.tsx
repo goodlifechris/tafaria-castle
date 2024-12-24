@@ -28,7 +28,7 @@ const Introduction = () => {
     <>
       {/* Parallax Section */}
       <div
-        className="relative w-full h-[600px]   smaspect-[16/9] bg-no-repeat bg-cover bg-center"
+        className="relative w-full md:aspect-[36/20] aspect-[1]  bg-no-repeat bg-cover bg-center"
         style={{ backgroundImage: `url('/images/final.png')` }}
       >
         <Link href="https://apps.hti-systems.com/hostech/tafaria/desktop.html?locale=en_US">
