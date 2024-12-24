@@ -1,11 +1,11 @@
 "use client"
 import BlogCard from "../components/blogcard";
 import { useSearchParams } from 'next/navigation';
+import React, { Suspense } from "react"; // Add Suspense import
 
-export default function Menu() {
-  // usePathname returns a string, so we can't destructure it
-  const searchParams = useSearchParams()
-  const title = searchParams.get('name')
+const MenuContent = () => {
+  const searchParams = useSearchParams();
+  const title = searchParams.get('name');
   return <div className="w-full">   
     <h1 className="text-3xl font-bold text-center my-8 tracking-tight text-[#94723C] capitalize border-b-2 border-[#902729] pb-4 max-w-2xl mx-auto">
       {title}
@@ -39,3 +39,16 @@ diverse orchard, a vegetable garden, greenhouses, and a variety of livestock..."
       />
   </div>
   }
+
+  // Main Menu component with Suspense
+export default function Menu() {
+  return (
+    <Suspense fallback={
+      <div className="w-full flex justify-center p-8">
+        <div className="animate-pulse">Loading...</div>
+      </div>
+    }>
+      <MenuContent />
+    </Suspense>
+  );
+}
