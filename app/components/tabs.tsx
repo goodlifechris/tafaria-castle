@@ -52,7 +52,6 @@ const TabComponent = () => {
       duration: "3:45",
       description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/3.png"
     },
-
   ]);
   const [blogs, setBlogs] = useState([
     { id: 1, title: "Blog Post 1" },
@@ -66,7 +65,7 @@ const TabComponent = () => {
     if (activeTab === "Images") {
       setImages((prevImages) => [
         ...prevImages,
-        ...images.map((src, index) => `${src}?repeat=${prevImages.length + index}`), // Append unique query parameter
+        ...images.map((src) => `${src}?repeat=${prevImages.length}`), // Append unique query parameter
       ]);
     } else if (activeTab === "Videos") {
       setVideos((prevVideos) => [
@@ -89,7 +88,7 @@ const TabComponent = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+      const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100; // Trigger before reaching the bottom
       if (bottom) {
         loadMoreItems();
       }
