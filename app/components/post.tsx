@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaHeart, FaShareSquare } from "react-icons/fa"; // Import Font Awesome icons
+import { FaRegHeart } from "react-icons/fa"; // Import Font Awesome icons
+import { FiSend } from "react-icons/fi";
 
 const PostCard = ({ imageUrl, text }: { imageUrl: string; text: string }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -34,13 +35,13 @@ const PostCard = ({ imageUrl, text }: { imageUrl: string; text: string }) => {
             onClick={toggleLike}
             className={`text-2xl ${isLiked ? "text-red-500" : "text-gray-400"}`}
           >
-            <FaHeart />
+            <FaRegHeart />
           </button>
           <button
             onClick={handleShare}
             className="text-2xl text-gray-400 hover:text-blue-500"
           >
-            <FaShareSquare />
+            <FiSend />
           </button>
         </div>
 

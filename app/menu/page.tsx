@@ -1,17 +1,27 @@
 "use client";
 import BlogCard from "../components/blogcard";
 import { useSearchParams } from 'next/navigation';
-import React, { Suspense } from "react"; // Add Suspense import
+import React, { Suspense,useRef,useEffect } from "react"; // Add Suspense import
 import Link from 'next/link'; // Import Link from next/link
 import { FaAngleLeft } from 'react-icons/fa'; // Import the Font Awesome left arrow icon
+import { Barlow_Condensed } from 'next/font/google';
+
 
 export interface Session {
   title: string;
   description: string;
 }
+//👇 Configure our font object
+const barlow_condensed = Barlow_Condensed({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+});
 const MenuContent = () => {
   const searchParams = useSearchParams();
   const title = searchParams.get('name');
+  const card = searchParams.get('card'); // Get the card parameter
+  const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({}); // Ref to store card references
 
   const menuData = [
     {
@@ -35,6 +45,113 @@ const MenuContent = () => {
           "description": "Tafaria provides an array of facilities including archery, horse riding and carriage driving. Others include swimming, open-air gym, viking’s pillow, mini-golf, lawn tennis, medieval bowling, basketball, pool table, a dance studio and big-screen cinema. Further, tours of the museum, herbarium, farm & art galleries provide an exceptional experience.",
           "sessions": [] // Empty sessions array
         },
+      ]
+    },
+    {
+      "type": "Tsafaria Experience",
+      "subtypes": [
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+          "title": "Archery",
+          "description": "Experience the thrill of archery in a medieval setting, honing your skills with a bow and arrow. Under the guidance of experienced instructors, you'll learn the fundamentals of archery, including stance, aim, and release techniques. This activity is perfect for both beginners and seasoned archers looking to refine their skills.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel8.jpg",
+          "title": "Horseback riding",
+          "description": "Enjoy a scenic ride on horseback through beautiful landscapes, perfect for both beginners and experienced riders. Our well-trained horses and knowledgeable guides ensure a safe and enjoyable experience as you explore the stunning surroundings of Tafaria.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel2.jpg",
+          "title": "Horse Carriage driving",
+          "description": "Take a leisurely ride in a horse-drawn carriage, experiencing the charm of traditional transport. This relaxing journey allows you to soak in the picturesque views while learning about the history and significance of horse-drawn carriages in the region.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Medieval bowling",
+          "description": "Engage in a fun game of medieval bowling, a unique twist on the classic sport. This activity combines skill and strategy as you aim to knock down pins in a charming outdoor setting, making it a great option for families and groups.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "High altitude swimming",
+          "description": "Dive into refreshing waters at high altitudes, surrounded by breathtaking views. This invigorating experience not only offers a chance to cool off but also provides a unique perspective of the stunning landscape that surrounds you.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Open-air gym",
+          "description": "Stay fit and active in our open-air gym, equipped with various exercise stations. Enjoy the fresh air and beautiful scenery while engaging in a workout that suits your fitness level, whether you prefer strength training or cardio exercises.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "A dance studio",
+          "description": "Join dance classes in our well-equipped studio, suitable for all skill levels. Whether you're a beginner or an experienced dancer, our classes offer a fun and engaging way to express yourself through movement and rhythm.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "The outdoor Viking’s pillow",
+          "description": "Bounce and play on the Viking’s pillow, a fun inflatable attraction for all ages. This unique activity encourages laughter and enjoyment as you jump and play, making it a perfect choice for families looking to have a great time together.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Mini-golf",
+          "description": "Challenge your friends to a round of mini-golf on our creatively designed course. With fun obstacles and engaging themes, this activity is perfect for friendly competition and is suitable for all ages.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Lawn tennis",
+          "description": "Play a game of tennis on our well-maintained lawn courts, perfect for friendly matches. Whether you're a seasoned player or just starting out, our courts provide an excellent environment for enjoying this classic sport.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Basketball",
+          "description": "Shoot some hoops on our basketball court, suitable for casual play or competitive games. Gather your friends for a fun match or practice your skills in a friendly environment.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Pool table",
+          "description": "Enjoy a game of billiards on our pool table, a great way to relax and have fun. Whether you're a beginner or an expert, this activity offers a perfect blend of skill and leisure.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Big-screen cinema",
+          "description": "Watch your favorite movies in our big-screen cinema, offering a comfortable and immersive experience. Enjoy a selection of films in a cozy setting, perfect for a relaxing evening.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Art tours",
+          "description": "Explore the world of art through guided tours, showcasing local and international artists. These tours provide insight into the creative process and the stories behind the artworks.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Museum tours",
+          "description": "Discover history and culture through engaging museum tours, led by knowledgeable guides. These tours offer a deeper understanding of the exhibits and the significance of the artifacts on display.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Herbarium tours",
+          "description": "Learn about plant species and conservation efforts during our informative herbarium tours. These tours provide a unique opportunity to explore the diversity of flora and the importance of preserving our natural environment.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "title": "Farm tours",
+          "description": "Experience farm life with guided tours, including interactions with animals and learning about sustainable practices. These tours are perfect for families and anyone interested in agriculture and nature.",
+          "sessions": [] // Empty sessions array
+        }
       ]
     },
     {
@@ -541,19 +658,37 @@ const MenuContent = () => {
   const categoryData = menuData.find(
     category => category.type.toLowerCase() === title?.toLowerCase()
   );
+  useEffect(() => {
+    // Scroll to the specific card if the card parameter is present
+    if (card) {
+      const targetCard = cardRefs.current[card];
+      if (targetCard) {
+        // Calculate the position to scroll to, adjusting for fixed header height
+        const headerOffset = 360; // Adjust this value based on your fixed header height
+        const elementPosition = targetCard.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerOffset;
 
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [card]);
   
   return (
-    <div className="w-full">   
+    <div className="w-full">
 
-<h1 className="text-3xl font-bold text-center my-8 tracking-tight text-[#94723C] capitalize border-b-2 border-[#902729] pb-4 max-w-2xl mx-auto flex items-center" >
+<h1 className={`${barlow_condensed.className} text-2xl fixed bg-white z-10 w-full font-bold text-center pt-4 tracking-tight text-[#902729] capitalize border-b-2 border-[#902729] pb-4 mx-auto flex items-center`}>
   <Link href="/" className="text-[#94723C] hover:underline mx-5">
   <FaAngleLeft className="mr-2" />
   </Link>
   {title}
 </h1>
+<div className="mt-20">
       {categoryData ? (
         categoryData.subtypes.map((item, index) => (
+          <div key={index} ref={(el) => { if (el) cardRefs.current[item.title] = el; }} className="mb-4">
           <BlogCard
             key={index}
             imageUrl={item.imageUrl}
@@ -561,12 +696,14 @@ const MenuContent = () => {
             description={item.description}
             sessions={item.sessions}
           />
+          </div>
         ))
       ) : (
         <div className="text-center py-8 text-gray-600">
           No content found for this category
         </div>
       )}
+    </div>
     </div>
   );
 };

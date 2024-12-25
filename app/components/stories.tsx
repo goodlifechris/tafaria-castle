@@ -21,7 +21,9 @@ const StoriesContent = () => {
     { img: "images/status_images/5.png", title: "Arts" },
     { img: "images/status_images/3.png", title: "Conferencing" },
     { img: "images/status_images/4.png", title: "Custom Programs" },
+    { img: "images/status_images/7.png", title: "Tsafaria Experience" },
     { img: "images/status_images/6.png", title: "Blogs" },
+
   ];
   return (
     <div className="flex overflow-x-scroll no-scrollbar space-x-6 px-4">

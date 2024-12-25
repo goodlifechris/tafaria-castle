@@ -55,7 +55,7 @@ const BlogCard = ({
       {/* Content Section */}
       <div className="p-4 md:w-2/3">
         <h2 className="text-xl font-semibold text-[#902729]">{title}</h2>
-        <p className={`mt-2 text-gray-600 ${montaga.className}`}>{description}</p>
+        <p className={`mt-2 text-gray-600 ${barlow_condensed.className}`}>{description}</p>
         <br />
         {sessions.length > 0 && (
           <>
