@@ -51,19 +51,19 @@ const MenuContent = () => {
       "type": "Tsafaria Experience",
       "subtypes": [
         {
-          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+          "imageUrl": "https://www.tafaria.com/assets/img/Archery%20at%20Tafaria%20Castle%20.jpg",
           "title": "Archery",
           "description": "Experience the thrill of archery in a medieval setting, honing your skills with a bow and arrow. Under the guidance of experienced instructors, you'll learn the fundamentals of archery, including stance, aim, and release techniques. This activity is perfect for both beginners and seasoned archers looking to refine their skills.",
           "sessions": [] // Empty sessions array
         },
         {
-          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel8.jpg",
+          "imageUrl": "https://www.tafaria.com/assets/img/Tafaria%20chariot%20riding.jpg",
           "title": "Horseback riding",
           "description": "Enjoy a scenic ride on horseback through beautiful landscapes, perfect for both beginners and experienced riders. Our well-trained horses and knowledgeable guides ensure a safe and enjoyable experience as you explore the stunning surroundings of Tafaria.",
           "sessions": [] // Empty sessions array
         },
         {
-          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel2.jpg",
+          "imageUrl": "https://www.tafaria.com/assets/img/Tafaria%20Cinderella%201.jpg",
           "title": "Horse Carriage driving",
           "description": "Take a leisurely ride in a horse-drawn carriage, experiencing the charm of traditional transport. This relaxing journey allows you to soak in the picturesque views while learning about the history and significance of horse-drawn carriages in the region.",
           "sessions": [] // Empty sessions array
@@ -87,13 +87,13 @@ const MenuContent = () => {
           "sessions": [] // Empty sessions array
         },
         {
-          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "imageUrl": "https://www.tafaria.com/assets/img/mu3.jpg", // Placeholder image
           "title": "A dance studio",
           "description": "Join dance classes in our well-equipped studio, suitable for all skill levels. Whether you're a beginner or an experienced dancer, our classes offer a fun and engaging way to express yourself through movement and rhythm.",
           "sessions": [] // Empty sessions array
         },
         {
-          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "imageUrl": "https://www.tafaria.com/assets/img/Hiking%204.jpg", // Placeholder image
           "title": "The outdoor Viking’s pillow",
           "description": "Bounce and play on the Viking’s pillow, a fun inflatable attraction for all ages. This unique activity encourages laughter and enjoyment as you jump and play, making it a perfect choice for families looking to have a great time together.",
           "sessions": [] // Empty sessions array
@@ -135,13 +135,13 @@ const MenuContent = () => {
           "sessions": [] // Empty sessions array
         },
         {
-          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "imageUrl": "https://www.tafaria.com/assets/img/IMG_0786.jpg", // Placeholder image
           "title": "Museum tours",
           "description": "Discover history and culture through engaging museum tours, led by knowledgeable guides. These tours offer a deeper understanding of the exhibits and the significance of the artifacts on display.",
           "sessions": [] // Empty sessions array
         },
         {
-          "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg", // Placeholder image
+          "imageUrl": "https://www.tafaria.com/assets/img/IMG_0787.jpg", // Placeholder image
           "title": "Herbarium tours",
           "description": "Learn about plant species and conservation efforts during our informative herbarium tours. These tours provide a unique opportunity to explore the diversity of flora and the importance of preserving our natural environment.",
           "sessions": [] // Empty sessions array
