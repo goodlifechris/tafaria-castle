@@ -678,7 +678,6 @@ const MenuContent = () => {
   
   return (
     <div className="w-full">
-
 <h1 className={`${barlow_condensed.className} text-2xl fixed bg-white z-10 w-full font-bold text-center pt-4 tracking-tight text-[#902729] capitalize border-b-2 border-[#902729] pb-4 mx-auto flex items-center`}>
   <Link href="/" className="text-[#94723C] hover:underline mx-5">
   <FaAngleLeft className="mr-2" />
