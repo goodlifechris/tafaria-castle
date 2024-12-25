@@ -35,7 +35,7 @@ body {
 /* For Mobile */
 @media screen and (max-width: 540px) {
   .bartop{
-    top: 13rem !important;
+    top: 15rem !important;
     width: 100vh;
     }
 }

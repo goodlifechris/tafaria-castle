@@ -25,38 +25,32 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full bg-white py-2 shadow-md">
-        <div className="container mx-auto flex flex-wrap sm:flex-nowrap items-center justify-between space-y-4 sm:space-y-0 sm:flex-row sm:px-4">
-          {/* Logo */}
-          <div className="flex items-center justify-center sm:justify-start w-1/4">
-          <Link href="/">
-            <img
-              src="./logo.png"
-              alt="Tafaria Castle Logo"
-              className="w-16 h-16 sm:w-24 sm:h-24"
-            />
-                  </Link>
-          </div>
-
-          {/* Search Button */}
-          <div className="flex-1 flex justify-center">
-            <button
-              onClick={openModal}
-              className="flex items-center bg-gray-200 text-gray-600 text-sm px-4 py-2 rounded-full shadow hover:bg-gray-300"
-            >
-              <FaSearch className="mr-2" />
-             Tafaria's Experience
-            </button>
-          </div>
-
-          {/* Book Now Button */}
-          <div className="w-1/4 flex justify-center sm:justify-end mr-3">
-            <button className="bg-[#94723C] text-white px-4 py-2 text-sm sm:text-base sm:px-6 sm:py-2 rounded-md font-semibold hover:bg-[#902729]">
-           book
-            </button>
-          </div>
-        </div>
-      </header>
+<header className="w-full bg-white py-2 shadow-md">
+  <div className="container mx-auto flex items-center justify-between px-4">
+    {/* Logo */}
+    <div className="flex items-center">
+      <Link href="/">
+        <img
+          src="./logo.png"
+          alt="Tafaria Castle Logo"
+          className="w-16 h-16 sm:w-24 sm:h-24 ml-5"
+        />
+      </Link>
+    </div>
+    {/* Contact Information and Book Now Button */}
+    <div className="flex items-center">
+      <a href="tel:0700151480" className="text-black m-2 text-sm underline">
+        0700151480
+      </a>
+      <a href="mailto:info@tafaria.com" className="text-black m-2 text-sm underline">
+        info@tafaria.com
+      </a>
+      <button className="bg-[#94723C] text-white px-4 py-2 text-sm sm:text-base sm:px-6 sm:py-2 rounded-md font-semibold hover:bg-[#902729]">
+        Book 
+      </button>
+    </div>
+  </div>
+</header>
 
 {/* Modal for Activity Selection */}
 <Modal

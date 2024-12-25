@@ -18,9 +18,10 @@ const StoriesContent = () => {
   const categories = [
     { img: "images/status_images/1.png", title: "Hospitality" },
     { img: "images/status_images/2.png", title: "Education" },
-    { img: "images/status_images/3.png", title: "Conferencing" },
-    { img: "images/status_images/4.png", title: "Tafaria Experience" },
     { img: "images/status_images/5.png", title: "Arts" },
+    { img: "images/status_images/3.png", title: "Conferencing" },
+    { img: "images/status_images/4.png", title: "Custom Programs" },
+    { img: "images/status_images/6.png", title: "Blogs" },
   ];
   return (
     <div className="flex overflow-x-scroll no-scrollbar space-x-6 px-4">
@@ -33,7 +34,7 @@ const StoriesContent = () => {
             className="flex-shrink-0 flex flex-col items-center space-y-1 py-2 min-w-[80px] sm:min-w-[100px]"
           >
             <img
-              className={`w-11 h-11 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full object-cover
+              className={`w-26 h-20 sm:w-24 sm:h-24 md:w-24 md:h-24 rounded-full object-cover
                 ${activeCategory === img.title 
                   ? 'ring-4 ring-white' 
                   : 'ring-1 ring-gray-300'

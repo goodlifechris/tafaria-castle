@@ -1,13 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
+import { FaHeart, FaShareSquare } from "react-icons/fa"; // Import Font Awesome icons
 
-
-const PostCard = ({ imageUrl, text}: { imageUrl: string; text: string }) => {
+const PostCard = ({ imageUrl, text }: { imageUrl: string; text: string }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
   const toggleLike = () => setIsLiked(!isLiked);
+  
+  const handleShare = () => {
+    const whatsappNumber = "+254705000315"; // Your WhatsApp number
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`; // Share text
+    window.open(whatsappUrl, "_blank"); // Open WhatsApp share link
+  };
 
   return (
     <div className="max-w-md mx-auto mt-2 rounded-lg overflow-hidden shadow-lg bg-white">
@@ -22,17 +28,20 @@ const PostCard = ({ imageUrl, text}: { imageUrl: string; text: string }) => {
 
       {/* Content */}
       <div className="p-4">
-        {/* Like and Send Buttons */}
-        <div className="flex items-center justify-between mb-2">
+        {/* Like and Share Buttons */}
+        <div className="flex items-center justify-start mb-2 space-x-4">
           <button
             onClick={toggleLike}
-            className={`text-2xl ${
-              isLiked ? "text-red-500" : "text-gray-400"
-            }`}
+            className={`text-2xl ${isLiked ? "text-red-500" : "text-gray-400"}`}
           >
-            ♥
+            <FaHeart />
           </button>
-       
+          <button
+            onClick={handleShare}
+            className="text-2xl text-gray-400 hover:text-blue-500"
+          >
+            <FaShareSquare />
+          </button>
         </div>
 
         {/* Post Description */}
@@ -60,4 +69,3 @@ const PostCard = ({ imageUrl, text}: { imageUrl: string; text: string }) => {
 };
 
 export default PostCard;
-

@@ -2,6 +2,8 @@
 import BlogCard from "../components/blogcard";
 import { useSearchParams } from 'next/navigation';
 import React, { Suspense } from "react"; // Add Suspense import
+import Link from 'next/link'; // Import Link from next/link
+import { FaAngleLeft } from 'react-icons/fa'; // Import the Font Awesome left arrow icon
 
 const MenuContent = () => {
   const searchParams = useSearchParams();
@@ -128,6 +130,297 @@ const MenuContent = () => {
         }
       ]
     },
+    {
+      "type": "Custom Programs",
+      "subtypes": [
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel6.jpg",
+          "title": "TeamOut ​",
+          "description": "TeamOut is a teambuilding retreat experience for corporate teams, designed to offer a holistic experience that combines learning, inspiration, and play to energize and arm teams with sustainable nature inspired teamwork skills.​",
+          "sessions": [
+            {
+              "title": "Team Building Session: The Tafaria Taxonomy Approach",
+              "description": "This immersive session uses the nature-inspired Tafaria Taxonomy to enhance teamwork. It helps teams identify their strengths and gaps and how to harness their diverse skills to sustainably enhance team spirit and effectiveness."
+            },
+            {
+              "title": "Creative Problem Solving Workshop",
+              "description": "A workshop designed to foster innovative thinking and collaborative problem-solving skills among team members."
+            },
+            {
+              "title": "Leadership Development Program",
+              "description": "An intensive program aimed at developing leadership skills through experiential learning and mentorship."
+            }
+          ]
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel3.jpg",
+          "title": "goLead - Leading Naturally​",
+          "description": "goLead program is designed to inspire and equip leaders with practical lessons into leadership using the Tafaria Taxonomy framework. It is an immersive program that uses nature inspired leadership lessons (Tafaria Taxonomy) to enhance leadership skills.",
+          "sessions": [
+            {
+              "title": "Inspiration & Motivation",
+              "description": "Tour of Tafaria Castle: An immersive and inspiring story behind Tafaria Castle and how vision and perseverance shaped its creation followed by a motivation and inspiration session called “Once Upon a Dream.”"
+            },
+            {
+              "title": "Lessons by Nature",
+              "description": "An immersion into the Tafaria herbarium for context into The Tafaria Taxonomy of Leadership, i.e., nature-inspired leadership lessons followed by leadership sessions on how to apply the taxonomy to leadership scenarios and guided discussions to align Tafaria Taxonomy principles with personal traits and unique leadership roles."
+            },
+            {
+              "title": "Social Impact",
+              "description": "Leave a mark in our community at the Happy Place – an upcoming school for the underprivileged."
+            }
+          ]
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel7.jpg",
+          "title": "Soulscape ​",
+          "description": "Soulscape Retreat is designed for those in the faith who are looking to nourish and rejuvenate spiritually in a serene setting at Tafaria Castle & Center for the Arts.​",
+          "sessions": [
+            {
+              "title": "Be Inspired – Once Upon a Dream",
+              "description": "Through an immersive and inspiring story behind Tafaria Castle and how vision and perseverance shaped its creation followed by a motivational and soul-lifting session called “Once Upon a Dream.”"
+            },
+            {
+              "title": "Therapy for the Soul: By Art & Nature’s Own",
+              "description": "Engage your creative side with soul-soothing art therapy. Explore painting, pottery, sculpting, artistic creations, and the wonders of nature in our Herbarium for mental wellbeing, emotional healing, self-expression, and spiritual connection."
+            },
+            {
+              "title": "Lead Naturally - Enhance Your Spiritual Growth",
+              "description": "Enhance your ability to lead naturally with our 'Leading Naturally' program, which is nature-inspired based on the Tafaria Taxonomy. It will lighten your burdens!"
+            },
+            {
+              "title": "Feed Your Soul Leisurely",
+              "description": "Feed your soul with fun, low-pressure activities like horse riding, archery, minigolf, etc., as you learn life lessons carefully curated for you."
+            },
+            {
+              "title": "Social Impact",
+              "description": "Finally, leave a mark in our community at the Happy Place – an upcoming school for the underprivileged."
+            }
+          ]
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Piano_tafaria-min-ofzzltgcxsqzc8kqnlnm4s1o852rgtnkntg1ghfg4w.jpg",
+          "title": "goDream Lifeskills ​ ​",
+          "description": "goDream is a Tafaria custom life skill building program for students that blends creative/arts workshops, hands-on activities, and fun, ensuring that each student discovers new talents, develops skills, and raise their levels of agency on community service. ​",
+          "sessions": [
+            {
+              "title": "Life-skills",
+              "description": "The students learn some life-skills through leisure and art-based activities on how to approach and navigate different life scenarios."
+            },
+            {
+              "title": "Inspiring Once Upon a Dream Session",
+              "description": "Drawing from Tafaria’s inspiring motto, 'Once Upon a Dream,' this session inspires students on goal setting, following them, and managing peer pressure."
+            },
+            {
+              "title": "Educational Tours",
+              "description": "Enriching guided tours of the evolution science museum, the herbarium for conservation, enriching art tours, and farm tours for exposure to sustainable farming methods."
+            },
+            {
+              "title": "Community Service",
+              "description": "The students get involved in a community service project to instill a sense of responsibility and community engagement."
+            },
+            {
+              "title": "Bonding and Rejuvenating Leisure Activities",
+              "description": "The program is rounded out with a variety of relaxing and team-bonding activities built around the Tafaria leisure activities and talent shows."
+            }
+          ]
+
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Tafaria%2056.jpg",
+          "title": "goDream Leadership ​ ​",
+          "description": "goDream Leadership is student leaders custom program based on the Tafaria Taxonomy of leadership. It is designed to equip student leaders with essential leadership skills, such as effective communication, decision-making, problem-solving, teamwork & collaboration, conflict resolution" ,
+          "sessions": [
+    {
+      "title": "Inspiring Once Upon a Dream Session",
+      "description": "An inspiring tour of the Tafaria Castle & Center for the Arts followed by the 'Once Upon a Dream' session to inspire students on goal setting and following them and managing peer pressure."
+    },
+    {
+      "title": "Tafaria Taxonomy of Leadership",
+      "description": "An immersion into the Tafaria herbarium for context into The Tafaria Taxonomy of Leadership followed by a session on nature-inspired leadership lessons."
+    },
+    {
+      "title": "Leadership in Action",
+      "description": "A session on how to apply the lessons learned in a school environment including balancing leadership with studies."
+    },
+    {
+      "title": "Community Service",
+      "description": "The students get involved in a community service project to instill a sense of responsibility and community engagement."
+    }
+  ]
+        
+        },
+         {
+          "imageUrl": "https://www.tafaria.com/assets/img/Piano_tafaria-min-ofzzltgcxsqzc8kqnlnm4s1o852rgtnkntg1ghfg4w.jpg",
+          "title": "goDream Arts ​ ​ ​",
+          "description": "goDream Arts is a Tafaria custom arts program for students that combines exposure into the world of applied arts, creative/arts workshops with local community for impact and cultural exchange and a Tafaria mission inspiring session on visioning and goal setting.​",
+          "sessions": [
+            {
+              "title": "Inspiring Once Upon a Dream Session",
+              "description": "An inspiring tour of the Tafaria Castle & Center for the Arts followed by the 'Once Upon a Dream' session to inspire students on goal setting and following them and managing peer pressure."
+            },
+            {
+              "title": "Applied Arts in Action",
+              "description": "A session on how the arts have been used at Tafaria museum, farm, and herbarium to simplify science and for social messaging."
+            },
+            {
+              "title": "Community Impact and Cultural Exchange",
+              "description": "An interactive & ideation session with local students covering music, pottery, dance, and fine art with leisure and bonding breaks."
+            },
+            {
+              "title": "Exhibition/Talent Show",
+              "description": "A showcase event where students can display their talents and creativity through various forms of art."
+            }
+          ]
+         },
+      ]
+    },
+        {
+      "type": "Blogs",
+      "subtypes": [
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel6.jpg",
+          "title": "TeamOut ​",
+          "description": "TeamOut is a teambuilding retreat experience for corporate teams, designed to offer a holistic experience that combines learning, inspiration, and play to energize and arm teams with sustainable nature inspired teamwork skills.​",
+          "sessions": [
+            {
+              "title": "Team Building Session: The Tafaria Taxonomy Approach",
+              "description": "This immersive session uses the nature-inspired Tafaria Taxonomy to enhance teamwork. It helps teams identify their strengths and gaps and how to harness their diverse skills to sustainably enhance team spirit and effectiveness."
+            },
+            {
+              "title": "Creative Problem Solving Workshop",
+              "description": "A workshop designed to foster innovative thinking and collaborative problem-solving skills among team members."
+            },
+            {
+              "title": "Leadership Development Program",
+              "description": "An intensive program aimed at developing leadership skills through experiential learning and mentorship."
+            }
+          ]
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel3.jpg",
+          "title": "goLead - Leading Naturally​",
+          "description": "goLead program is designed to inspire and equip leaders with practical lessons into leadership using the Tafaria Taxonomy framework. It is an immersive program that uses nature inspired leadership lessons (Tafaria Taxonomy) to enhance leadership skills.",
+          "sessions": [
+            {
+              "title": "Inspiration & Motivation",
+              "description": "Tour of Tafaria Castle: An immersive and inspiring story behind Tafaria Castle and how vision and perseverance shaped its creation followed by a motivation and inspiration session called “Once Upon a Dream.”"
+            },
+            {
+              "title": "Lessons by Nature",
+              "description": "An immersion into the Tafaria herbarium for context into The Tafaria Taxonomy of Leadership, i.e., nature-inspired leadership lessons followed by leadership sessions on how to apply the taxonomy to leadership scenarios and guided discussions to align Tafaria Taxonomy principles with personal traits and unique leadership roles."
+            },
+            {
+              "title": "Social Impact",
+              "description": "Leave a mark in our community at the Happy Place – an upcoming school for the underprivileged."
+            }
+          ]
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel7.jpg",
+          "title": "Soulscape ​",
+          "description": "Soulscape Retreat is designed for those in the faith who are looking to nourish and rejuvenate spiritually in a serene setting at Tafaria Castle & Center for the Arts.​",
+          "sessions": [
+            {
+              "title": "Be Inspired – Once Upon a Dream",
+              "description": "Through an immersive and inspiring story behind Tafaria Castle and how vision and perseverance shaped its creation followed by a motivational and soul-lifting session called “Once Upon a Dream.”"
+            },
+            {
+              "title": "Therapy for the Soul: By Art & Nature’s Own",
+              "description": "Engage your creative side with soul-soothing art therapy. Explore painting, pottery, sculpting, artistic creations, and the wonders of nature in our Herbarium for mental wellbeing, emotional healing, self-expression, and spiritual connection."
+            },
+            {
+              "title": "Lead Naturally - Enhance Your Spiritual Growth",
+              "description": "Enhance your ability to lead naturally with our 'Leading Naturally' program, which is nature-inspired based on the Tafaria Taxonomy. It will lighten your burdens!"
+            },
+            {
+              "title": "Feed Your Soul Leisurely",
+              "description": "Feed your soul with fun, low-pressure activities like horse riding, archery, minigolf, etc., as you learn life lessons carefully curated for you."
+            },
+            {
+              "title": "Social Impact",
+              "description": "Finally, leave a mark in our community at the Happy Place – an upcoming school for the underprivileged."
+            }
+          ]
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Piano_tafaria-min-ofzzltgcxsqzc8kqnlnm4s1o852rgtnkntg1ghfg4w.jpg",
+          "title": "goDream Lifeskills ​ ​",
+          "description": "goDream is a Tafaria custom life skill building program for students that blends creative/arts workshops, hands-on activities, and fun, ensuring that each student discovers new talents, develops skills, and raise their levels of agency on community service. ​",
+          "sessions": [
+            {
+              "title": "Life-skills",
+              "description": "The students learn some life-skills through leisure and art-based activities on how to approach and navigate different life scenarios."
+            },
+            {
+              "title": "Inspiring Once Upon a Dream Session",
+              "description": "Drawing from Tafaria’s inspiring motto, 'Once Upon a Dream,' this session inspires students on goal setting, following them, and managing peer pressure."
+            },
+            {
+              "title": "Educational Tours",
+              "description": "Enriching guided tours of the evolution science museum, the herbarium for conservation, enriching art tours, and farm tours for exposure to sustainable farming methods."
+            },
+            {
+              "title": "Community Service",
+              "description": "The students get involved in a community service project to instill a sense of responsibility and community engagement."
+            },
+            {
+              "title": "Bonding and Rejuvenating Leisure Activities",
+              "description": "The program is rounded out with a variety of relaxing and team-bonding activities built around the Tafaria leisure activities and talent shows."
+            }
+          ]
+
+        },
+        {
+          "imageUrl": "https://www.tafaria.com/assets/img/Tafaria%2056.jpg",
+          "title": "goDream Leadership ​ ​",
+          "description": "goDream Leadership is student leaders custom program based on the Tafaria Taxonomy of leadership. It is designed to equip student leaders with essential leadership skills, such as effective communication, decision-making, problem-solving, teamwork & collaboration, conflict resolution" ,
+          "sessions": [
+    {
+      "title": "Inspiring Once Upon a Dream Session",
+      "description": "An inspiring tour of the Tafaria Castle & Center for the Arts followed by the 'Once Upon a Dream' session to inspire students on goal setting and following them and managing peer pressure."
+    },
+    {
+      "title": "Tafaria Taxonomy of Leadership",
+      "description": "An immersion into the Tafaria herbarium for context into The Tafaria Taxonomy of Leadership followed by a session on nature-inspired leadership lessons."
+    },
+    {
+      "title": "Leadership in Action",
+      "description": "A session on how to apply the lessons learned in a school environment including balancing leadership with studies."
+    },
+    {
+      "title": "Community Service",
+      "description": "The students get involved in a community service project to instill a sense of responsibility and community engagement."
+    }
+  ]
+        
+        },
+         {
+          "imageUrl": "https://www.tafaria.com/assets/img/Piano_tafaria-min-ofzzltgcxsqzc8kqnlnm4s1o852rgtnkntg1ghfg4w.jpg",
+          "title": "goDream Arts ​ ​ ​",
+          "description": "goDream Arts is a Tafaria custom arts program for students that combines exposure into the world of applied arts, creative/arts workshops with local community for impact and cultural exchange and a Tafaria mission inspiring session on visioning and goal setting.​",
+          "sessions": [
+            {
+              "title": "Inspiring Once Upon a Dream Session",
+              "description": "An inspiring tour of the Tafaria Castle & Center for the Arts followed by the 'Once Upon a Dream' session to inspire students on goal setting and following them and managing peer pressure."
+            },
+            {
+              "title": "Applied Arts in Action",
+              "description": "A session on how the arts have been used at Tafaria museum, farm, and herbarium to simplify science and for social messaging."
+            },
+            {
+              "title": "Community Impact and Cultural Exchange",
+              "description": "An interactive & ideation session with local students covering music, pottery, dance, and fine art with leisure and bonding breaks."
+            },
+            {
+              "title": "Exhibition/Talent Show",
+              "description": "A showcase event where students can display their talents and creativity through various forms of art."
+            }
+          ]
+         },
+      ]
+    },
+    
   ];
 
   const categoryData = menuData.find(
@@ -136,9 +429,13 @@ const MenuContent = () => {
 
   return (
     <div className="w-full">   
-      <h1 className="text-3xl font-bold text-center my-8 tracking-tight text-[#94723C] capitalize border-b-2 border-[#902729] pb-4 max-w-2xl mx-auto">
-        {title}
-      </h1>
+
+<h1 className="text-3xl font-bold text-center my-8 tracking-tight text-[#94723C] capitalize border-b-2 border-[#902729] pb-4 max-w-2xl mx-auto flex items-center" >
+  <Link href="/" className="text-[#94723C] hover:underline mx-5">
+  <FaAngleLeft className="mr-2" />
+  </Link>
+  {title}
+</h1>
       {categoryData ? (
         categoryData.subtypes.map((item, index) => (
           <BlogCard
@@ -146,6 +443,7 @@ const MenuContent = () => {
             imageUrl={item.imageUrl}
             title={item.title}
             description={item.description}
+            sessions={item.sessions || []}
           />
         ))
       ) : (

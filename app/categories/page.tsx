@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link";
 import PostCard from "../components/post";
+import { FaSearch } from "react-icons/fa";
 
 export default function Categories() {
     return <div>   
@@ -16,13 +17,25 @@ export default function Categories() {
 
 
   {/* Image */}
-  <Link href="https://apps.hti-systems.com/hostech/tafaria/desktop.html?locale=en_US">
+  {/* <Link href="https://apps.hti-systems.com/hostech/tafaria/desktop.html?locale=en_US">
     <img
       src="/images/checkin.png"
       className=" h-10 "
       alt="Check-in Image"
     />
-  </Link>
+  </Link> */}
+             <button
+              // onClick={openModal}
+              className="flex items-center bg-gray-200 text-gray-600 text-sm px-4 py-2 rounded-full shadow hover:bg-gray-300"
+            >
+              <FaSearch className="mr-2" />
+             Tafaria's Experience
+            </button>
+            <div className="w-1/4 flex justify-center sm:justify-end mr-3">
+            <button className="bg-[#94723C] text-white px-4 py-2 text-sm sm:text-base sm:px-6 sm:py-2 rounded-md font-semibold hover:bg-[#902729]">
+           book
+            </button>
+          </div>
 </div>
   
 <PostCard

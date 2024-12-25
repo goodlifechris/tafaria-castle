@@ -33,7 +33,6 @@ const SubMenu = ({ title,description }: { title: string ,description:string}) =>
                 <p className={montaga.className} >
                   {description} heellelle
                   </p>
-                
 
             </div>
           </div>
