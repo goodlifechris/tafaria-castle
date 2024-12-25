@@ -28,7 +28,7 @@ export default function Categories() {
               className="flex items-center bg-gray-200 text-gray-600 text-sm px-4 py-2 rounded-full shadow hover:bg-gray-300"
             >
               <FaSearch className="mr-2" />
-             Tafaria &apos; s Experience
+             Tafaria&apos;s Experience
             </button>
             <div className="w-1/4 flex justify-center sm:justify-end mr-3">
             <button className="bg-[#94723C] text-white px-4 py-2 text-sm sm:text-base sm:px-6 sm:py-2 rounded-md font-semibold hover:bg-[#902729]">
