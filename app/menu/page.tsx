@@ -5,6 +5,10 @@ import React, { Suspense } from "react"; // Add Suspense import
 import Link from 'next/link'; // Import Link from next/link
 import { FaAngleLeft } from 'react-icons/fa'; // Import the Font Awesome left arrow icon
 
+export interface Session {
+  title: string;
+  description: string;
+}
 const MenuContent = () => {
   const searchParams = useSearchParams();
   const title = searchParams.get('name');
@@ -427,6 +431,7 @@ const MenuContent = () => {
     category => category.type.toLowerCase() === title?.toLowerCase()
   );
 
+  
   return (
     <div className="w-full">   
 
@@ -437,13 +442,13 @@ const MenuContent = () => {
   {title}
 </h1>
       {categoryData ? (
-        categoryData.subtypes.map((item, index) => (
+        categoryData.subtypes.map((item :any, index) => (
           <BlogCard
             key={index}
             imageUrl={item.imageUrl}
             title={item.title}
             description={item.description}
-            sessions={item.sessions || []}
+            sessions={item?.sessions || []}
           />
         ))
       ) : (
