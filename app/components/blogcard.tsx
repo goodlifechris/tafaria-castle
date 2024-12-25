@@ -1,18 +1,11 @@
 import Image from 'next/image';
-import { Barlow_Condensed, Montaga } from 'next/font/google';
+import { Barlow_Condensed } from 'next/font/google';
 import Link from 'next/link';
 import SessionList from './sessions';
 import React, { useState } from 'react';
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-//👇 Configure our font object
-const montaga = Montaga({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
