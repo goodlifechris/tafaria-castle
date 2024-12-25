@@ -1,5 +1,4 @@
 import React from 'react';
-import { Montaga } from 'next/font/google';
 
 export interface Session {
     title: string;
@@ -7,11 +6,11 @@ export interface Session {
   }
   
 //👇 Configure our font object
-const montaga = Montaga({
-    weight: '400',
-    subsets: ['latin'],
-    display: 'swap',
-  });
+// const montaga = Montaga({
+//     weight: '400',
+//     subsets: ['latin'],
+//     display: 'swap',
+//   });
   
 const SessionList = ({sessions}:{sessions:Session[]}) => {
 //   const [sessions, setSessions] = useState([]);
@@ -23,8 +22,8 @@ const SessionList = ({sessions}:{sessions:Session[]}) => {
       <ul className="list-disc pl-5 mb-5">
         {sessions.map((session, index) => (
           <li key={index} className="mb-4">
-            <h2 className="text-xl font-semibold text-[#902729]">{session.title}</h2>
-            <p className={`text-gray-700 ${montaga.className}`}>{session.description}</p>
+            <h2 className=" font-semibold text-[#902729]">{session.title}</h2>
+            <p className={`text-sm text-gray-700`}>{session.description}</p>
           </li>
         ))}
       </ul>
