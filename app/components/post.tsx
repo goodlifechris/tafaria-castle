@@ -11,8 +11,9 @@ const PostCard = ({ imageUrl, text }: { imageUrl: string; text: string }) => {
   const toggleLike = () => setIsLiked(!isLiked);
   
   const handleShare = () => {
-    const whatsappNumber = "+254705000315"; // Your WhatsApp number
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`; // Share text
+    const link = "https://tafaria-castle.vercel.app/categories"; // The link you want to share
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + " " + link)}`; // Share text and link
+
     window.open(whatsappUrl, "_blank"); // Open WhatsApp share link
   };
 
