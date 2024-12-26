@@ -40,13 +40,15 @@ const Search = ({ activities, onActivitySelect }: SearchProps) => {
   }, [isDropdownOpen]); 
   return (
     <div className="relative z-50"> {/* Set relative positioning for the parent */}
-      <button
-        onClick={toggleDropdown}
-        className="flex w-64 items-center bg-gray-200 text-gray-600 text-sm px-4 py-2 rounded-full shadow hover:bg-gray-300"
-      >
-        <FaSearch className="mr-2" />
-        Tafaria&apos;s Experience
-      </button>
+      <div className="flex justify-center"> {/* Added a wrapper for centering */}
+        <button
+          onClick={toggleDropdown}
+          className="flex w-64 items-center bg-gray-200 text-gray-600 text-sm px-4 py-2 rounded-full shadow hover:bg-gray-300"
+        >
+          <FaSearch className="mr-2" />
+          Tafaria&apos;s Experience
+        </button>
+      </div>
 
       {/* Dropdown Menu */}
       {isDropdownOpen && (
