@@ -115,7 +115,7 @@ const Stories = () => {
     <div className="items-center justify-items-center bg-[#902729] pb-5">
     <div className={`w-full bg-[#902729] pt-4 flex justify-center items-stretch  relative ${montaga.className}`}>
       {showLeftArrow && (
-        <button onClick={() => scrollTo('left')} className="absolute left-2 z-10 flex items-center justify-center  h-5  w-5 rounded-full bg-[#9f4446] p-1">
+        <button onClick={() => scrollTo('left')} className="absolute left-2 z-10 flex items-center justify-center rounded-full bg-[#9f4446] p-2">
           <FaChevronLeft className="text-white text-2xl" />
         </button>
       )}
