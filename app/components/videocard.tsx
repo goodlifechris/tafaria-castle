@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-// import { Barlow_Condensed, Montaga } from 'next/font/google';
-
+import { FaPlay } from 'react-icons/fa'; // Import play icon
 
 interface VideoCardProps {
   title: string;
@@ -28,31 +27,16 @@ const VideoCard = ({ title, thumbnailUrl, duration, link }: VideoCardProps) => {
           <div className="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-sm">
             {duration}
           </div>
-        </div>
-        
-        {/* Content */}
-        {/* <div className="p-4">
-          <h3 className={`text-xl text-[#902729] mb-2 hover:text-[#b33235] transition-colors duration-200 ${barlow_condensed.className}`}>
-            {title}
-          </h3>
-          
-          <div className="flex items-center mb-2">
-            <img src="/images/carlendar.svg" alt="Calendar" className="w-4 h-4" />
-            <span className={`ml-2 text-gray-600 text-sm ${montaga.className}`}>
-              {new Date(date).toLocaleDateString('en-US', {
-                day: '2-digit',
-                month: 'long',
-                year: 'numeric'
-              })}
-            </span>
+          {/* Play Button Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-white rounded-full p-3 shadow-lg">
+              <FaPlay className="text-[#902729] text-sm" /> {/* Play icon */}
+            </div>
           </div>
-          
-          <p className={`text-gray-600 text-sm line-clamp-2 ${montaga.className}`}>
-            {description}
-          </p>
-        </div> */}
+        </div>
       </div>
     </Link>
   );
 };
+
 export default VideoCard;

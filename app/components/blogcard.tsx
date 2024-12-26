@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import { Barlow_Condensed } from 'next/font/google';
 import Link from 'next/link';
 import SessionList from './sessions';
 import React, { useState } from 'react';
+import Carousels from './carousel';
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -17,12 +17,12 @@ export interface Session {
 }
 
 const BlogCard = ({
-  imageUrl,
+  imageUrls,
   title,
   description,
   sessions,
 }: {
-  imageUrl: string;
+  imageUrls:string[];
   title: string;
   description: string;
   sessions: Session[];
@@ -36,14 +36,16 @@ const BlogCard = ({
   return (
     <div className={`flex flex-col md:flex-row m-5 bg-white rounded-lg overflow-hidden mt-5 ${barlow_condensed.className}`}>
       {/* Image Section */}
-      <div className="relative w-full md:w-1/3 h-64">
-        <Image
+      <div className="relative w-full md:w-1/3">
+        {/* <Image
           src={imageUrl}
           alt={title}
           layout="fill"
           objectFit="cover"
           className="rounded-t-lg md:rounded-l-lg md:rounded-r-lg"
-        />
+        /> */}
+              <Carousels images={imageUrls} />
+
       </div>
       {/* Content Section */}
       <div className="p-4 md:w-2/3">

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import AfterIntroduction from "./afterintroduction";
 import { motion, AnimatePresence } from "framer-motion";
 import { Barlow_Condensed } from 'next/font/google';
-import { Montaga } from 'next/font/google';
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -11,11 +10,7 @@ const barlow_condensed = Barlow_Condensed({
   subsets: ['latin'],
   display: 'swap',
 });
-const montaga = Montaga({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
+
 
 const Introduction = () => {
   const [showAfterIntroduction, setShowAfterIntroduction] = useState(false);
@@ -46,7 +41,7 @@ const Introduction = () => {
             <div className="w-screen flex justify-center items-center">
               <div className="text-gray-800 text-center mx-4 md:mx-20 lg:mx-40 text-sm md:text-base lg:text-lg">
                 <h1 className={`font-inter text-3xl font-extrabold tracking-tight text-[#902729] ${barlow_condensed.className}`}>
-                  Our story
+                  Once upon a Dream ...
                 </h1>
               </div>
             </div>
@@ -54,9 +49,9 @@ const Introduction = () => {
         </div>
       )}
 
-      <div className="text-center text-black text-sm p-4">
+      <div className="text-center text-black text-base px-4">
         {!showAfterIntroduction && (
-          <p className={montaga.className}>
+          <p className="cutom-text">
             Eunice and I founded the Tafaria Castle in 2012AD to transform
             this village where I grew up...{" "}
             <span onClick={toggleReadMore} className="underline text-blue-600">read more</span>

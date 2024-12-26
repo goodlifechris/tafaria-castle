@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Categories() {
   const router = useRouter(); // Initialize useRouter
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
 
   const activities = [
   
@@ -35,9 +35,9 @@ export default function Categories() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const filteredActivities = activities.filter(activity =>
-    activity.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // const filteredActivities = activities.filter(activity =>
+  //   activity.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   const handleActivitySelect = (activity: { id: number; name: string }) => {
     // Navigate to the menu page with the selected activity's ID and name
@@ -68,17 +68,17 @@ export default function Categories() {
           {/* Dropdown Menu */}
           {isDropdownOpen && (
             <div className="absolute bg-white shadow-md rounded-md mt-2 w-64 z-10">
-              <input
+              {/* <input
                 type="text"
                 placeholder="Search activities..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="border-b border-gray-300 p-2 w-full focus:outline-none"
-              />
+              /> */}
               <div className="max-h-48 overflow-y-auto">
                 <ul className="py-2">
-                  {filteredActivities.length > 0 ? (
-                    filteredActivities.map((activity) => (
+                  {activities.length > 0 ? (
+                    activities.map((activity) => (
                       <li
                         key={activity.id}
                         className="px-4 py-2 hover:bg-gray-200 text-black cursor-pointer"
@@ -96,12 +96,6 @@ export default function Categories() {
           )}
         </div>
 
-        {/* Book Button (Commented out for now) */}
-        {/* <div className="w-1/4 flex justify-center sm:justify-end mr-3">
-          <button className="bg-[#94723C] text-white px-4 py-2 text-sm sm:text-base sm:px-6 sm:py-2 rounded-md font-semibold hover:bg-[#902729]">
-            Book
-          </button>
-        </div> */}
       </div>
 
       <PostCard
