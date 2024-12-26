@@ -1,13 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
+import { FaRegHeart } from "react-icons/fa"; // Import Font Awesome icons
+import { FiSend } from "react-icons/fi";
 
-
-const PostCard = ({ imageUrl, text}: { imageUrl: string; text: string }) => {
+const PostCard = ({ imageUrl, text }: { imageUrl: string; text: string }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
   const toggleLike = () => setIsLiked(!isLiked);
+  
+  const handleShare = () => {
+    const link = "https://tafaria-castle.vercel.app/categories"; // The link you want to share
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + " " + link)}`; // Share text and link
+
+    window.open(whatsappUrl, "_blank"); // Open WhatsApp share link
+  };
 
   return (
     <div className="max-w-md mx-auto mt-2 rounded-lg overflow-hidden shadow-lg bg-white">
@@ -22,17 +30,20 @@ const PostCard = ({ imageUrl, text}: { imageUrl: string; text: string }) => {
 
       {/* Content */}
       <div className="p-4">
-        {/* Like and Send Buttons */}
-        <div className="flex items-center justify-between mb-2">
+        {/* Like and Share Buttons */}
+        <div className="flex items-center justify-start mb-2 space-x-4">
           <button
             onClick={toggleLike}
-            className={`text-2xl ${
-              isLiked ? "text-red-500" : "text-gray-400"
-            }`}
+            className={`text-2xl ${isLiked ? "text-red-500" : "text-gray-400"}`}
           >
-            ♥
+            <FaRegHeart />
           </button>
-       
+          <button
+            onClick={handleShare}
+            className="text-2xl text-gray-400 hover:text-blue-500"
+          >
+            <FiSend />
+          </button>
         </div>
 
         {/* Post Description */}
@@ -60,4 +71,3 @@ const PostCard = ({ imageUrl, text}: { imageUrl: string; text: string }) => {
 };
 
 export default PostCard;
-

@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* app/globals.css */
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -12,6 +15,12 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+@font-face {
+  font-family: 'ArialCustom'; /* Custom name for the font */
+  src: url('/fonts/Arial.ttf') format('truetype'); /* Path to the font file */
+  font-weight: normal; /* You can specify the weight */
+  font-style: normal; /* You can specify the style */
 }
 
 body {
@@ -35,7 +44,7 @@ body {
 /* For Mobile */
 @media screen and (max-width: 540px) {
   .bartop{
-    top: 13rem !important;
+    top: 17rem;
     width: 100vh;
     }
 }
@@ -43,17 +52,22 @@ body {
 /* For Tablets */
 @media screen and (min-width: 540px) and (max-width: 780px) {
   .bartop{
-    top: 16rem !important;
+    top: 18rem !important;
     width: 100vh;
   }
 }
 
 .bartop{
   width: 100%;
-  top: 16em;
+  top: 17em;
 }
 
 
 .our-story-background{
   background: linear-gradient(to bottom, transparent 0%, white 50%) !important;
+}
+
+/* app/globals.css */
+.custom-text {
+  font-family: 'ArialCustom', Arial, sans-serif; /* Use the custom font */
 }
