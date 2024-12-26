@@ -52,14 +52,10 @@ const Search = ({ activities, onActivitySelect }: SearchProps) => {
 
       {/* Dropdown Menu */}
       {isDropdownOpen && (
-        <div className=" bg-white shadow-md rounded-md mt-2 w-64 z-50"> {/* Set a high z-index */}
-          {/* <input
-            type="text"
-            placeholder="Search activities..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="border-b border-gray-300 p-2 w-full focus:outline-none"
-          /> */}
+ <div className="flex justify-center"> 
+        <div className="relative bg-white shadow-md rounded-md mt-1 w-64 z-50"> {/* Set a high z-index */}
+                <div className="flex justify-center"> {/* Added a wrapper for centering */}
+
           <div className="max-h-48 overflow-y-auto">
             <ul className="py-2">
               {filteredActivities.length > 0 ? (
@@ -80,6 +76,8 @@ const Search = ({ activities, onActivitySelect }: SearchProps) => {
               )}
             </ul>
           </div>
+          </div>
+        </div>
         </div>
       )}
     </div>
