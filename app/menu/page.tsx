@@ -2,20 +2,14 @@
 import BlogCard from "../components/blogcard";
 import { useSearchParams } from 'next/navigation';
 import React, { Suspense,useRef,useEffect } from "react"; // Add Suspense import
-import Link from 'next/link'; // Import Link from next/link
-import { FaAngleLeft } from 'react-icons/fa'; // Import the Font Awesome left arrow icon
-import { Barlow_Condensed } from 'next/font/google';
+
+import TopBar from "../components/topbar";
 
 export interface Session {
   title: string;
   description: string;
 }
-//👇 Configure our font object
-const barlow_condensed = Barlow_Condensed({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
+
 const MenuContent = () => {
   const searchParams = useSearchParams();
   const title = searchParams.get('name');
@@ -56,7 +50,7 @@ const MenuContent = () => {
       ]
     },
     {
-      "type": "Tsafaria Experience",
+      "type": "Tafaria Experience",
       "subtypes": [
         {
           "imageUrls": [
@@ -448,10 +442,7 @@ const MenuContent = () => {
       ]
     },
   ];
- 
-  const handleBackClick = () => {
-    window.location.href = '/'; // Force reload the home page
-  };
+
 
   const categoryData = menuData.find(
     category => category.type.toLowerCase() === title?.toLowerCase()
@@ -476,12 +467,7 @@ const MenuContent = () => {
   
   return (
     <div className="w-full">
-<h1 className={`${barlow_condensed.className} text-2xl fixed bg-white z-10 w-full font-bold text-center pt-4 tracking-tight text-[#902729] capitalize border-b-2 border-[#902729] pb-4 mx-auto flex items-center`}>
-  <Link href="/" onClick={handleBackClick} className="text-[#94723C] hover:underline mx-5">
-  <FaAngleLeft className="mr-2" />
-  </Link>
-  {title}
-</h1>
+<TopBar title={title || ''}/>
 <div className="mt-20">
       {categoryData ? (
         categoryData.subtypes.map((item, index) => (

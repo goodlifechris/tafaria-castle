@@ -11,9 +11,9 @@ interface VideoCardProps {
   link: string;
 }
 
-const VideoCard = ({ title, thumbnailUrl, duration, link }: VideoCardProps) => {
+const VideoCard = ({ title, thumbnailUrl, duration }: VideoCardProps) => {
   return (
-    <Link href={link} className="flex flex-col h-full mb-2">
+    <Link href={`/categories?title=${encodeURIComponent("Videos")}`}className="flex flex-col h-full mb-2">
       <div className="w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
         {/* Thumbnail with duration */}
         <div className="relative w-full h-96">

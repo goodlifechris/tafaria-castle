@@ -21,30 +21,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-        <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
+      <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
       <body>
-      <div className="bg-white min-h-screen flex flex-col items-center">
-      <Head>
-        <title>Tafaria Castle</title>
-        <meta
-          name="description"
-          content="Tafaria Castle - Once upon a Dream"
-        />
-      </Head>
+        <div className="bg-white flex flex-col">
+          <Head>
+            <title>Tafaria Castle</title>
+            <meta
+              name="description"
+              content="Tafaria Castle - Once upon a Dream"
+            />
+          </Head>
 
-<div className="sticky top-0 z-10 w-full">
-  {/* Header */}
-  <Header/>
+          <div className="sticky top-0 z-10 w-full">
+            {/* Header */}
+            <Header />
 
-  {/* Stories */}
-<Stories/>
+            {/* Stories */}
+            <Stories />
 
-</div>
+          </div>
 
-{children}
+          {children}
 
-<Footer/>
-        <WhatsAppButton/>
+          <Footer />
+          <WhatsAppButton />
         </div>
       </body>
     </html>

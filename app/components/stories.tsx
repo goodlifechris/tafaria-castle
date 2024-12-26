@@ -24,7 +24,7 @@ const StoriesContent = () => {
     { img: "images/status_images/5.png", title: "Arts" },
     { img: "images/status_images/3.png", title: "Conferencing" },
     { img: "images/status_images/4.png", title: "Custom Programs" },
-    { img: "images/status_images/7.png", title: "Tsafaria Experience" },
+    { img: "images/status_images/7.png", title: "Tafaria Experience" },
     { img: "images/status_images/6.png", title: "Blogs" },
   ];
 
@@ -96,7 +96,7 @@ const Stories = () => {
   };
   const handleActivitySelect = (activity: { id: number; name: string }) => {
     // Navigate to the menu page with the selected activity's ID and name
-    router.push(`/menu?id=Tsafaria Experience&name=Tsafaria Experience&card=${activity.name}`);
+    router.push(`/menu?id=Tafaria Experience&name=Tafaria Experience&card=${activity.name}`);
   };
   useEffect(() => {
     const currentRef = scrollRef.current;

@@ -126,7 +126,7 @@ const TabComponent = () => {
         {(activeTab === "Images") && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {images.map((src, index) => (
-              <Link href="/categories" key={`${src}-${index}`}>
+              <Link href={`/categories?title=${encodeURIComponent("Images")}`} key={`${src}-${index}`}>
                 <img
                   src={src}
                   alt={`Image ${index + 1}`}
@@ -141,6 +141,7 @@ const TabComponent = () => {
           <div className="container mx-auto px-4 mt-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {videos.map((video) => (
+                
                 <VideoCard
                   key={video.id}
                   title={video.title}
@@ -148,7 +149,7 @@ const TabComponent = () => {
                   description={video.description}
                   thumbnailUrl={video.thumbnail}
                   duration={video.duration}
-                  link={`/videos/${video.id}`}
+                  link={`/categories/${video.id}`}
                 />
               ))}
             </div>

@@ -16,7 +16,8 @@ const parisienne = Parisienne({
   subsets: ['latin'],
   display: 'swap',
 })
-const AfterIntroduction = () => {
+
+const AfterIntroduction = ({toggleReadMore}) => {
   return (
     <div className={`px-4 w-screen flex justify-center items-center custom-text`}>
       <div className="text-gray-800 text-center  mx-4 md:mx-20 lg:mx-40 text-base md:text-base lg:text-lg">
@@ -26,12 +27,13 @@ const AfterIntroduction = () => {
         </p>
         <br/>
     <p>
-      The journey in making this dream a reality began in 2007 with acquisition of the land that Tafaria sits and the subsequent construction of a Roman-type amphitheater as a community information center. This was later followed by a Castle and a country lodge which opened in 2012AD. Over the years, Tafaria has grown into a Center for the Arts, a Conference Center, a Museum, and a herbarium. These facilities offer Hospitality, Conferencing, Arts & Educational programs.
+      The journey in making this dream a reality began in 2007 with acquisition of the land that Tafaria sits and the subsequent construction of a Roman-type amphitheater as a community information center. This was later followed by a Castle and a country lodge which opened in 2012AD. Over the years, Tafaria has grown into a Center for the Arts, a Conference Center, a Museum, and a herbarium. These facilities offer Hospitality, Conferencing, Arts & Educational programs. <span onClick={toggleReadMore} className="underline text-blue-600">read less</span>
     </p>
     <br />
     <p>
       Welcome to our Love
     </p> 
+
     <br/>
     <p className={`${parisienne.className} text-[#94723C] text-2xl`} >
     George Tafaria
