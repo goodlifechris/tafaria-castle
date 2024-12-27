@@ -41,26 +41,57 @@ body {
   inset: 0px !important;
 }
 
-/* For Mobile */
-@media screen and (max-width: 540px) {
-  .bartop{
-    top: 17rem;
-    width: 100vh;
-    }
+/* styles.css */
+.bartop {
+  background-color: white; /* Default background color */
+  transition: top 0.3s ease; /* Smooth transition for the top property */
 }
 
-/* For Tablets */
-@media screen and (min-width: 540px) and (max-width: 780px) {
-  .bartop{
-    top: 18rem !important;
-    width: 100vh;
+/* Default styles for when the dropdown is closed */
+.bartop.closed {
+  top: 17rem; /* Mobile */
+}
+
+/* Styles for when the dropdown is open */
+.bartop.open {
+  top: 29rem; /* Mobile */
+}
+
+/* Tablet styles */
+@media (min-width: 481px) and (max-width: 768px) {
+  .bartop.closed {
+    top: 20rem; /* Tablet */
+  }
+  .bartop.open {
+    top: 32rem; /* Tablet */
   }
 }
 
-.bartop{
-  width: 100%;
-  top: 17em;
+/* Medium screen styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .bartop.closed {
+    top: 21rem; /* Medium */
+  }
+  .bartop.open {
+    top: 38rem; /* Medium */
+  }
 }
+
+/* Large screen styles */
+@media (min-width: 1024px) {
+  .bartop.closed {
+    top: 19rem; /* Large */
+  }
+  .bartop.open {
+    top: 31rem; /* Large */
+  }
+}
+
+
+/* .bartop{
+  width: 100%;
+  top: 19em;
+} */
 
 
 .our-story-background{
@@ -71,3 +102,9 @@ body {
 .custom-text {
   font-family: 'ArialCustom', Arial, sans-serif; /* Use the custom font */
 }
+
+.dropd{
+  
+    margin: auto !important;
+    
+} 

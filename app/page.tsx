@@ -7,10 +7,16 @@ const Home = () => {
 
   
   return (
+
     <>
-    <Introduction/>
-    <TabComponent />
+           
+            <Introduction/>
+            <TabComponent />
+            
+     
     </>
+
+
   )
 };
 

@@ -16,9 +16,11 @@
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
     "react-modal": "^3.16.3",
+    "react-player": "^2.16.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.1.1",
-    "react-select": "^5.9.0"
+    "react-select": "^5.9.0",
+    "video.js": "^8.21.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

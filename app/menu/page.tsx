@@ -2,7 +2,7 @@
 import BlogCard from "../components/blogcard";
 import { useSearchParams } from 'next/navigation';
 import React, { Suspense,useRef,useEffect } from "react"; // Add Suspense import
-
+ 
 import TopBar from "../components/topbar";
 
 export interface Session {
