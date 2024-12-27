@@ -55,7 +55,8 @@ const MenuContent = () => {
         {
           "imageUrls": [
             "https://www.tafaria.com/assets/img/Archery%20at%20Tafaria%20Castle%20.jpg",
-            "https://www.tafaria.com/assets/img/Archery%20at%20Tafaria%20Castle%20.jpg" // Duplicate
+            "https://www.tafaria.com/assets/img/Archery%20at%20Tafaria%20Castle%20.jpg",
+            "/videos/tafaria_video.mp4" // Duplicate
           ],
           "title": "Archery",
           "description": "Experience the thrill of archery in a medieval setting, honing your skills with a bow and arrow. Under the guidance of experienced instructors, you'll learn the fundamentals of archery, including stance, aim, and release techniques. This activity is perfect for both beginners and seasoned archers looking to refine their skills.",
@@ -64,7 +65,8 @@ const MenuContent = () => {
         {
           "imageUrls": [
             "https://www.tafaria.com/assets/img/Tafaria%20chariot%20riding.jpg",
-            "https://www.tafaria.com/assets/img/Tafaria%20chariot%20riding.jpg" // Duplicate
+            "https://www.tafaria.com/assets/img/Tafaria%20chariot%20riding.jpg",
+            "/videos/tafaria_video.mp4" // Duplicate
           ],
           "title": "Horseback riding",
           "description": "Enjoy a scenic ride on horseback through beautiful landscapes, perfect for both beginners and experienced riders. Our well-trained horses and knowledgeable guides ensure a safe and enjoyable experience as you explore the stunning surroundings of Tafaria.",
@@ -387,7 +389,9 @@ const MenuContent = () => {
         {
           "imageUrls": [
             "https://www.tafaria.com/assets/img/Home%20Carousel6.jpg",
-            "https://www.tafaria.com/assets/img/Home%20Carousel6.jpg" // Duplicate
+            "https://www.tafaria.com/assets/img/Home%20Carousel6.jpg" ,
+            "/videos/tafaria_video.mp4"
+            // Duplicate
           ],
           "title": "TeamOut ​",
           "description": "TeamOut is a teambuilding retreat experience for corporate teams, designed to offer a holistic experience that combines learning, inspiration, and play to energize and arm teams with sustainable nature inspired teamwork skills.​",
@@ -414,6 +418,7 @@ const MenuContent = () => {
       "subtypes": [
         {
           "imageUrls": [
+            "/videos/tafaria_video.mp4",
             "https://www.tafaria.com/assets/img/Piano_tafaria-min-ofzzltgcxsqzc8kqnlnm4s1o852rgtnkntg1ghfg4w.jpg",
             "https://www.tafaria.com/assets/img/Piano_tafaria-min-ofzzltgcxsqzc8kqnlnm4s1o852rgtnkntg1ghfg4w.jpg" // Duplicate
           ],

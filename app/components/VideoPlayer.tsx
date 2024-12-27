@@ -21,25 +21,6 @@ const VideoPlayer = () => {
     setPlaying(!playing); // Toggle play/pause state
   };
 
-//   const updateHeight = async () => {
-//     const aspectRatio = 16 / 9; // Use a fixed aspect ratio (16:9)
-//     const width = window.innerWidth; // Get the current window width
-//     const newHeight = width / aspectRatio; // Calculate height based on aspect ratio
-
-//     // Set a maximum height to prevent it from being too tall
-//     const maxHeight = 200; // Set your desired maximum height
-//     setHeight(`${Math.min(newHeight, maxHeight)}px`); // Set the new height, ensuring it doesn't exceed maxHeight
-//   };
-
-//   useEffect(() => {
-    // updateHeight(); // Set initial height
-//     window.addEventListener('resize', updateHeight); // Add resize event listener
-
-//     return () => {
-//       window.removeEventListener('resize', updateHeight); // Cleanup on unmount
-//     };
-//   }, []);
-
   const handleLike = () => {
     setLiked(!liked); // Toggle like status
   };
@@ -52,7 +33,7 @@ const VideoPlayer = () => {
 
   return (
     <div className='w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300'>
-      <div className="video-container w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative" onClick={handlePlayPause}> {/* Add click handler */}
+      <div className="video-container w-full bg-white rounded-lg  relative" onClick={handlePlayPause}> {/* Add click handler */}
         <ReactPlayer
           url="/videos/tafaria_video.mp4" // Path to your video file
           className="react-player"
@@ -73,8 +54,10 @@ const VideoPlayer = () => {
             </div>
           </div>
         )}
-      </div> {/* Video container */}
-            <div className="flex items-center justify-start mb-2 space-x-4 pt-4 pl-5">
+      </div> 
+      
+      {/* Video container */}
+            <div className="flex items-center justify-start mb-2 space-x-4 pb-2 pl-5">
           <button
             onClick={handleLike}
             className={`text-2xl ${liked ? "text-red-500" : "text-gray-400"}`}

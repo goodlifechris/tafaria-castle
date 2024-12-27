@@ -108,3 +108,34 @@ body {
     margin: auto !important;
     
 } 
+
+.video-container {
+  position: relative; /* Position relative for absolute positioning of overlay */
+  width: 100%; /* Full width */
+  height: 250px; /* Set a fixed height for the video */
+  overflow: hidden; /* Hide overflow */
+}
+
+.video-player {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  object-fit: cover; /* Cover the container */
+}
+
+.play-button-overlay {
+  position: absolute; /* Position absolute to overlay on the video */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex; /* Center the play button */
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.play-icon {
+  color: white; /* Play icon color */
+  font-size: 3rem; /* Size of the play icon */
+}
