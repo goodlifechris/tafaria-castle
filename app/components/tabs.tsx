@@ -133,8 +133,8 @@ const TabComponent = () => {
         {(activeTab === "Images") && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-4">
             {images.map((src, index) => (
-              <Link href={`/categories?title=${encodeURIComponent("Images")}`} key={`${src}-${index}`}>
-                <img
+      <Link href={`/categories?title=${encodeURIComponent("Images")}&imageUrl=${encodeURIComponent(src)}`} key={`${src}-${index}`}>
+             <img
                   src={src}
                   alt={`Image ${index + 1}`}
                   className="rounded-md shadow-md"
