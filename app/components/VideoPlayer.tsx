@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import ReactPlayer from 'react-player';
 import { FaRegHeart, FaHeart } from 'react-icons/fa'; // Import both outline and filled heart icons
 import { FaPlay } from 'react-icons/fa'; // Import the play icon
