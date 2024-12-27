@@ -14,31 +14,31 @@ const barlow_condensed = Barlow_Condensed({
 
 const VideoPlayer = () => {
   const [playing, setPlaying] = useState(false); // State to manage play/pause
-  const [height, setHeight] = useState('400px'); // Default height
+//   const [height, setHeight] = useState('400px'); // Default height
   const [liked, setLiked] = useState(false); // State to manage like status
 
   const handlePlayPause = () => {
     setPlaying(!playing); // Toggle play/pause state
   };
 
-  const updateHeight = async () => {
-    const aspectRatio = 16 / 9; // Use a fixed aspect ratio (16:9)
-    const width = window.innerWidth; // Get the current window width
-    const newHeight = width / aspectRatio; // Calculate height based on aspect ratio
+//   const updateHeight = async () => {
+//     const aspectRatio = 16 / 9; // Use a fixed aspect ratio (16:9)
+//     const width = window.innerWidth; // Get the current window width
+//     const newHeight = width / aspectRatio; // Calculate height based on aspect ratio
 
-    // Set a maximum height to prevent it from being too tall
-    const maxHeight = 200; // Set your desired maximum height
-    setHeight(`${Math.min(newHeight, maxHeight)}px`); // Set the new height, ensuring it doesn't exceed maxHeight
-  };
+//     // Set a maximum height to prevent it from being too tall
+//     const maxHeight = 200; // Set your desired maximum height
+//     setHeight(`${Math.min(newHeight, maxHeight)}px`); // Set the new height, ensuring it doesn't exceed maxHeight
+//   };
 
-  useEffect(() => {
-    updateHeight(); // Set initial height
-    window.addEventListener('resize', updateHeight); // Add resize event listener
+//   useEffect(() => {
+    // updateHeight(); // Set initial height
+//     window.addEventListener('resize', updateHeight); // Add resize event listener
 
-    return () => {
-      window.removeEventListener('resize', updateHeight); // Cleanup on unmount
-    };
-  }, []);
+//     return () => {
+//       window.removeEventListener('resize', updateHeight); // Cleanup on unmount
+//     };
+//   }, []);
 
   const handleLike = () => {
     setLiked(!liked); // Toggle like status
