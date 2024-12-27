@@ -5,13 +5,6 @@ export interface Session {
     description: string;
   }
   
-//👇 Configure our font object
-// const montaga = Montaga({
-//     weight: '400',
-//     subsets: ['latin'],
-//     display: 'swap',
-//   });
-  
 const SessionList = ({sessions}:{sessions:Session[]}) => {
 //   const [sessions, setSessions] = useState([]);
 

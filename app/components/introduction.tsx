@@ -40,8 +40,8 @@ const Introduction = () => {
           <div className="flex w-full bottom-0 absolute py-2 text-center our-story-background">
             <div className="w-screen flex justify-center items-center">
               <div className="text-gray-800 text-center mx-4 md:mx-20 lg:mx-40 text-sm md:text-base lg:text-lg">
-                <h1 className={`font-inter text-2xl font-extrabold tracking-tight text-[#902729] ${barlow_condensed.className}`}>
-                  Once upon a Dream ...
+                <h1 className={`font-inter mt-9 text-2xl font-extrabold tracking-tight mt-5 text-[#902729] ${barlow_condensed.className}`}>
+                  Once upon a Dream ...,
                 </h1>
               </div>
             </div>

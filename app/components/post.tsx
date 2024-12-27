@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaRegHeart } from "react-icons/fa"; // Import Font Awesome icons
+import { FaRegHeart, FaHeart } from "react-icons/fa"; // Import both outline and filled heart icons
 import { FiSend } from "react-icons/fi";
 
 const PostCard = ({ imageUrl, text }: { imageUrl: string; text: string }) => {
@@ -36,7 +36,7 @@ const PostCard = ({ imageUrl, text }: { imageUrl: string; text: string }) => {
             onClick={toggleLike}
             className={`text-2xl ${isLiked ? "text-red-500" : "text-gray-400"}`}
           >
-            <FaRegHeart />
+            {isLiked ? <FaHeart /> : <FaRegHeart />} {/* Conditional rendering of heart icon */}
           </button>
           <button
             onClick={handleShare}

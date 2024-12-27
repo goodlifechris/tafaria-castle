@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { FaPlay } from 'react-icons/fa'; // Import play icon
 
@@ -13,7 +12,6 @@ interface VideoCardProps {
 
 const VideoCard = ({ title, thumbnailUrl, duration }: VideoCardProps) => {
   return (
-    <Link href={`/categories?title=${encodeURIComponent("Videos")}`}className="flex flex-col h-full mb-2">
       <div className="w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
         {/* Thumbnail with duration */}
         <div className="relative w-full h-96">
@@ -35,7 +33,6 @@ const VideoCard = ({ title, thumbnailUrl, duration }: VideoCardProps) => {
           </div>
         </div>
       </div>
-    </Link>
   );
 };
 

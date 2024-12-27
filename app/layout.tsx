@@ -6,6 +6,7 @@ import Stories from "./components/stories";
 import WhatsAppButton from "./components/whatsappbutton";
 import Footer from "./components/footer";
 import { GoogleTagManager } from '@next/third-parties/google'
+import { DropdownProvider } from "./context/DropdownContext";
 
 
 
@@ -22,7 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
-      <body>
+      <body className="min-h-screen flex flex-col bg-white"> {/* Set min height and flex column layout */}
+      <DropdownProvider>
         <div className="bg-white flex flex-col">
           <Head>
             <title>Tafaria Castle</title>
@@ -35,17 +37,14 @@ export default function RootLayout({
           <div className="sticky top-0 z-10 w-full">
             {/* Header */}
             <Header />
-
             {/* Stories */}
             <Stories />
-
           </div>
-
-          {children}
-
+         {children}  
           <Footer />
           <WhatsAppButton />
         </div>
+        </DropdownProvider>
       </body>
     </html>
   );
