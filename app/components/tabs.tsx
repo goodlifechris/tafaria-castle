@@ -6,6 +6,8 @@ import { Barlow_Condensed } from 'next/font/google';
 import BlogPostCard from "./blogpostcard";
 import { useDropdown } from "../context/DropdownContext";
 import VideoPlayer from "./VideoPlayer";
+import { useNavigation } from '../context/NavigationContext';
+import { usePathname } from "next/navigation"; // Import useRouter
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -92,16 +94,24 @@ const TabComponent = () => {
     }
   };
 
+  const { addToHistory } = useNavigation();
+  const pathname = usePathname(); // Get the current pathname
+
+
+  // useEffect(() => {
+  //   addToHistory(pathname); // Add current path to history
+  // }, [pathname, addToHistory]);
+
   useEffect(() => {
+        addToHistory(pathname); // Add current path to history
+
     const handleScroll = () => {
       const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100; // Trigger before reaching the bottom
       if (bottom) {
         loadMoreItems();
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

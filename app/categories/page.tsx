@@ -22,8 +22,6 @@ function CategoriesContent() {
       <TopBar title={title || ''}/>
       <div className="flex items-center bg-white shadow-md">  
       </div>
-
-<p></p>
       <div className="mt-16">
         <PostCard
           imageUrl={imageUrl || '/images/posts/1.png'}

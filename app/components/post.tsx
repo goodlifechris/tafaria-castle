@@ -12,8 +12,8 @@ const PostCard = ({ imageUrl, text }: { imageUrl: string; text: string }) => {
   
   const handleShare = () => {
     // http://localhost:3000/categories?title=Images&imageUrl=%2Fimages%2F12.png
-    // const link = `http://localhost:3000/categories?title=Images&imageUrl=${imageUrl}`; // The link you want to share
-    const link = `https://tafaria-castle.vercel.app/categories?title=Images&imageUrl=${imageUrl}`; // The link you want to share
+    const link = `http://localhost:3000/categories?title=Images&imageUrl=${imageUrl}`; // The link you want to share
+    // const link = `https://tafaria-castle.vercel.app/categories?title=Images&imageUrl=${imageUrl}`; // The link you want to share
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + " " + link)}`; // Share text and link
 
     window.open(whatsappUrl, "_blank"); // Open WhatsApp share link

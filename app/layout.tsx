@@ -7,6 +7,7 @@ import WhatsAppButton from "./components/whatsappbutton";
 import Footer from "./components/footer";
 import { GoogleTagManager } from '@next/third-parties/google'
 import { DropdownProvider } from "./context/DropdownContext";
+import { NavigationProvider } from "./context/NavigationContext";
 
 
 
@@ -24,6 +25,9 @@ export default function RootLayout({
     <html lang="en">
       <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
       <body className="min-h-screen flex flex-col bg-white"> {/* Set min height and flex column layout */}
+    
+     <NavigationProvider>
+
       <DropdownProvider>
         <div className="bg-white flex flex-col">
           <Head>
@@ -45,6 +49,7 @@ export default function RootLayout({
           <WhatsAppButton />
         </div>
         </DropdownProvider>
+        </NavigationProvider>
       </body>
     </html>
   );
