@@ -14,8 +14,10 @@ export default function Categories() {
 
 function CategoriesContent() {
   const searchParams = useSearchParams();
-  const title = searchParams.get('title');
-  const imageUrl = searchParams.get('imageUrl');
+  const title = searchParams.get('title')|| '';
+  const imageUrl = searchParams.get('imageUrl') || '';
+  const type = searchParams.get('type');
+  const id = searchParams.get('id') || "";
 
   return (
     <div>

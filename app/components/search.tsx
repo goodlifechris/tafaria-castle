@@ -18,10 +18,16 @@ const Search = ({ activities, onActivitySelect }: SearchProps) => {
   const { isDropdownOpen, toggleDropdown } = useDropdown();
   const [dropdownOpened, setDropdownOpened] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
         if (isDropdownOpen) {
           toggleDropdown();
           setDropdownOpened(false);
@@ -37,9 +43,15 @@ const Search = ({ activities, onActivitySelect }: SearchProps) => {
     };
   }, [isDropdownOpen, toggleDropdown]);
 
-  const handleButtonClick = () => {
-    toggleDropdown();
-    setDropdownOpened(true);
+  const handleButtonClick = (event: React.MouseEvent) => {
+    event.stopPropagation(); // Prevent the click event from propagating to the document
+    if (isDropdownOpen) {
+      toggleDropdown();
+      setDropdownOpened(false);
+    } else {
+      toggleDropdown();
+      setDropdownOpened(true);
+    }
   };
 
   const filteredActivities = activities;
@@ -47,6 +59,7 @@ const Search = ({ activities, onActivitySelect }: SearchProps) => {
     <div className="relative z-50">
       <div className="flex justify-center">
         <button
+          ref={buttonRef}
           onClick={handleButtonClick}
           className="flex w-64 items-center bg-gray-200 text-gray-600 text-sm px-4 py-2 rounded-full shadow hover:bg-gray-300"
         >
