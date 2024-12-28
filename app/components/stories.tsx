@@ -26,7 +26,7 @@ const StoriesContent = () => {
     { img: "images/status_images/4.png", title: "Custom Programs" },
     { img: "images/status_images/7.png", title: "Tafaria Experience" },
     { img: "images/status_images/6.png", title: "Blogs" },
-    { img: "images/status_images/8.png", title: "Gifts" },
+    { img: "images/status_images/8.png", title: "Gift Shop" },
 
   ];
 
