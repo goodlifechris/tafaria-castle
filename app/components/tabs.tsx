@@ -6,6 +6,8 @@ import { Barlow_Condensed } from 'next/font/google';
 import BlogPostCard from "./blogpostcard";
 import { useDropdown } from "../context/DropdownContext";
 import VideoPlayer from "./VideoPlayer";
+import { useNavigation } from '../context/NavigationContext';
+import { usePathname } from "next/navigation"; // Import useRouter
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -15,6 +17,7 @@ const barlow_condensed = Barlow_Condensed({
 });
 
 const TabComponent = () => {
+  
   const [activeTab, setActiveTab] = useState("Images");
 
   const [images, setImages] = useState([
@@ -41,15 +44,14 @@ const TabComponent = () => {
       date: "2024-03-20",
       duration: "3:45",
       src: "/videos/tafaria_video.mp4",
-      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/1.png"
+      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.",
     },
     {
       id: 2, title: "Video 2",
       date: "2024-03-20",
       duration: "3:45",
-      src: "/videos/tafaria_video.mp4",
-      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/2.png"
-    },
+      src: "/videos/tafaria_video2.mp4",
+      description: "TAFARIA CASTLE🏰🎠 Tafaria Castle and Country Lodge endeavors to be guests’ dream come true. George "   },
     {
       id: 3, title: "Video 3",
       date: "2024-03-20",
@@ -92,16 +94,24 @@ const TabComponent = () => {
     }
   };
 
+  const { addToHistory } = useNavigation();
+  const pathname = usePathname(); // Get the current pathname
+
+
+  // useEffect(() => {
+  //   addToHistory(pathname); // Add current path to history
+  // }, [pathname, addToHistory]);
+
   useEffect(() => {
+        addToHistory(pathname); // Add current path to history
+
     const handleScroll = () => {
       const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100; // Trigger before reaching the bottom
       if (bottom) {
         loadMoreItems();
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -133,8 +143,8 @@ const TabComponent = () => {
         {(activeTab === "Images") && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-4">
             {images.map((src, index) => (
-              <Link href={`/categories?title=${encodeURIComponent("Images")}`} key={`${src}-${index}`}>
-                <img
+      <Link href={`/categories?title=${encodeURIComponent("Images")}&imageUrl=${encodeURIComponent(src)}`} key={`${src}-${index}`}>
+             <img
                   src={src}
                   alt={`Image ${index + 1}`}
                   className="rounded-md shadow-md"
@@ -150,7 +160,7 @@ const TabComponent = () => {
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"> {/* Responsive grid layout */}
 
 {videos.map((video) => (
-  <VideoPlayer key={video.id}  />
+  <VideoPlayer key={video.id} video={video}  />
 
 ))}
 </div>

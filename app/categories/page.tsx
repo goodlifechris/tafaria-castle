@@ -14,16 +14,18 @@ export default function Categories() {
 
 function CategoriesContent() {
   const searchParams = useSearchParams();
-  const title = searchParams.get('title');
+  const title = searchParams.get('title')|| '';
+  const imageUrl = searchParams.get('imageUrl') || '';
+
+
   return (
     <div>
       <TopBar title={title || ''}/>
       <div className="flex items-center bg-white shadow-md">  
       </div>
-
       <div className="mt-16">
         <PostCard
-          imageUrl="/images/posts/2.png"
+          imageUrl={imageUrl || '/images/posts/1.png'}
           text="Standing proudly beside the golf course is Jach, a stallion 🐎, with the plinth of honor attached to him, engraved with the names of those who helped build Tafaria castle."
         />
         <PostCard
