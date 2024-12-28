@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import React, { Suspense,useRef,useEffect } from "react"; // Add Suspense import
  
 import TopBar from "../components/topbar";
+import Cart from "../components/cart/cart";
 
 export interface Session {
   title: string;
@@ -487,8 +488,8 @@ const MenuContent = () => {
           </div>
         ))
       ) : (
-        <div className="text-center py-8 text-gray-600">
-          No content found for this category
+        <div className="text-center  text-gray-600">
+          <Cart/>
         </div>
       )}
     </div>
