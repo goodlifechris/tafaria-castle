@@ -134,7 +134,9 @@ const Stories = () => {
         </button>
       )}
     </div>
+
     <Search activities={activities} onActivitySelect={handleActivitySelect} />
+  
     </div>
   );
 };

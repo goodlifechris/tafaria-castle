@@ -12,8 +12,8 @@ import { NavigationProvider } from "./context/NavigationContext";
 
 
 export const metadata: Metadata = {
-  title: "Tafaria Castle",
-  description: "Tafaria Castle & Center for the Arts is located in rural Kenya on a hill, next to the scenic Aberdare ranges overlooking the Laikipia plains and Mt Kenya. ",
+  "title": "Tafaria Castle",
+  "description": "Tafaria Castle & Center for the Arts is located in rural Kenya on a hill, next to the scenic Aberdare ranges overlooking the Laikipia plains and Mt Kenya. ",
 }
 
 export default function RootLayout({
