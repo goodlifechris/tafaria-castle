@@ -42,13 +42,14 @@ const Header = () => {
           className="w-16 h-16 sm:w-24 sm:h-24 "
         />
       </Link>
-      <a href="https://www.google.com/maps/search/Tafaria+Castle/@-0.1164533,36.6279602,17z?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="flex items-center text-white">
-      <IoLocation className="text-4xl text-[#94723C] ml-4"/>
-        </a>
+
     </div>
     {/* Contact Information and Book Now Button */}
 
     <div className="flex items-center">
+    <a href="https://www.google.com/maps/search/Tafaria+Castle/@-0.1164533,36.6279602,17z?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="flex items-center text-white">
+      <IoLocation className="lg:text-4xl sm:text-sm md:text-4xl text-[#94723C]"/>
+        </a>
       <a href="tel:0700151480" className="text-black m-2 text-xs underline">
         0700151480
       </a>
