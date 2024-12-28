@@ -68,6 +68,7 @@ const Search = ({ activities, onActivitySelect }: SearchProps) => {
         </button>
       </div>
 
+<p className='hidden'>{dropdownOpened}</p>
       {isDropdownOpen && (
         <div ref={dropdownRef} className="bg-white shadow-md rounded-md w-64 z-50 mt-2 mx-auto">
           <div className="flex justify-center">
