@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import Select from "react-select";
 import Link from "next/link";
+import { IoLocation } from "react-icons/io5";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +25,10 @@ const Header = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
+  const handleLocation = () => {
+    router.push('/'); // Redirect to home if no history
+  
+};
   return (
     <>
 <header className="w-full bg-white shadow-md">
@@ -38,8 +42,12 @@ const Header = () => {
           className="w-16 h-16 sm:w-24 sm:h-24 "
         />
       </Link>
+      <a href="https://www.google.com/maps/search/Tafaria+Castle/@-0.1164533,36.6279602,17z?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="flex items-center text-white">
+      <IoLocation className="text-4xl text-[#94723C] ml-4"/>
+        </a>
     </div>
     {/* Contact Information and Book Now Button */}
+
     <div className="flex items-center">
       <a href="tel:0700151480" className="text-black m-2 text-xs underline">
         0700151480

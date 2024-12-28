@@ -1,3 +1,4 @@
+"use client"
 import React, {useState } from 'react';
 import ReactPlayer from 'react-player';
 import { FaRegHeart, FaHeart } from 'react-icons/fa'; // Import both outline and filled heart icons
@@ -12,7 +13,20 @@ const barlow_condensed = Barlow_Condensed({
   display: 'swap',
 })
 
-const VideoPlayer = () => {
+
+interface VideoPlayerProps {
+    video: {
+      id: number;
+      title: string;
+      date: string;
+      duration: string;
+      src: string;
+      description: string;
+    //   thumbnail: string;
+    };
+  }
+
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ video }) => {
   const [playing, setPlaying] = useState(false); // State to manage play/pause
 //   const [height, setHeight] = useState('400px'); // Default height
   const [liked, setLiked] = useState(false); // State to manage like status
@@ -25,7 +39,8 @@ const VideoPlayer = () => {
     setLiked(!liked); // Toggle like status
   };
   const handleShare = () => {
-    const link = "https://tafaria-castle.vercel.app/categories"; // The link you want to share
+    const link = `http://localhost:3000?tab=Videos&videoId=${video.id}`; // The link you want to share
+    // const link = `https://tafaria-castle.vercel.app?tab=Videos&videoId=${videoId}`; // The link you want to share
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent("Welcome to tafaria" + " " + link)}`; // Share text and link
 
     window.open(whatsappUrl, "_blank"); // Open WhatsApp share link
@@ -35,7 +50,7 @@ const VideoPlayer = () => {
     <div className='w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300'>
       <div className="video-container w-full bg-white rounded-lg  relative" onClick={handlePlayPause}> {/* Add click handler */}
         <ReactPlayer
-          url="/videos/tafaria_video.mp4" // Path to your video file
+          url={video.src} // Path to your video file
           className="react-player"
           width="100%" // Full width
           height="250" // Use dynamic height
@@ -74,7 +89,7 @@ const VideoPlayer = () => {
 
       <div className="flex flex-col px-5">
           <h3 className={`text-xl text-[#902729] mb-4 hover:text-[#b33235] transition-colors duration-200  ${barlow_condensed.className}`}>
-           Welcome to Tafaria Castle
+           {video.description}
           </h3>
           </div>
     </div>

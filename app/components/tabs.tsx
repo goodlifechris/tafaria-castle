@@ -17,6 +17,7 @@ const barlow_condensed = Barlow_Condensed({
 });
 
 const TabComponent = () => {
+  
   const [activeTab, setActiveTab] = useState("Images");
 
   const [images, setImages] = useState([
@@ -43,15 +44,14 @@ const TabComponent = () => {
       date: "2024-03-20",
       duration: "3:45",
       src: "/videos/tafaria_video.mp4",
-      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/1.png"
+      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.",
     },
     {
       id: 2, title: "Video 2",
       date: "2024-03-20",
       duration: "3:45",
-      src: "/videos/tafaria_video.mp4",
-      description: "Take a virtual tour through the magnificent halls of Tafaria Castle.", thumbnail: "/images/videos/2.png"
-    },
+      src: "/videos/tafaria_video2.mp4",
+      description: "TAFARIA CASTLE🏰🎠 Tafaria Castle and Country Lodge endeavors to be guests’ dream come true. George "   },
     {
       id: 3, title: "Video 3",
       date: "2024-03-20",
@@ -160,7 +160,7 @@ const TabComponent = () => {
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"> {/* Responsive grid layout */}
 
 {videos.map((video) => (
-  <VideoPlayer key={video.id}  />
+  <VideoPlayer key={video.id} video={video}  />
 
 ))}
 </div>
