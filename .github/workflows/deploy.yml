@@ -19,8 +19,7 @@ jobs:
                         npm install -g pm2
                     fi
 
-                    if [ ! -d /var/www/tafaria-castle ]; then
-                        sudo mkdir -p /var/www/tafaria-castle
+                    if [ -d /var/www/tafaria-castle ]; then
                         sudo chown -R root:chris /var/www/tafaria-castle
                         sudo chmod -R 770 /var/www/tafaria-castle
                     fi
