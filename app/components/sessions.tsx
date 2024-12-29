@@ -7,8 +7,6 @@ export interface Session {
   
 const SessionList = ({sessions}:{sessions:Session[]}) => {
 //   const [sessions, setSessions] = useState([]);
-
-
   return (
     <div className="session-list mb-4">
       {/* <h1 className="text-3xl font-bold text-center my-8">Sessions</h1> */}
