@@ -31,7 +31,7 @@ jobs:
       - name: Deploy to Tafaria Server
         env:
           HOST: 209.38.189.197
-          USERNAME: root
+          USERNAME: chris
           TARGET_DIR: /var/www/tafaria-castle
           APP_NAME: tafaria-castle #should match the name of the server block
           PORT: 3001
