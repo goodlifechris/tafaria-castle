@@ -30,6 +30,8 @@ const StoriesContent = () => {
 
   ];
 
+
+
   return (
     <div className="flex space-x-6 px-4">
       {Array.from(categories).map((img) => (
@@ -54,6 +56,7 @@ const StoriesContent = () => {
         </Link>
       ))}
     </div>
+
   );
 };
 
@@ -62,6 +65,8 @@ const Stories = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null); // Ref for the scrollable container
   const [showLeftArrow, setShowLeftArrow] = useState(false); // State for left arrow visibility
   const [showRightArrow, setShowRightArrow] = useState(true); // State for right arrow visibility
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   const router = useRouter(); // Initialize useRouter
   const activities = [
     { id: 2, name: "Archery" },
@@ -101,6 +106,27 @@ const Stories = () => {
     router.push(`/menu?id=Tafaria Experience&name=Tafaria Experience&card=${activity.name}`);
   };
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsCollapsed(true);
+        setShowLeftArrow(false);
+        setShowRightArrow(false);
+
+      } else {
+        setIsCollapsed(false);
+        if (scrollRef.current) {
+          const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+          setShowLeftArrow(scrollLeft > 0); // Show left arrow if not at the start
+          setShowRightArrow(scrollLeft + clientWidth < scrollWidth); // Show right arrow if not at the end
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  useEffect(() => {
     const currentRef = scrollRef.current;
     if (currentRef) {
       currentRef.addEventListener('scroll', handleScroll); // Add scroll event listener
@@ -127,7 +153,10 @@ const Stories = () => {
             <div className="animate-pulse">Loading...</div>
           </div>
         }>
+              <div className={`transition-all duration-300 ${isCollapsed ? 'max-h-0 overflow-hidden' : 'max-h-screen'}`}>
+
           <StoriesContent />
+          </div>
         </Suspense>
       </div>
       {showRightArrow && (
@@ -136,9 +165,7 @@ const Stories = () => {
         </button>
       )}
     </div>
-
     <Search activities={activities} onActivitySelect={handleActivitySelect} />
-  
     </div>
   );
 };

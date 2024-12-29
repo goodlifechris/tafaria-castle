@@ -49,7 +49,7 @@ body {
 
 /* Default styles for when the dropdown is closed */
 .bartop.closed {
-  top: 17rem; /* Mobile */
+  top: 8rem; /* Mobile */
 }
 
 /* Styles for when the dropdown is open */
