@@ -50,7 +50,7 @@ const Header = () => {
     <a className="bg-[#f673735d]  rounded-full p-2" href="https://www.google.com/maps/search/Tafaria+Castle/@-0.1164533,36.6279602,17z?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" >
       <IoLocation className="lg:text-4xl sm:text-sm md:text-2xl text-[#902729]"/>
         </a>
-      <a href="tel:0700151480" className="text-black  text-xs underline">
+      <a href="tel:070015000" className="text-black  text-xs underline">
         0700151480
       </a>
       <a href="mailto:info@tafaria.com" className="text-black text-xs underline">
