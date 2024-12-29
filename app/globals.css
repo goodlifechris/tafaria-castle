@@ -80,7 +80,7 @@ body {
 /* Large screen styles */
 @media (min-width: 1024px) {
   .bartop.closed {
-    top: 19rem; /* Large */
+    top: 10rem; /* Large */
   }
   .bartop.open {
     top: 31rem; /* Large */
