@@ -52,6 +52,6 @@ jobs:
                     if pm2 ls | grep -qw 'tafaria-castle'; then
                         pm2 reload tafaria-castle --time
                     else
-                        pm2 start npm --name "tafaria-castle" -- start --time
+                        pm2 start npm --name "tafaria-castle" -- start --time 
                         pm2 save
                     fi
