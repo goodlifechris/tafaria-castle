@@ -80,13 +80,20 @@ body {
 /* Large screen styles */
 @media (min-width: 1024px) {
   .bartop.closed {
-    top: 19rem; /* Large */
+    top: 10rem; /* Large */
   }
   .bartop.open {
     top: 31rem; /* Large */
   }
 }
+/* 
+ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'tafaria-password';
+mysql -h localhost -u root -p
+GRANT ALL PRIVILEGES ON ghost_db.* TO 'root'@'localhost';
 
+sudo ln -s /etc/nginx/sites-available/nextjs /etc/nginx/sites-enabled/
+
+sudo ln -s /etc/nginx/sites-available/tafaria-castle /etc/nginx/sites-enabled/ */
 
 /* .bartop{
   width: 100%;
