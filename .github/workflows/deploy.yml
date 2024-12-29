@@ -45,6 +45,7 @@ jobs:
             cd $TARGET_DIR
             git pull origin ${GITHUB_REF#refs/heads/}
             npm install
+            npm run clean # Add this line to clear the Next.js cache
             npm run build
             if pm2 list | grep -q $APP_NAME; then
               echo "Restarting application: $APP_NAME"
@@ -54,4 +55,4 @@ jobs:
               pm2 start npm --name $APP_NAME -- start -- --port=$PORT
             fi            
             pm2 save
-          EOF
+          EOF 
