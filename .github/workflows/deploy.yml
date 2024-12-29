@@ -28,7 +28,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Deploy to DigitalOcean
+      - name: Deploy to Tafaria Server
         env:
           HOST: 209.38.189.197
           USERNAME: root
