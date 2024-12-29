@@ -45,7 +45,6 @@ const Header = () => {
 
     </div>
     {/* Contact Information and Book Now Button */}
-<p>Woooozaaa</p>
     <div className="flex items-center space-x-3">
     <a className="bg-[#f673735d]  rounded-full p-2" href="https://www.google.com/maps/search/Tafaria+Castle/@-0.1164533,36.6279602,17z?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" >
       <IoLocation className="lg:text-4xl sm:text-sm md:text-2xl text-[#902729]"/>
