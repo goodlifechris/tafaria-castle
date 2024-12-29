@@ -31,7 +31,6 @@ jobs:
                             exit 1
                         fi
                     fi
-                    
                     cd ~/tafaria-castle
                     git fetch
                     git pull
