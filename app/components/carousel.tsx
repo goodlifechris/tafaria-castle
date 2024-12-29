@@ -42,7 +42,7 @@ const Carousels: React.FC<CarouselsProps> = ({ images }) => {
       <Carousel 
         showThumbs={false} 
         infiniteLoop 
-        autoPlay={false} 
+        autoPlay={true} 
         showStatus={false} 
         onChange={handleChange} // Set the onChange handler
       >
