@@ -1,58 +1,58 @@
-# Update to match your values: branch_name, app_name, SSH key name on GitHub from previous step if changed, server ip, username, port, and server Node pathname (using 'which pm2' on server to get path)
-
-name: Deploy Next.js App
-
-on:
-  push:
-    branches:
-      - main # Change to your specific branch
-      # - deployprod  # Additional branch for deployment
-
+name: deploy tafaria-castle
+run-name: ${{ github.actor }} is deploying ${{ github.repository }}
+on: 
+    push:
+        branches: [ master ]
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy using ssh
+              uses: appleboy/ssh-action@master
+              with:
+                host: 209.38.189.197
+                username: chris
+                key: ${{ secrets.SSH_PRIVATE_KEY }}
+                script: |
+                    if [ ! command -v pm2 &> /dev/null ];
+                    then
+                        npm install -g pm2
+                    fi
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+                    if [ ! -d /var/www/tafaria-castle ]; then
+                        sudo mkdir -p /var/www/tafaria-castle
+                        sudo chown -R root:chris /var/www/tafaria-castle
+                        sudo chmod -R 770 /var/www/tafaria-castle
+                    fi
+                    if [ ! -d ~/tafaria-castle ]; then
+                        git clone https://github.com/goodlifechris/tafaria-castle.git
+                        if [ $? -ne 0 ]; then
+                            echo "Failed to clone the repository"
+                            exit 1
+                        fi
+                    fi
 
-      - name: Check Node.js version
-        run: node -v
+                    cd ~/tafaria-castle
+                    git fetch
+                    git pull
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.1
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+                    npm install
+                    npm run build
+                    if [ $? -ne 0 ]; then
+                        echo "Failed to build the project"
+                        exit 1
+                    fi
+                    cp -ru ~/tafaria-castle/{package.json,next.config.js,public,.next,node_modules} /var/www/tafaria-castle
+                    
+                    if [ ! -d /var/www/tafaria-castle ]; then
+                        echo "Failed to create the directory"
+                        exit 1
+                    fi
+                    cd /var/www/tafaria-castle
 
-      - name: Deploy to Tafaria Server
-        env:
-          HOST: 209.38.189.197
-          USERNAME: root
-          TARGET_DIR: /var/www/tafaria-castle
-          APP_NAME: tafaria-castle #should match the name of the server block
-          PORT: 3001
-          #if multiple deploys are needed from different branches
-          #TARGET_DIR: ${{ github.ref == 'refs/heads/deploytest' && '/var/www/folder_name' || github.ref == 'refs/heads/deployprod' && '/var/www/another-location' }}
-          #APP_NAME: ${{ github.ref == 'refs/heads/deploytest' && 'folder_name' || github.ref == 'refs/heads/deployprod' && 'folder_name_2' }}
-          #PORT: ${{ github.ref == 'refs/heads/deploytest' && '3000' || github.ref == 'refs/heads/deployprod' && '3001' }}
-        run: |
-          ssh -o StrictHostKeyChecking=no $USERNAME@$HOST << EOF
-            export PATH=/usr/bin/pm2:$PATH #'which pm2' command on terminal will give the right path
-            cd $TARGET_DIR
-            git pull origin ${GITHUB_REF#refs/heads/}
-            npm install
-            npm run clean # Add this line to clear the Next.js cache
-            npm run build
-            if pm2 list | grep -q $APP_NAME; then
-              echo "Restarting application: $APP_NAME"
-              pm2 restart $APP_NAME
-            else
-              echo "Starting application: $APP_NAME"
-              pm2 start npm --name $APP_NAME -- start -- --port=$PORT
-            fi            
-            pm2 save
-          EOF 
+                    if pm2 ls | grep -qw 'tafaria-castle'; then
+                        pm2 reload tafaria-castle --time
+                    else
+                        pm2 start npm --name "tafaria-castle" -- start --time
+                        pm2 save
+                    fi
