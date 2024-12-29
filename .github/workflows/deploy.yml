@@ -2,7 +2,7 @@ name: deploy tafaria-castle
 run-name: ${{ github.actor }} is deploying ${{ github.repository }}
 on: 
     push:
-        branches: [ master ]
+        branches: [ main ]
 jobs:
     deploy:
         runs-on: ubuntu-latest
