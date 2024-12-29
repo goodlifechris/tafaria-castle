@@ -26,10 +26,6 @@ jobs:
                     fi
                     if [ ! -d ~/tafaria-castle ]; then
                         git clone https://github.com/goodlifechris/tafaria-castle.git
-                        if [ $? -ne 0 ]; then
-                            echo "Failed to clone the repository"
-                            exit 1
-                        fi
                     fi
                     cd ~/tafaria-castle
                     git fetch
