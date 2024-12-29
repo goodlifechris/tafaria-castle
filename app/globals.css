@@ -86,7 +86,14 @@ body {
     top: 31rem; /* Large */
   }
 }
+/* 
+ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'tafaria-password';
+mysql -h localhost -u root -p
+GRANT ALL PRIVILEGES ON ghost_db.* TO 'root'@'localhost';
 
+sudo ln -s /etc/nginx/sites-available/nextjs /etc/nginx/sites-enabled/
+
+sudo ln -s /etc/nginx/sites-available/tafaria-castle /etc/nginx/sites-enabled/ */
 
 /* .bartop{
   width: 100%;
