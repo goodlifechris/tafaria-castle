@@ -3,10 +3,14 @@ import React, { useState, useRef } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { FaPlay } from 'react-icons/fa'; // Import play icon
+export interface ImageUrls {
+  text: string;
+  imageUrl: string;
+}
 
 // Define the props interface
 interface CarouselsProps {
-  images: string[]; // Array of image URLs
+  images: ImageUrls[]; // Array of image URLs
 }
 
 const Carousels: React.FC<CarouselsProps> = ({ images }) => {
@@ -39,6 +43,7 @@ const Carousels: React.FC<CarouselsProps> = ({ images }) => {
 
   return (
     <div className="carousel rounded-box w-56 sm:w-full bg-black">
+      <br/>
       <Carousel 
         showThumbs={false} 
         infiniteLoop 
@@ -48,7 +53,8 @@ const Carousels: React.FC<CarouselsProps> = ({ images }) => {
       >
         {images.map((image, index) => (
           <div key={index} className="relative">
-            {image.endsWith('.mp4') ? (
+            <p>{image.text}</p>
+            {image.imageUrl.endsWith('.mp4') ? (
               <div > {/* Add onClick to the video container */}
                 <video
                 onClick={handleVideoClick}
@@ -58,7 +64,7 @@ const Carousels: React.FC<CarouselsProps> = ({ images }) => {
                   height="100%"
                   className={`video-player ${isPlaying && activeIndex === index ? 'playing' : ''}`}
                 >
-                  <source src={image} type="video/mp4" />
+                  <source src={image.imageUrl} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 {/* Play Button Overlay */}
@@ -73,7 +79,7 @@ const Carousels: React.FC<CarouselsProps> = ({ images }) => {
                         {/* Play Button Overlay */}
     </div>
             ) : (
-              <img src={image} alt={`Carousel image ${index + 1}`} />
+              <img src={image.imageUrl} alt={`Carousel image ${index + 1}`} />
             )}
           </div>
         ))}

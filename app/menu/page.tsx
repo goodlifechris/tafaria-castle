@@ -1,8 +1,8 @@
 "use client";
 import BlogCard from "../components/blogcard";
 import { useSearchParams } from 'next/navigation';
-import React, { Suspense,useRef,useEffect } from "react"; // Add Suspense import
- 
+import React, { Suspense, useRef, useEffect } from "react"; // Add Suspense import
+
 import TopBar from "../components/topbar";
 import Cart from "../components/cart/cart";
 
@@ -23,8 +23,27 @@ const MenuContent = () => {
       "subtypes": [
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Knights",
+              "imageUrl": "images/accommodation/1.jpg"
+            },
+            {
+              "text": "Lord's Chamber",
+              "imageUrl": "images/accommodation/2.jpg"
+            },
+            {
+              "text": "Lord's Court",
+              "imageUrl": "images/accommodation/3.jpg"
+            },
+            {
+              "text": "Lord's Room",
+              "imageUrl": "images/accommodation/4.jpg"
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "images/accommodation/5.jpg"
+            },
+
           ],
           "title": "Accommodation",
           "description": "With 80 well-appointed rooms, Tafaria country lodge offers a range of accommodations designed to suit diverse preferences. Guests can select from standard, superior and deluxe rooms, located either within the Castle’s or the country lodge. Room configurations vary to meet different needs with some spacious enough to accommodate three beds, others featuring cozy fireplaces, and interconnecting rooms ideal for families.",
@@ -32,8 +51,41 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/Home%20Carousel8.jpg",
-            "https://www.tafaria.com/assets/img/Home%20Carousel2.jpg" // Duplicate
+            {
+              "text": "Dining",
+              "imageUrl": "images/dining/1.jpg",
+            },
+            {
+              "text": "Dining",
+              "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel2.jpg",
+            },
+          ],
+          "title": "Weddings",
+          "description": "The restaurant, with seating for over 200 guests, combines indoor dining and a scenic lookout, offering breathtaking views of the surrounding landscape. For a more intimate atmosphere, the cozy coffee lounge inside the Castle, complete with a fireplace, provides the perfect spot for relaxation and unwinding.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrls": [
+            {
+              "text": "Wedding",
+              "imageUrl": "images/weddings/1.jpg",
+            },
+            {
+              "text": "Wedding",
+              "imageUrl": "images/weddings/2.jpg",
+            },
+            {
+              "text": "Wedding",
+              "imageUrl": "images/weddings/3.jpg",
+            },
+            {
+              "text": "Wedding",
+              "imageUrl": "images/weddings/4.jpg",
+            },            {
+              "text": "Wedding",
+              "imageUrl": "images/weddings/5.jpg",
+            },
+       
           ],
           "title": "Dining",
           "description": "The restaurant, with seating for over 200 guests, combines indoor dining and a scenic lookout, offering breathtaking views of the surrounding landscape. For a more intimate atmosphere, the cozy coffee lounge inside the Castle, complete with a fireplace, provides the perfect spot for relaxation and unwinding.",
@@ -41,8 +93,15 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/Home%20Carousel2.jpg",
-            "https://www.tafaria.com/assets/img/Home%20Carousel2.jpg" // Duplicate
+            {
+              "text": "Recreational",
+              "imageUrl":
+                "images/swimming/1.jpg",
+            },
+            {
+              "text": "Recreational",
+              "imageUrl": "https://www.tafaria.com/assets/img/Home%20Carousel2.jpg",
+            }
           ],
           "title": "Recreational",
           "description": "Tafaria provides an array of facilities including archery, horse riding and carriage driving. Others include swimming, open-air gym, viking’s pillow, mini-golf, lawn tennis, medieval bowling, basketball, pool table, a dance studio and big-screen cinema. Further, tours of the museum, herbarium, farm & art galleries provide an exceptional experience.",
@@ -55,9 +114,19 @@ const MenuContent = () => {
       "subtypes": [
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/Archery%20at%20Tafaria%20Castle%20.jpg",
-            "https://www.tafaria.com/assets/img/Archery%20at%20Tafaria%20Castle%20.jpg",
-            "/videos/tafaria_video.mp4" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/Archery%20at%20Tafaria%20Castle%20.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/Archery%20at%20Tafaria%20Castle%20.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/videos/tafaria_video.mp4",
+            }
+
           ],
           "title": "Archery",
           "description": "Experience the thrill of archery in a medieval setting, honing your skills with a bow and arrow. Under the guidance of experienced instructors, you'll learn the fundamentals of archery, including stance, aim, and release techniques. This activity is perfect for both beginners and seasoned archers looking to refine their skills.",
@@ -65,9 +134,18 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/Tafaria%20chariot%20riding.jpg",
-            "https://www.tafaria.com/assets/img/Tafaria%20chariot%20riding.jpg",
-            "/videos/tafaria_video.mp4" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/Tafaria%20chariot%20riding.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/Tafaria%20chariot%20riding.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/videos/tafaria_video.mp4",
+            }
           ],
           "title": "Horseback riding",
           "description": "Enjoy a scenic ride on horseback through beautiful landscapes, perfect for both beginners and experienced riders. Our well-trained horses and knowledgeable guides ensure a safe and enjoyable experience as you explore the stunning surroundings of Tafaria.",
@@ -75,8 +153,46 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/Tafaria%20Cinderella%201.jpg",
-            "https://www.tafaria.com/assets/img/Tafaria%20Cinderella%201.jpg" // Duplicate
+            {
+              "text": "Hiking",
+              "imageUrl": "images/hiking/1.jpg",
+            },
+            {
+              "text": "Hiking",
+              "imageUrl": "images/hiking/2.jpg",
+            },
+            {
+              "text": "Hiking",
+              "imageUrl": "images/hiking/3.jpg",
+            }
+
+          ],
+          "title": "Hiking",
+          "description": "Experience the thrill of archery in a medieval setting, honing your skills with a bow and arrow. Under the guidance of experienced instructors, you'll learn the fundamentals of archery, including stance, aim, and release techniques. This activity is perfect for both beginners and seasoned archers looking to refine their skills.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrls": [
+            {
+              "text": "Horse Riding",
+              "imageUrl": "images/horseriding/horseriding.jpg",
+            }
+          ],
+          "title": "Horse Riding",
+          "description": "Take a leisurely ride in a horse-drawn carriage, experiencing the charm of traditional transport. This relaxing journey allows you to soak in the picturesque views while learning about the history and significance of horse-drawn carriages in the region.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrls": [
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/Tafaria%20Cinderella%201.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/Tafaria%20Cinderella%201.jpg",
+            },
+
           ],
           "title": "Horse Carriage driving",
           "description": "Take a leisurely ride in a horse-drawn carriage, experiencing the charm of traditional transport. This relaxing journey allows you to soak in the picturesque views while learning about the history and significance of horse-drawn carriages in the region.",
@@ -84,8 +200,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            },
           ],
           "title": "Medieval bowling",
           "description": "Engage in a fun game of medieval bowling, a unique twist on the classic sport. This activity combines skill and strategy as you aim to knock down pins in a charming outdoor setting, making it a great option for families and groups.",
@@ -93,8 +215,19 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            },
+
           ],
           "title": "High altitude swimming",
           "description": "Dive into refreshing waters at high altitudes, surrounded by breathtaking views. This invigorating experience not only offers a chance to cool off but also provides a unique perspective of the stunning landscape that surrounds you.",
@@ -102,8 +235,25 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Out-door gym",
+              "imageUrl": "images/gym/1.jpg",
+            }
+          ],
+          "title": "Out-door gym",
+          "description": "Stay fit and active in our open-air gym, equipped with various exercise stations. Enjoy the fresh air and beautiful scenery while engaging in a workout that suits your fitness level, whether you prefer strength training or cardio exercises.",
+          "sessions": [] // Empty sessions array
+        },
+        {
+          "imageUrls": [
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            }
           ],
           "title": "Open-air gym",
           "description": "Stay fit and active in our open-air gym, equipped with various exercise stations. Enjoy the fresh air and beautiful scenery while engaging in a workout that suits your fitness level, whether you prefer strength training or cardio exercises.",
@@ -111,8 +261,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/mu3.jpg",
-            "https://www.tafaria.com/assets/img/mu3.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/mu3.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/mu3.jpg",
+            }
           ],
           "title": "A dance studio",
           "description": "Join dance classes in our well-equipped studio, suitable for all skill levels. Whether you're a beginner or an experienced dancer, our classes offer a fun and engaging way to express yourself through movement and rhythm.",
@@ -120,8 +276,15 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/Hiking%204.jpg",
-            "https://www.tafaria.com/assets/img/Hiking%204.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/Hiking%204.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/Hiking%204.jpg",
+            }
+
           ],
           "title": "The outdoor Viking’s pillow",
           "description": "Bounce and play on the Viking’s pillow, a fun inflatable attraction for all ages. This unique activity encourages laughter and enjoyment as you jump and play, making it a perfect choice for families looking to have a great time together.",
@@ -129,8 +292,15 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            }
+
           ],
           "title": "Mini-golf",
           "description": "Challenge your friends to a round of mini-golf on our creatively designed course. With fun obstacles and engaging themes, this activity is perfect for friendly competition and is suitable for all ages.",
@@ -138,8 +308,11 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            }
+
           ],
           "title": "Lawn tennis",
           "description": "Play a game of tennis on our well-maintained lawn courts, perfect for friendly matches. Whether you're a seasoned player or just starting out, our courts provide an excellent environment for enjoying this classic sport.",
@@ -147,8 +320,11 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            }
+
           ],
           "title": "Basketball",
           "description": "Shoot some hoops on our basketball court, suitable for casual play or competitive games. Gather your friends for a fun match or practice your skills in a friendly environment.",
@@ -156,8 +332,11 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            }
+
           ],
           "title": "Pool table",
           "description": "Enjoy a game of billiards on our pool table, a great way to relax and have fun. Whether you're a beginner or an expert, this activity offers a perfect blend of skill and leisure.",
@@ -165,8 +344,11 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            }
+
           ],
           "title": "Big-screen cinema",
           "description": "Watch your favorite movies in our big-screen cinema, offering a comfortable and immersive experience. Enjoy a selection of films in a cozy setting, perfect for a relaxing evening.",
@@ -174,8 +356,11 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://tafaria.com/assets/img/lords%20room%202.jpg",
-            "https://tafaria.com/assets/img/lords%20room%202.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            }
+
           ],
           "title": "Art tours",
           "description": "Explore the world of art through guided tours, showcasing local and international artists. These tours provide insight into the creative process and the stories behind the artworks.",
@@ -183,8 +368,11 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/IMG_0786.jpg",
-            "https://www.tafaria.com/assets/img/IMG_0786.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://tafaria.com/assets/img/lords%20room%202.jpg",
+            },
+
           ],
           "title": "Museum tours",
           "description": "Discover history and culture through engaging museum tours, led by knowledgeable guides. These tours offer a deeper understanding of the exhibits and the significance of the artifacts on display.",
@@ -192,8 +380,22 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/IMG_0787.jpg",
-            "https://www.tafaria.com/assets/img/IMG_0787.jpg" // Duplicate
+            {
+              "text": "Herbarium",
+              "imageUrl": "images/herbarium/1.jpg",
+            },
+            {
+              "text": "Herbarium",
+              "imageUrl": "images/herbarium/2.jpg",
+            },
+            {
+              "text": "Herbarium",
+              "imageUrl": "images/herbarium/3.jpg",
+            },
+            {
+              "text": "Herbarium",
+              "imageUrl": "images/herbarium/4.jpg",
+            },
           ],
           "title": "Herbarium tours",
           "description": "Learn about plant species and conservation efforts during our informative herbarium tours. These tours provide a unique opportunity to explore the diversity of flora and the importance of preserving our natural environment.",
@@ -207,17 +409,30 @@ const MenuContent = () => {
       "subtypes": [
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/Home%20Carousel17.jpg",
-            "https://www.tafaria.com/assets/img/Home%20Carousel17.jpg" // Duplicate
+            {
+              "text": "Meetings",
+              "imageUrl": "images/conference/1.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/arts_landing(1).jpg",
+            },
           ],
           "title": "Meetings",
           "description": "Tafaria conference center is equipped to host upwards of 200 participants, the center is ideal for corporate retreats, seminars, and training sessions. It has multiple breakout spaces, both indoors and outdoors, allowing for flexibility in group activities and discussions.",
           "sessions": [] // Empty sessions array
         },
         {
+
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/arts_landing(1).jpg",
-            "https://www.tafaria.com/assets/img/arts_landing(1).jpg" // Duplicate
+            {
+              "text": "Large Meetings",
+              "imageUrl": "https://www.tafaria.com/assets/img/arts_landing(1).jpg",
+            },
+            {
+              "text": "Large Meetings",
+              "imageUrl": " https://www.tafaria.com/assets/img/arts_landing(1).jpg",
+            },
           ],
           "title": "Large Meetings",
           "description": "For large-scale meetings, performances, seminars or product launches, Tafaria 400-seater auditorium is an ideal space.",
@@ -225,8 +440,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/Home%20Carousel10.jpg",
-            "https://www.tafaria.com/assets/img/Home%20Carousel10.jpg" // Duplicate
+            {
+              "text": "Team building",
+              "imageUrl": "images/conference/5.jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": " https://www.tafaria.com/assets/img/arts_landing(1).jpg",
+            },
           ],
           "title": "Team Building & Leadership Training",
           "description": "Tafaria's vast outdoors provide ideal spaces for groups in need of spaces for outdoor activities. Team building facilitators are available on request. Tafaria offers a transformative team building and leadership training program rooted in the Tafaria Taxonomy, an innovative leadership & teambuilding framework inspired by nature. The experience includes a tour of the Nano Herbarium, where participants connect with the natural world and gain foundational knowledge of the Tafaria Taxonomy.",
@@ -239,8 +460,38 @@ const MenuContent = () => {
       "subtypes": [
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/arts_landing3(1).jpg",
-            "https://www.tafaria.com/assets/img/arts_landing3(1).jpg" // Duplicate
+            {
+              "text": "Arts",
+              "imageUrl": "images/arts/arts/1.jpg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": "images/arts/arts/2.jpg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": "images/arts/arts/3.jpg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": "images/arts/arts/4.jpg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": "images/arts/arts/5.jpg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": "images/arts/arts/6.jpg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": "images/arts/arts/7.jpg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": "images/arts/arts/8.jpg",
+            },
           ],
           "title": "Arts",
           "description": "Tafaria Center for the Arts has facilities for visual and performing arts. These include studios for fine art, sculpture, fashion design, graphics & print, pottery, software development, beauty, culinary, music recording and a dance studio. This vast center also has an auditorium, training rooms, workshops and galleries and accommodation for artists.",
@@ -248,8 +499,29 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/arts_landing2(1).jpg",
-            "https://www.tafaria.com/assets/img/arts_landing2(1).jpg" // Duplicate
+            {
+              "text": "Arts",
+              "imageUrl": "images/arts/1.jpeg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": " images/arts/2.jpeg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": " images/arts/3.jpeg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": " images/arts/4.jpeg",
+            },
+            {
+              "text": "Arts",
+              "imageUrl": " images/arts/5.jpeg",
+            },            {
+              "text": "Arts",
+              "imageUrl": " images/arts/6.jpeg",
+            },
           ],
           "title": "Art Residencies & Mentorship",
           "description": "The center offers art residencies to artists in need of a secluded getaway to create away from distractions and collaborate with local rural communities. Further, the center offers sessions in painting, pottery, music, fashion design and sculpture by professional resident artists. Visitors immerse themselves in the arts through guided tours of various art installations and galleries.",
@@ -262,8 +534,14 @@ const MenuContent = () => {
       "subtypes": [
         {
           "imageUrls": [
-            "/images/categories/godream.png",
-            "/images/categories/godream.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "https://www.tafaria.com/assets/img/arts_landing(1).jpg",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": " https://www.tafaria.com/assets/img/arts_landing(1).jpg",
+            },
           ],
           "title": "goDream Life Skills & Leadership Program",
           "description": "goDream is a Tafaria custom life skills building and leadership program for students that blends creative/arts workshops and fun hands-on activities, ensuring that each student discovers new talents, develops practical...",
@@ -271,8 +549,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/3.png",
-            "/images/categories/3.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Museum",
           "description": "Tafaria Evolution Science Museum offers a captivating journey through human history, geology, and Kenyan heritage. Visitors here explore applied visual arts illustrating the dynamic forces of geology and volcanoes, and the remarkable story of human evolution, from early ancestors to modern Homo sapiens, evolution of communication technology, and a numismatic display tracing Kenya’s currency development. With expert guides, audio guides and engaging displays, Tafaria Museum provides an immersive learning experience that combines science, history and art.",
@@ -280,8 +564,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/1.png",
-            "/images/categories/1.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Art Tours",
           "description": "The Tafaria Art Tour is an immersive educative journey through creativity, featuring both outdoor installations and indoor galleries that showcase diverse works by local and international artists. This inspiring walk-through introduces visitors to a variety of art forms, from sculptures and murals to contemporary mixed media and installations with each piece designed to spark imagination and enrich cultural appreciation.",
@@ -289,8 +579,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/2.png",
-            "/images/categories/2.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Tafaria Nano Herbarium",
           "description": "The Tafaria Nano Herbarium offers a unique, educational experience, guiding visitors toward environmental consciousness and a deeper understanding of botany promoting conservation through the Arts...",
@@ -298,8 +594,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/1.png",
-            "/images/categories/1.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Tafaria Nano Farm",
           "description": "Tafaria Nano Farm offers a rich agricultural experience where visitors explore sustainable farming in an inspiring, hands-on environment. The farm features a diverse orchard, a vegetable garden, greenhouses, and a variety of livestock...",
@@ -307,8 +609,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/3.png",
-            "/images/categories/1.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Community Engagement",
           "description": "Tafaria supports community based initiatives chiefly: Creating community linkages with visiting local and international artists for training & skills building, mentorships and capacity building. Apprenticeship program for rural based youth in diverse skills such as housekeeping, landscaping, horsemanship, tailoring, pottery, craftsmanship, carpentry, welding, masonry, curators etc. Graduations are held periodically, awarding the participants with parchments of merit that they use to seek engagements. Ongoing support in the establishment of the Happy Place, a school located next to Tafaria for the underprivileged in society. Sustainability: Tafaria is committed to sustainable practices, utilizing eco-friendly materials and methods in its operations and pursues responsible tourism and environmental stewardship.",
@@ -321,8 +629,14 @@ const MenuContent = () => {
       "subtypes": [
         {
           "imageUrls": [
-            "/images/categories/godream.png",
-            "/images/categories/godream.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "goDream Life Skills & Leadership Program",
           "description": "goDream is a Tafaria custom life skills building and leadership program for students that blends creative/arts workshops and fun hands-on activities, ensuring that each student discovers new talents, develops practical...",
@@ -330,8 +644,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/1.png",
-            "/images/categories/1.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Community Engagement",
           "description": "Tafaria supports community based initiatives chiefly: Creating community linkages with visiting local and international artists for training & skills building, mentorships and capacity building...",
@@ -339,8 +659,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/2.png",
-            "/images/categories/2.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Tafaria Nano Herbarium",
           "description": "The Tafaria Nano Herbarium offers a unique, educational experience, guiding visitors toward environmental consciousness and a deeper understanding of botany promoting conservation through the Arts...",
@@ -348,8 +674,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/3.png",
-            "/images/categories/3.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Tafaria Nano Farm",
           "description": "Tafaria Nano Farm offers a rich agricultural experience where visitors explore sustainable farming in an inspiring, hands-on environment. The farm features a diverse orchard, a vegetable garden, greenhouses, and a variety of livestock...",
@@ -357,8 +689,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/2.png",
-            "/images/categories/2.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Museum",
           "description": "Tafaria Evolution Science Museum offers a captivating journey through human history, geology, and Kenyan heritage. Visitors here explore applied visual arts illustrating the dynamic forces of geology and volcanoes...",
@@ -370,9 +708,16 @@ const MenuContent = () => {
       "type": "Custom Programs",
       "subtypes": [
         {
+
           "imageUrls": [
-            "/images/categories/3.png",
-            "/images/categories/3.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Tafaria Nano Farm",
           "description": "Tafaria Nano Farm offers a rich agricultural experience where visitors explore sustainable farming in an inspiring, hands-on environment. The farm features a diverse orchard, a vegetable garden, greenhouses, and a variety of livestock...",
@@ -380,8 +725,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "/images/categories/2.png",
-            "/images/categories/2.png" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "Museum",
           "description": "Tafaria Evolution Science Museum offers a captivating journey through human history, geology, and Kenyan heritage. Visitors here explore applied visual arts illustrating the dynamic forces of geology and volcanoes...",
@@ -389,10 +740,14 @@ const MenuContent = () => {
         },
         {
           "imageUrls": [
-            "https://www.tafaria.com/assets/img/Home%20Carousel6.jpg",
-            "https://www.tafaria.com/assets/img/Home%20Carousel6.jpg" ,
-            "/videos/tafaria_video.mp4"
-            // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "TeamOut ​",
           "description": "TeamOut is a teambuilding retreat experience for corporate teams, designed to offer a holistic experience that combines learning, inspiration, and play to energize and arm teams with sustainable nature inspired teamwork skills.​",
@@ -419,9 +774,14 @@ const MenuContent = () => {
       "subtypes": [
         {
           "imageUrls": [
-            "/videos/tafaria_video.mp4",
-            "https://www.tafaria.com/assets/img/Piano_tafaria-min-ofzzltgcxsqzc8kqnlnm4s1o852rgtnkntg1ghfg4w.jpg",
-            "https://www.tafaria.com/assets/img/Piano_tafaria-min-ofzzltgcxsqzc8kqnlnm4s1o852rgtnkntg1ghfg4w.jpg" // Duplicate
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
+            {
+              "text": "Manor",
+              "imageUrl": "/images/categories/3.png",
+            },
           ],
           "title": "goDream Arts ​ ​ ​",
           "description": "goDream Arts is a Tafaria custom arts program for students that combines exposure into the world of applied arts, creative/arts workshops with local community for impact and cultural exchange and a Tafaria mission inspiring session on visioning and goal setting.​",
@@ -470,29 +830,29 @@ const MenuContent = () => {
       }
     }
   }, [card]);
-  
+
   return (
     <div className="w-full">
-<TopBar title={title || ''}/>
-<div className="mt-20">
-      {categoryData ? (
-        categoryData.subtypes.map((item, index) => (
-          <div key={index} ref={(el) => { if (el) cardRefs.current[item.title] = el; }} className="mb-4">
-          <BlogCard
-            key={index}
-            imageUrls={item.imageUrls}
-            title={item.title}
-            description={item.description}
-            sessions={item.sessions}
-          />
+      <TopBar title={title || ''} />
+      <div className="mt-20">
+        {categoryData ? (
+          categoryData.subtypes.map((item, index) => (
+            <div key={index} ref={(el) => { if (el) cardRefs.current[item.title] = el; }} className="mb-4">
+              <BlogCard
+                key={index}
+                imageUrls={item.imageUrls}
+                title={item.title}
+                description={item.description}
+                sessions={item.sessions}
+              />
+            </div>
+          ))
+        ) : (
+          <div className="text-center  text-gray-600">
+            <Cart />
           </div>
-        ))
-      ) : (
-        <div className="text-center  text-gray-600">
-          <Cart/>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -22,6 +22,10 @@ export interface Session {
   title: string;
   description: string;
 }
+export interface ImageUrls {
+  text: string;
+  imageUrl: string;
+}
 
 const BlogCard = ({
   imageUrls,
@@ -29,7 +33,7 @@ const BlogCard = ({
   description,
   sessions,
 }: {
-  imageUrls: string[];
+  imageUrls: ImageUrls[];
   title: string;
   description: string;
   sessions: Session[];

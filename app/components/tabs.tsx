@@ -22,10 +22,11 @@ const TabComponent = () => {
 
   const [images, setImages] = useState([
     "/images/1.png",
-    "/images/4.png",
     "/images/3.png",
     "/images/5.png",
-    "/images/6.png",
+    "/images/4.png",  
+    "/images/15.jpeg",
+    "/images/16.jpeg",
     "/images/7.png",
     "/images/8.png",
     "/images/9.png",
@@ -33,11 +34,107 @@ const TabComponent = () => {
     "/images/11.png",
     "/images/12.png",
     "/images/13.png",
-    "/images/1.png",
     "/images/6.png",
     "/images/7.png",
-    "/images/8.png",
+
+    // //accommodation
+    "/images/accommodation/1.jpg",
+    "/images/accommodation/2.jpg",
+    "/images/accommodation/2.jpg",
+    "/images/accommodation/4.jpg",
+    "/images/accommodation/5.jpg",
+    "/images/accommodation//6.jpg",
+
+
+    //arts
+    "/images/arts/1.jpeg",
+    "/images/arts/2.jpeg",
+    "/images/arts/3.jpeg",
+    "/images/arts/4.jpeg",
+    "/images/arts/5.jpeg",
+    "/images/arts/6.jpeg",
+    "/images/arts/7.jpeg",
+
+    //arts/arts
+    "/images/arts/arts/1.jpg",
+    "/images/arts/arts/2.jpg",
+    "/images/arts/arts/3.jpg",
+    "/images/arts/arts/4.jpg",
+    "/images/arts/arts/5.jpg",
+    "/images/arts/arts/6.jpg",
+    "/images/arts/arts/7.jpg",
+    "/images/arts/arts/8.jpg",
+    "/images/arts/arts/9.jpg",
+
+    //category
+    "/images/categories/1.png",
+    "/images/categories/2.png",
+    "/images/categories/3.png",
+    "/images/categories/godream.png",
+
+    //conference
+    "/images/conference/1.jpg",
+    "/images/conference/2.jpg",
+    "/images/conference/3.jpg",
+    "/images/conference/4.jpg",
+
+
+
+    //dining
+    "/images/dining/1.jpg",
+
+    //gym
+    "/images/gym/1.jpg",
+
+    //herbarium
+    "/images/herbarium/1.jpg",
+    "/images/herbarium/2.jpg",
+    "/images/herbarium/3.jpg",
+    "/images/herbarium/4.jpg",
+  
+
+    //hiking
+    "/images/hiking/1.jpg",
+    "/images/hiking/2.jpg",
+    "/images/hiking/3.jpg",
+
+    //horseriding
+    "/images/horseriding/horseriding.jpg",
+
+      //posts
+      "/images/posts/1.png",
+      "/images/posts/2.png",
+      "/images/posts/3.png",
+      "/images/posts/4.png",
+      "/images/posts/5.png",
+      "/images/posts/6.png",
+
+      //status_images
+  
+      "/images/status_images/6.png",
+      "/images/status_images/7.png",
+
+      //wedding
+      "/images/wedding/1.jpg",
+      "/images/wedding/2.jpg",
+      "/images/wedding/3.jpg",
+      "/images/wedding/4.jpg",
+      "/images/wedding/5.jpg",
+
+
+      //swimming
+      "/images/swimming/1.jpg",
+
+    //hiking
+    "/images/hiking/horseriding.jpg",
+    
+    
+    //dining
+    "/images/dining/1.jpg",
+
+
   ]);
+
   const [videos, setVideos] = useState([
     {
       id: 1, title: "Video 1",
