@@ -1,10 +1,10 @@
 import { Barlow_Condensed, Montaga } from 'next/font/google';
 import Link from 'next/link';
-import SessionList from './sessions';
 import React, { useState } from 'react';
 import Carousels from './carousel';
 import { FaRegHeart, FaHeart } from 'react-icons/fa'; // Import both outline and filled heart icons
 import { FiSend } from "react-icons/fi";
+import ContentView from './contentview';
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -18,26 +18,39 @@ const montaga = Montaga({
   display: 'swap',
 });
 
-export interface Session {
+interface Image {
   title: string;
-  description: string;
-}
-export interface ImageUrls {
-  text: string;
-  imageUrl: string;
+  url: string;
 }
 
-const BlogCard = ({
-  imageUrls,
-  title,
-  description,
-  sessions,
-}: {
-  imageUrls: ImageUrls[];
+interface Video {
   title: string;
-  description: string;
-  sessions: Session[];
-}) => {
+  url: string;
+}
+
+interface DocumentChild {
+  text?: string;
+  bold?: boolean;
+  children?: DocumentChild[];
+}
+interface Document {
+  type: string;
+  children: DocumentChild[];
+}
+
+interface Content {
+  document: Document[];
+}
+interface BlogCardProps {
+  imageUrls: Image[];
+  videoUrls: Video[];
+  title: string;
+  createdAt: string;
+  content: Content;
+}
+
+
+const BlogCard: React.FC<BlogCardProps> = ({ imageUrls, videoUrls, title, createdAt, content }) => {
   const [showSessions, setShowSessions] = useState(false); // State to manage session visibility
   const [liked, setLiked] = useState(false); // State to manage like status
 
@@ -59,7 +72,8 @@ const BlogCard = ({
     <div className={`flex flex-col md:flex-row m-5 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mt-5 ${barlow_condensed.className}`}>
       {/* Image Section */}
       <div className="relative w-full md:w-1/3">
-        <Carousels images={imageUrls} />
+
+        <Carousels images={imageUrls} videos={videoUrls} />
       </div>
 
       {/* Content Section */}
@@ -68,13 +82,12 @@ const BlogCard = ({
           <h2 className="text-xl font-semibold text-[#902729]">{title}</h2>
           <div className="flex items-center mb-4 text-sm">
             <img src="/images/carlendar.svg" alt="SVG image" />
-            <span className={`ml-2 text-gray-500 ${montaga.className}`}>
-              18th November 2025
+            <span className={`ml-2 my-2 text-gray-500 ${montaga.className}`}>
+              {createdAt}
             </span>
           </div>
-          <p className={`mt-2 text-gray-600 ${montaga.className}`}>{description}</p>
+          <ContentView content={content} />
           <br />
-          {sessions.length > 0 && showSessions && <SessionList sessions={sessions} />}
         </div>
 
         <div className="mt-4 flex space-x-4">

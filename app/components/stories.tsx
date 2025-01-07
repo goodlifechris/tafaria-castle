@@ -6,6 +6,9 @@ import { useSearchParams } from 'next/navigation';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import arrow icons
 import Search from "./search";
 import { useRouter } from "next/navigation"; // Import useRouter
+import { useQuery } from '@tanstack/react-query';
+import { fetchCategories } from ".././lib/queries";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const montaga = Montaga({
   weight: '400',
@@ -17,55 +20,48 @@ const montaga = Montaga({
 const StoriesContent = () => {
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get('name');
-  
-  const categories = [
-    { img: "images/status_images/1.png", title: "Hospitality" },
-    { img: "images/status_images/2.png", title: "Education" },
-    { img: "images/status_images/5.png", title: "Arts" },
-    { img: "images/status_images/3.png", title: "Conferencing" },
-    { img: "images/status_images/4.png", title: "Custom Programs" },
-    { img: "images/status_images/7.png", title: "Tafaria Experience" },
-    { img: "images/status_images/6.png", title: "Blogs" },
-    { img: "images/status_images/8.png", title: "Gift Shop" },
-
-  ];
-
-
-
+  const { data, isLoading, error } = useQuery({ queryKey: ['categories'], queryFn: fetchCategories });
+  if (isLoading) return <p>Loading categories...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  const categories = data;
   return (
     <div className="flex space-x-6 px-4">
-      {Array.from(categories).map((img) => (
+      {categories && Array.from(categories).map((img) => (
+        console.log("img", img),
         <Link 
-          key={img.img} 
-          href={`/menu?id=${img.title}&name=${encodeURIComponent(img.title)}`}
+          key={img.image.url} 
+          href={`/menu?id=${img.name}&name=${encodeURIComponent(img.name)}`}
         >
           <div
             className="flex-shrink-0 flex flex-col items-center space-y-1 py-2 min-w-[80px] sm:min-w-[100px]"
           >
             <img
               className={`w-26 h-20 sm:w-24 sm:h-24 md:w-24 md:h-24 rounded-full object-cover
-                ${activeCategory === img.title 
+                ${activeCategory === img.name 
                   ? 'ring-4 ring-white' 
                   : 'ring-1 ring-gray-300'
                 }`}
-              src={img.img}
+              src={img.image.url}
               alt="Story"
             />
-            <p className="text-center text-white text-sm font-medium w-full">{img.title}</p>
+            <p className="text-center text-white text-sm font-medium w-full">{img.name}</p>
           </div>
         </Link>
       ))}
     </div>
-
   );
 };
 
-// Main Stories component with Suspense
+
+
+
+
 const Stories = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null); // Ref for the scrollable container
   const [showLeftArrow, setShowLeftArrow] = useState(false); // State for left arrow visibility
   const [showRightArrow, setShowRightArrow] = useState(true); // State for right arrow visibility
   const [isCollapsed, setIsCollapsed] = useState(false);
+
 
   const router = useRouter(); // Initialize useRouter
   const activities = [
@@ -106,8 +102,9 @@ const Stories = () => {
     router.push(`/menu?id=Tafaria Experience&name=Tafaria Experience&card=${activity.name}`);
   };
   useEffect(() => {
+
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 500) {
         setIsCollapsed(true);
         setShowLeftArrow(false);
         setShowRightArrow(false);
@@ -139,8 +136,14 @@ const Stories = () => {
     };
   }, []);
 
+  const [queryClient] = useState(() => new QueryClient());
   return (
     <div className="items-center justify-items-center bg-[#902729] pb-5">
+    <div className="flex space-x-6 px-4">
+
+  
+  
+    </div>
     <div className={`w-full bg-[#902729] pt-4 flex justify-center items-stretch  relative ${montaga.className}`}>
       {showLeftArrow && (
         <button onClick={() => scrollTo('left')} className="absolute left-2 z-10 flex items-center justify-center rounded-full bg-[#9f4446] p-2">
@@ -154,8 +157,9 @@ const Stories = () => {
           </div>
         }>
               <div className={`transition-all duration-300 ${isCollapsed ? 'max-h-0 overflow-hidden' : 'max-h-screen'}`}>
-
+              <QueryClientProvider client={queryClient}>
           <StoriesContent />
+          </QueryClientProvider>
           </div>
         </Suspense>
       </div>

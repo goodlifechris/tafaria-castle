@@ -1,19 +1,33 @@
-"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */ 
 import React, { useState, useRef } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { FaPlay } from 'react-icons/fa'; // Import play icon
-export interface ImageUrls {
-  text: string;
-  imageUrl: string;
+
+export interface Image {
+  title: string;
+  url: string;
+}
+
+export interface Video {
+  title: string;
+  url: string;
 }
 
 // Define the props interface
 interface CarouselsProps {
-  images: ImageUrls[]; // Array of image URLs
+  images: Image[]; // Array of image objects
+  videos: Video[]; // Array of video objects
 }
 
-const Carousels: React.FC<CarouselsProps> = ({ images }) => {
+const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
+    console.log("imagesN", images); 
+    console.log("videos", videos);
+
+  const combinedUrls = [...images, ...videos];
+
+  console.log("combinedUrls", combinedUrls);
+
   const [activeIndex, setActiveIndex] = useState(0); // State to track the active index
   const [isPlaying, setIsPlaying] = useState(false); // State to track if the video is playing
   const videoRef = useRef<HTMLVideoElement | null>(null); // Ref to access the video element
@@ -42,44 +56,42 @@ const Carousels: React.FC<CarouselsProps> = ({ images }) => {
   };
 
   return (
-    <div className="carousel rounded-box w-56 sm:w-full bg-black">
-      <br/>
-      <Carousel 
-        showThumbs={false} 
-        infiniteLoop 
-        autoPlay={true} 
-        showStatus={false} 
-        onChange={handleChange} // Set the onChange handler
+    <div className="carousel rounded-box w-56 mb-4 sm:w-full bg-black">
+      <br />
+      <Carousel
+        showThumbs={false}
+        infiniteLoop
+        autoPlay={true}
+        showStatus={false}
+        onChange={handleChange}
       >
-        {images.map((image, index) => (
+        {combinedUrls.map((media, index) => (
           <div key={index} className="relative">
-            <p>{image.text}</p>
-            {image.imageUrl.endsWith('.mp4') ? (
-              <div > {/* Add onClick to the video container */}
+            <p>{media.title}</p>
+            {media.url.endsWith('.mp4') ? (
+              <div>
                 <video
-                onClick={handleVideoClick}
-                  ref={videoRef} // Attach the ref to the video element
+                  onClick={handleVideoClick}
+                  ref={videoRef}
                   controls
                   width="100%"
                   height="100%"
                   className={`video-player ${isPlaying && activeIndex === index ? 'playing' : ''}`}
                 >
-                  <source src={image.imageUrl} type="video/mp4" />
+                  <source src={media.url} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                {/* Play Button Overlay */}
+
                 {!isPlaying && activeIndex === index && (
-                 
-                           <div className="absolute inset-0 flex items-center justify-center" onClick={handlePlayPause}>
-                           <div className="bg-white rounded-full p-3 shadow-lg cursor-pointer">
-                             <FaPlay className="text-[#902729] text-2xl" /> {/* Play icon */}
-                           </div>
-                         </div>
+                  <div className="absolute inset-0 flex items-center justify-center" onClick={handlePlayPause}>
+                    <div className="bg-white rounded-full p-3 shadow-lg cursor-pointer">
+                      <FaPlay className="text-[#902729] text-2xl" />
+                    </div>
+                  </div>
                 )}
-                        {/* Play Button Overlay */}
-    </div>
+              </div>
             ) : (
-              <img src={image.imageUrl} alt={`Carousel image ${index + 1}`} />
+              <img src={media.url} alt={`Carousel image ${index + 1}`} />
             )}
           </div>
         ))}

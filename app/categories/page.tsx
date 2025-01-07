@@ -17,7 +17,7 @@ function CategoriesContent() {
   const title = searchParams.get('title')|| '';
   const imageUrl = searchParams.get('imageUrl') || '';
 
-
+  
   return (
     <div>
       <TopBar title={title || ''}/>

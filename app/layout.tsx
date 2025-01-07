@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import "./globals.css";
 import Head from "next/head";
@@ -11,6 +12,9 @@ import { NavigationProvider } from "./context/NavigationContext";
 
 
 
+
+
+
 export const metadata: Metadata = {
   "title": "Tafaria Castle",
   "description": "Tafaria Castle & Center for the Arts is located in rural Kenya on a hill, next to the scenic Aberdare ranges overlooking the Laikipia plains and Mt Kenya. ",
@@ -21,12 +25,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
       <body className="min-h-screen flex flex-col bg-white"> {/* Set min height and flex column layout */}
-    
+
      <NavigationProvider>
+
 
       <DropdownProvider>
         <div className="bg-white flex flex-col">
@@ -41,7 +48,8 @@ export default function RootLayout({
           <div className="sticky top-0 z-10 w-full">
             {/* Header */}
             <Header />
-            {/* Stories */}
+            {/* Stories */}   
+      
             <Stories />
           </div>
          {children}  
@@ -49,6 +57,7 @@ export default function RootLayout({
           <WhatsAppButton />
         </div>
         </DropdownProvider>
+
         </NavigationProvider>
       </body>
     </html>
