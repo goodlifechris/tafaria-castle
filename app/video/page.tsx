@@ -95,7 +95,10 @@ export default function VideoDetailPage() {
   const [queryClient] = useState(() => new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
+            <React.Suspense fallback={<div>Loading...</div>}>
+      
       <VideoDetails />
+      </React.Suspense>
     </QueryClientProvider>
   );
 }

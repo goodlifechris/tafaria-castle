@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { fetchSingleImage } from "../querries/images/getimages"; // Import the function to fetch a single image by ID
@@ -8,17 +8,16 @@ import TopBar from "../components/topbar";
 import PostCard from "../components/post";
 
 const ImageDetails = () => {
-    const searchParams = useSearchParams();
-    const id = searchParams.get('id');
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
 
-
-  console.log("id ",id)
+  console.log("id ", id);
   // Use React Query to fetch image details by ID
-
-    const { data, isLoading, error } = useQuery({
-      queryKey: ['categories', id],
-      queryFn: () => fetchSingleImage(id || ''),
-    }); 
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["categories", id],
+    queryFn: () => fetchSingleImage(id || ""),
+    enabled: !!id, // Ensure query runs only if ID exists
+  });
 
   if (!id) {
     return (
@@ -57,61 +56,32 @@ const ImageDetails = () => {
 
   // Render the image detail page
   return (
-<div>
-    <TopBar title={data.title || ''}/>
+    <div>
+      <TopBar title={data.title || ""} />
 
-    <div className="flex items-center bg-white shadow-md">  
-    
-      
-      {/* Image Details */}
-      <div className="max-w-4xl mx-auto p-4 mt-16">
-      <PostCard
-      createdAt="2025-01-07T06:05:33.369Z"
-          imageUrl={data.image.url || '/images/posts/1.png'}
-          text={data.description}
-          title={data.title}
-        />
-        {/* <img
-          src={data.image.url}
-          alt={data.image.url}
-          className="w-full h-auto rounded-lg shadow-lg"
-        /> */}
-        
-        {/* <div className="mt-6">
-          <h2 className="text-3xl font-bold text-gray-800">{data.title}</h2>
-          <p className="mt-2 text-gray-600">{data.description}</p>
-        </div> */}
-
-        {/* <div className="flex mt-4 space-x-4">
-          <button className="p-2 rounded-full bg-red-500 text-white">
-            ❤️ Like
-          </button>
-          <a
-            href={`https://wa.me/?text=${encodeURIComponent(
-              `Check out this image: ${data.title} - ${data.image.url}`
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 bg-green-500 text-white rounded-full"
-          >
-            📤 Share
-          </a>
-        </div> */}
-
-
+      <div className="flex items-center bg-white shadow-md">
+        {/* Image Details */}
+        <div className="max-w-4xl mx-auto p-4 mt-16">
+          <PostCard
+            createdAt={"2025-01-07T06:05:33.369Z"}
+            imageUrl={data.image.url || "/images/posts/1.png"}
+            text={data.description}
+            title={data.title}
+          />
+        </div>
       </div>
-    </div>
     </div>
   );
 };
+
 export default function ImageDetailPage() {
   const [queryClient] = useState(() => new QueryClient());
+
   return (
-
-  <QueryClientProvider client={queryClient}>
-
-      <ImageDetails />
-  </QueryClientProvider>
-
+    <QueryClientProvider client={queryClient}>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <ImageDetails />
+      </React.Suspense>
+    </QueryClientProvider>
   );
 }
