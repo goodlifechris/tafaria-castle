@@ -125,14 +125,14 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
             rel="noopener noreferrer"
             className="p-2 bg-green-500 text-white rounded-full"
           >
-            <FiShare2 size={20} />
+          <FiSend />
           </a>
-          <button
+          {/* <button
             onClick={handleShare}
             className="text-2xl text-gray-400 hover:text-blue-500"
           >
             <FiSend />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
