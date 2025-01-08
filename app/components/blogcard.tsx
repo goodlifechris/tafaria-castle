@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import Carousels from './carousel';
 import { FaRegHeart, FaHeart } from 'react-icons/fa'; // Import both outline and filled heart icons
-import { FiSend, FiShare2 } from "react-icons/fi";
+import { FiSend } from "react-icons/fi";
 import ContentView from './contentview';
 
 //👇 Configure our font object
@@ -63,11 +63,11 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
     setLiked(!liked); // Toggle like status
   };
 
-  const handleShare = () => {
-    const link = "https://tafaria-castle.vercel.app/categories"; // The link you want to share
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent("Welcome to tafaria" + " " + link)}`; // Share text and link
-    window.open(whatsappUrl, "_blank"); // Open WhatsApp share link
-  };
+  // const handleShare = () => {
+  //   const link = "https://tafaria-castle.vercel.app/categories"; // The link you want to share
+  //   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent("Welcome to tafaria" + " " + link)}`; // Share text and link
+  //   window.open(whatsappUrl, "_blank"); // Open WhatsApp share link
+  // };
 
   return (
     <div className={`flex flex-col md:flex-row m-5 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mt-5 ${barlow_condensed.className}`}>
