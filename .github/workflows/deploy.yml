@@ -1,64 +1,57 @@
 name: deploy tafaria-castle
 run-name: ${{ github.actor }} is deploying ${{ github.repository }}
-on:
-  push:
-    branches: [main]
+on: 
+    push:
+        branches: [ main ]
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy using ssh
-        uses: appleboy/ssh-action@master
-        with:
-          host: 209.38.189.197
-          username: chris
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            if ! command -v pm2 &> /dev/null; then
-              echo "Installing PM2..."
-              npm install -g pm2
-            fi
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy using ssh
+              uses: appleboy/ssh-action@master
+              with:
+                host: 209.38.189.197
+                username: chris
+                key: ${{ secrets.SSH_PRIVATE_KEY }}
+                script: |
+                    if [ ! command -v pm2 &> /dev/null ];
+                    then
+                        npm install -g pm2
+                    fi
 
-            if [ ! -d /var/www/tafaria-castle ]; then
-              echo "Setting up deployment directory..."
-              sudo mkdir -p /var/www/tafaria-castle
-              sudo chown -R root:chris /var/www/tafaria-castle
-              sudo chmod -R 770 /var/www/tafaria-castle
-            fi
+                    if [ ! -d /var/www/tafaria-castle ]; then
+                        sudo mkdir -p /var/www/tafaria-castle
+                        sudo chown -R root:chris /var/www/tafaria-castle
+                        sudo chmod -R 770 /var/www/tafaria-castle
+                    fi
+                    if [ ! -d ~/tafaria-castle ]; then
+                        git clone https://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@github.com/goodlifechris/tafaria-castle.git
+                        if [ $? -ne 0 ]; then
+                            echo "Failed to clone the repository"
+                            exit 1
+                        fi
+                    fi
+                    cd ~/tafaria-castle
+                    git fetch
+                    git pull
 
-            if [ ! -d ~/tafaria-castle ]; then
-              echo "Cloning repository..."
-              git clone https://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@github.com/goodlifechris/tafaria-castle.git ~/tafaria-castle
-              if [ $? -ne 0 ]; then
-                echo "Failed to clone the repository"
-                exit 1
-              fi
-            fi
+                    npm install
+                    npm run build
+                    if [ $? -ne 0 ]; then
+                        echo "Failed to build the project"
+                        exit 1
+                    fi
+                    cp -ru ~/tafaria-castle/{package.json,next.config.ts,public,.next,node_modules} /var/www/tafaria-castle
+                    
+                    if [ ! -d /var/www/tafaria-castle ]; then
+                        echo "Failed to create the directory"
+                        exit 1
+                    fi
+                    cd /var/www/tafaria-castle
 
-            cd ~/tafaria-castle
-            echo "Pulling latest changes..."
-            git fetch
-            git pull
-
-            echo "Installing dependencies..."
-            npm install
-
-            echo "Building the project..."
-            npm run build
-            if [ $? -ne 0 ]; then
-              echo "Failed to build the project"
-              exit 1
-            fi
-
-            echo "Copying files to deployment directory..."
-            cp -ru ~/tafaria-castle/{package.json,next.config.ts,public,.next,node_modules} /var/www/tafaria-castle
-
-            cd /var/www/tafaria-castle
-
-            echo "Starting or reloading PM2 process..."
-            if pm2 list | grep -qw 'tafaria-castle'; then
-              pm2 reload tafaria-castle --time
-            else
-              pm2 start npm --name "tafaria-castle" -- start --time
-              pm2 save
-            fi
+                    if pm2 ls | grep -qw 'tafaria-castle'; then
+                        pm2 reload tafaria-castle --time
+                    else
+                        pm2 start npm --name "tafaria-castle" -- start --time 
+                        pm2 save
+                    fi
