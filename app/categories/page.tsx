@@ -25,19 +25,9 @@ function CategoriesContent() {
       </div>
       <div className="mt-16">
         <PostCard
+        createdAt="2025-01-07T06:05:33.369Z"
           imageUrl={imageUrl || '/images/posts/1.png'}
-          text="Standing proudly beside the golf course is Jach, a stallion 🐎, with the plinth of honor attached to him, engraved with the names of those who helped build Tafaria castle."
-        />
-        <PostCard
-          imageUrl="/images/posts/1.png"
-          text="goDream is a Tafaria custom life skills building and leadership program for students that blends creative/arts workshops and fun hands-on activities, ensuring that each student discovers new talents, develops practical."
-        />
-        <PostCard
-          imageUrl="/images/posts/3.png"
-          text="Tafaria supports community based initiatives chiefly: Creating community linkages with visiting local and international artists for training & skills building, mentorships and capacity building..."
-        />
-        <PostCard
-          imageUrl="/images/posts/4.png"
+          title="helloo"
           text="Standing proudly beside the golf course is Jach, a stallion 🐎, with the plinth of honor attached to him, engraved with the names of those who helped build Tafaria castle."
         />
       </div>

@@ -146,3 +146,15 @@ sudo ln -s /etc/nginx/sites-available/tafaria-castle /etc/nginx/sites-enabled/ *
   color: white; /* Play icon color */
   font-size: 3rem; /* Size of the play icon */
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}

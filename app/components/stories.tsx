@@ -7,7 +7,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import arrow 
 import Search from "./search";
 import { useRouter } from "next/navigation"; // Import useRouter
 import { useQuery } from '@tanstack/react-query';
-import { fetchCategories } from ".././lib/queries";
+import { fetchCategories } from "../querries/categories/getcategories";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const montaga = Montaga({

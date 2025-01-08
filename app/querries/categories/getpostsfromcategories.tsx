@@ -1,5 +1,5 @@
  /* eslint-disable @typescript-eslint/no-explicit-any */ 
-import graphqlClient from '../../graphql-client';
+import graphqlClient from '../../../graphql-client';
 import { gql } from 'graphql-request';
 
 const GET_POSTS_BY_CATEGORY = gql`
@@ -11,6 +11,7 @@ const GET_POSTS_BY_CATEGORY = gql`
       }
       id
       posts {
+        id
         createdAt
         title
         images {
@@ -44,6 +45,7 @@ type PostContent = {
 };
 
 type Post = {
+  id:string;
   title: string;
   createdAt: string;
   images: {

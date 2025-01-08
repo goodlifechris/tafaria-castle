@@ -1,5 +1,5 @@
  /* eslint-disable @typescript-eslint/no-explicit-any */ 
-import graphqlClient from '../../graphql-client';
+import graphqlClient from '../../../graphql-client';
 import { gql } from 'graphql-request';
 
 const GET_CATEGORIES = gql`

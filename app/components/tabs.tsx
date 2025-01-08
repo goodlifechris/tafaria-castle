@@ -1,13 +1,13 @@
 "use client";
-
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { Barlow_Condensed } from 'next/font/google';
-import BlogPostCard from "./blogpostcard";
 import { useDropdown } from "../context/DropdownContext";
-import VideoPlayer from "./VideoPlayer";
 import { useNavigation } from '../context/NavigationContext';
 import { usePathname } from "next/navigation"; // Import useRouter
+import ImageGallery from "./imagegallery";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import VideoGallery from "./videogallery";
+import PostGallery from "./bloggallery";
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -214,6 +214,7 @@ const TabComponent = () => {
     };
   }, [activeTab]);
   const { isDropdownOpen } = useDropdown();
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
     <>
@@ -238,29 +239,27 @@ const TabComponent = () => {
       {/* Content - Moved outside sticky container */}
       <div className="mt-6 w-full">
         {(activeTab === "Images") && (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-4">
-            {images.map((src, index) => (
-      <Link href={`/categories?title=${encodeURIComponent("Images")}&imageUrl=${encodeURIComponent(src)}`} key={`${src}-${index}`}>
-             <img
-                  src={src}
-                  alt={`Image ${index + 1}`}
-                  className="rounded-md shadow-md"
-                />
-              </Link>
-            ))}
-          </div>
+            <QueryClientProvider client={queryClient}>
+          <ImageGallery/>
+</QueryClientProvider>
         )}
 
         {(activeTab === "Videos") && (
+  <QueryClientProvider client={queryClient}>
 
-<div className="container mx-auto px-4 mt-5">
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"> {/* Responsive grid layout */}
+{/* <div className="container mx-auto px-4 mt-5"> */}
+{/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">  */}
+  {/* Responsive grid layout */}
+  {/* // <VideoPlayer key={video.id} video={video}  /> */}
 
-{videos.map((video) => (
-  <VideoPlayer key={video.id} video={video}  />
+{videos.map((video,index) => (
 
-))}
+<div key={index} className={video.title}>
+  <VideoGallery/>
 </div>
+))}
+
+{/* </div> */}
            
 
             {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -282,25 +281,29 @@ const TabComponent = () => {
                 />
               ))}
             </div> */}
-          </div>
+          {/* </div> */}
+          </QueryClientProvider>
+
         )}
         {(activeTab === "Blogs") && (
 
-          
-          <div className="m-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {blogs.map((blog) => (
-              <div key={blog.id}>
-                <BlogPostCard
-                  key={blog.id}
-                  title="Uncover Tafaria's Heritage"
-                  date="2024-09-18"
-                  description="Explore the rich history and cultural significance of Tafaria Castle, from its architecture to the local legends."
-                  imageUrl="/images/1.png"
-                  link="/categories"
-                />
-              </div>
-            ))}
-          </div>
+<QueryClientProvider client={queryClient}>
+<PostGallery/>
+</QueryClientProvider>
+          // <div className="m-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          //   {blogs.map((blog) => (
+          //     <div key={blog.id}>
+          //       <BlogPostCard
+          //         key={blog.id}
+          //         title="Uncover Tafaria's Heritage"
+          //         date="2024-09-18"
+          //         description="Explore the rich history and cultural significance of Tafaria Castle, from its architecture to the local legends."
+          //         imageUrl="/images/1.png"
+          //         link="/categories"
+          //       />
+          //     </div>
+          //   ))}
+          // </div>
         )}
       </div>
     </>

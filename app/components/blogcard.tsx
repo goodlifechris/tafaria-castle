@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import Carousels from './carousel';
 import { FaRegHeart, FaHeart } from 'react-icons/fa'; // Import both outline and filled heart icons
-import { FiSend } from "react-icons/fi";
+import { FiSend, FiShare2 } from "react-icons/fi";
 import ContentView from './contentview';
 
 //👇 Configure our font object
@@ -42,6 +42,7 @@ interface Content {
   document: Document[];
 }
 interface BlogCardProps {
+  id: string;
   imageUrls: Image[];
   videoUrls: Video[];
   title: string;
@@ -50,7 +51,7 @@ interface BlogCardProps {
 }
 
 
-const BlogCard: React.FC<BlogCardProps> = ({ imageUrls, videoUrls, title, createdAt, content }) => {
+const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, createdAt, content }) => {
   const [showSessions, setShowSessions] = useState(false); // State to manage session visibility
   const [liked, setLiked] = useState(false); // State to manage like status
 
@@ -116,6 +117,16 @@ const BlogCard: React.FC<BlogCardProps> = ({ imageUrls, videoUrls, title, create
           >
             {liked ? <FaHeart /> : <FaRegHeart />} {/* Conditional rendering of heart icon */}
           </button>
+                           <a
+            href={`https://wa.me/?text=${encodeURIComponent(
+              `Check out this image: ${title} - View it here: http://209.38.189.197:3001/blog?id=${id}`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 bg-green-500 text-white rounded-full"
+          >
+            <FiShare2 size={20} />
+          </a>
           <button
             onClick={handleShare}
             className="text-2xl text-gray-400 hover:text-blue-500"

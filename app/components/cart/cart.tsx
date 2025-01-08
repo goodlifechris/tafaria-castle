@@ -4,37 +4,43 @@ import React, { useState } from 'react';
 import { FaGift } from 'react-icons/fa';
 import { Barlow_Condensed } from 'next/font/google';
 import { IoIosRemoveCircle } from 'react-icons/io';
+import { useQuery } from '@tanstack/react-query';
 
-interface Item {
-  id: number;
-  img: string;
-  title: string;
-  description: string;
-  price: number;
-  quantity: number;
-}
+import { fetchGiftShops, GiftShop } from '../../querries/giftshop/getgiftshops';
 
-const items: Item[] = [
-  { id: 1, img: "https://afinju.co.uk/wp-content/uploads/2024/09/benos.png", title: "A piece of history", description: "Description 1", price: 1000, quantity: 1 },
-  { id: 2, img: "https://afinju.co.uk/wp-content/uploads/2024/11/718458D9-90D3-4A62-A2D1-B415CDC5D4BB_1_201_a.jpeg", title: "Art Museum Craft", description: "Description 2", price: 12000, quantity: 1 },
-  { id: 3, img: "https://afinju.co.uk/wp-content/uploads/2024/08/EC4A86EA-CAD6-4A1C-BA8E-FB4B4FA340B4_1_105_c-1024x643.jpeg", title: "Beloved", description: "Description 2", price: 2230, quantity: 1 },
-  { id: 4, img: "https://afinju.co.uk/wp-content/uploads/2024/10/FDEE836D-7B99-42D4-83B4-C4A8F6BFF9E7_1_105_c-300x300.jpeg", title: "A dream", description: "Description 2", price: 6000, quantity: 1 },
-  { id: 5, img: "https://afinju.co.uk/wp-content/uploads/2024/09/benos.png", title: "A piece of history", description: "Description 1", price: 1000, quantity: 1 },
-  { id: 6, img: "https://afinju.co.uk/wp-content/uploads/2024/11/718458D9-90D3-4A62-A2D1-B415CDC5D4BB_1_201_a.jpeg", title: "Art Museum Craft", description: "Description 2", price: 12000, quantity: 1 },
-  { id: 7, img: "https://afinju.co.uk/wp-content/uploads/2024/08/EC4A86EA-CAD6-4A1C-BA8E-FB4B4FA340B4_1_105_c-1024x643.jpeg", title: "Beloved", description: "Description 2", price: 2230, quantity: 1 },
-  { id: 8, img: "https://afinju.co.uk/wp-content/uploads/2024/10/FDEE836D-7B99-42D4-83B4-C4A8F6BFF9E7_1_105_c-300x300.jpeg", title: "A dream", description: "Description 2", price: 6000, quantity: 1 },
 
-];
+
+// amount
+// : 
+// 1500
+// description
+// : 
+// "Awesome Key Ring"
+// id
+// : 
+// "cm5n1vzpw0018l0z0xdxdeo7g"
+// images
+// : 
+// (2) [{…}, {…}]
+// title
+// : 
+// "Key Ring"
+// videos
+// : 
+// []
+
+
 const barlow_condensed = Barlow_Condensed({
     weight: '400',
     subsets: ['latin'],
     display: 'swap',
   });
 const Cart = () => {
-  const [cart, setCart] = useState<Item[]>([]);
+
+  const [cart, setCart] = useState<GiftShop[]>([]);
   const [activeTab, setActiveTab] = useState<'items' | 'cart'>('items');
 
-  const addToCart = (item: Item) => {
+  const addToCart = (item: GiftShop) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
       if (existingItem) {
@@ -46,8 +52,29 @@ const Cart = () => {
       }
     });
   };
+  const businessPhoneNumber = '+254705000315'; // Replace with your WhatsApp number (in international format)
 
-  const removeFromCart = (item: Item) => {
+  const handleSendToWhatsApp = () => {
+    // Calculate the total cost
+    const totalCost = cart.reduce((sum, item) => sum + item.amount * item.quantity, 0);
+  
+    // Create the message with item details and total cost
+    const message = cart
+      .map((item) => `${item.title} - Quantity: ${item.quantity} - Price: $${item.amount.toFixed(2)}`)
+      .join('\n');
+  
+    // Encode the message with the total cost
+    const encodedMessage = encodeURIComponent(
+      `New Order:\n${message}\n\nTotal Cost: $${totalCost.toFixed(2)}`
+    );
+  
+    const whatsappLink = `https://wa.me/${businessPhoneNumber}?text=${encodedMessage}`;
+  
+    // Open WhatsApp link in a new tab
+    window.open(whatsappLink, '_blank');
+  };
+  
+  const removeFromCart = (item: GiftShop) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
       if (existingItem && existingItem.quantity > 1) {
@@ -65,9 +92,13 @@ const Cart = () => {
   };
 
   const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cart.reduce((total, item) => total + item.amount * item.quantity, 0);
   };
+  const { data, isLoading, error } = useQuery({ queryKey: ['giftShops'], queryFn: fetchGiftShops });
+  if (isLoading) return <p>Loading categories...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
+  console.log("dayta is", data)
   return (
     <div className={`p-4 ${barlow_condensed.className}`}>
       <div className="flex space-x-4 mb-4">
@@ -94,12 +125,12 @@ const Cart = () => {
         <div>
         
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {items.map((item) => (
+            {data?.map((item) => (
               <div key={item.id} className="border p-4 rounded-lg">
-                <img src={item.img} alt={item.title} className="w-full h-32 object-cover mb-2" />
+                <img src={item.images[0].image.url} alt={item.title} className="w-full h-32 object-cover mb-2" />
                 <h2 className="text-lg text-left font-bold">{item.title}</h2>
                 {/* <p className="text-sm">{item.description}</p> */}
-                <p className="text-lg text-left font-bold">Kes {item.price}</p>
+                <p className="text-lg text-left font-bold">Kes {item.amount}</p>
                 <button
                   onClick={() => addToCart(item)}
                   className="mt-2 float-left bg-[#94723C] text-white px-4 py-2 rounded"
@@ -117,12 +148,12 @@ const Cart = () => {
           <div className="flex flex-col space-y-4">
             {cart.map((item) => (
               <div key={item.id} className="flex items-center border p-4 rounded-lg">
-                <img src={item.img} alt={item.title} className="w-16 h-16 object-cover mr-4" />
+                <img src={item.images[0].image.url} alt={item.title} className="w-16 h-16 object-cover mr-4" />
                 <div className="flex-1">
                   <h2 className="text-left text-lg font-bold">{item.title}</h2>
                   <p className="text-sm text-left">Quantity: {item.quantity}</p>
                 </div>
-                <p className="text-lg font-bold">Kes {(item.price * item.quantity).toFixed(2)}</p>
+                <p className="text-lg font-bold">Kes {(item.amount * item.quantity).toFixed(2)}</p>
                 <button
                   onClick={() => removeFromCart(item)}
                   className="ml-4 rounded-full bg-red-500 text-white px-4 py-2"
@@ -136,8 +167,8 @@ const Cart = () => {
             <h2 className="text-xl font-bold">Summary</h2>
             <p>Total Items: {getTotalItems()}</p>
             <p>Total Price: Kes {getTotalPrice().toFixed(2)}</p>
-            <button className="mt-2 bg-green-500 text-white px-4 py-2 rounded">
-              Checkout
+            <button className="mt-2 bg-green-500 text-white px-4 py-2 rounded"  onClick={handleSendToWhatsApp}>
+              Make order
             </button>
           </div>
         </div>
