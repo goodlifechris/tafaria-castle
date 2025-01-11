@@ -84,7 +84,12 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
           <div className="flex items-center mb-4 text-sm">
             <img src="/images/carlendar.svg" alt="SVG image" />
             <span className={`ml-2 my-2 text-gray-500 ${montaga.className}`}>
-              {createdAt}
+              {/* {createdAt} */}
+              {new Date(createdAt).toLocaleDateString('en-US', {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric',
+            })}
             </span>
           </div>
           <ContentView content={content} />
