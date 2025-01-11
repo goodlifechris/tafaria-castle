@@ -88,13 +88,17 @@ const ImageGallery = () => {
               onClick={() => openImageModal(image)}
             >
               <div className="relative w-full h-auto overflow-hidden">
-                <img
-                  src={image.image.url}
-                  alt={image.title}
-                  loading="lazy"
-                  className="w-full object-cover h-auto transition duration-300"
-                  style={{ aspectRatio: 'auto' }}
-                />
+              {image?.image?.url ? (
+  <img
+    src={image.image.url}
+    alt={image.title || 'Image'}
+    loading="lazy"
+    className="w-full object-cover h-auto transition duration-300"
+    style={{ aspectRatio: 'auto' }}
+  />
+) : (
+  <></>
+)}
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300">
                 <h3 className="text-white font-bold">{image.title}</h3>

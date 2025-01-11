@@ -127,7 +127,7 @@ const Cart = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {data?.map((item) => (
               <div key={item.id} className="border p-4 rounded-lg">
-                <img src={item.images[0].image.url} alt={item.title} className="w-full h-32 object-cover mb-2" />
+                <img src={item.images[0].image.url} alt={item.title} className="w-full object-cover mb-2" />
                 <h2 className="text-lg text-left font-bold">{item.title}</h2>
                 {/* <p className="text-sm">{item.description}</p> */}
                 <p className="text-lg text-left font-bold">Kes {item.amount}</p>
