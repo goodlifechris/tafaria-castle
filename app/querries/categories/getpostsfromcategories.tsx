@@ -44,7 +44,7 @@ type PostContent = {
   document: any;
 };
 
-type Post = {
+export type Post = {
   id:string;
   title: string;
   createdAt: string;

@@ -3,18 +3,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaSearch } from "react-icons/fa";
 import { useDropdown } from '../context/DropdownContext';
+import { useQuery } from '@tanstack/react-query';
+import { fetchPostsByCategory, Post } from '../querries/categories/getpostsfromcategories';
 
 interface Activity {
-  id: number;
+  id: string;
   name: string;
 }
 
 interface SearchProps {
-  activities: Activity[];
   onActivitySelect: (activity: Activity) => void;
 }
 
-const Search = ({ activities, onActivitySelect }: SearchProps) => {
+const Search = ({  onActivitySelect }: SearchProps) => {
   const { isDropdownOpen, toggleDropdown } = useDropdown();
   const [dropdownOpened, setDropdownOpened] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -54,7 +55,20 @@ const Search = ({ activities, onActivitySelect }: SearchProps) => {
     }
   };
 
-  const filteredActivities = activities;
+  // var filteredActivities = activities;
+    
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['categories', 'Tafaria experience'],
+    queryFn: () => fetchPostsByCategory('Tafaria experience'  ),
+  }); 
+  
+  if (isLoading) return <p>Loading tafaria experience...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  console.log("data is what", data);
+  const filteredActivities = data?.posts.map((post: Post) => ({
+    id: post.id,
+    name: post.title,
+  }));
   return (
     <div className="relative z-50">
       <div className="flex justify-center">
@@ -74,7 +88,7 @@ const Search = ({ activities, onActivitySelect }: SearchProps) => {
           <div className="flex justify-center">
             <div className="max-h-48 overflow-y-auto">
               <ul className="py-2">
-                {filteredActivities.length > 0 ? (
+                {filteredActivities && filteredActivities.length > 0 ? (
                   filteredActivities.map((activity) => (
                     <li
                       key={activity.id}

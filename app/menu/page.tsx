@@ -46,7 +46,7 @@ const MenuContent = () => {
   
   if (isLoading) return <p>Loading categories...</p>;
   if (error) return <p>Error: {error.message}</p>;
-  console.log("data", data);
+  console.log("data wellcome", data);
 
   
   return (
@@ -69,16 +69,27 @@ const MenuContent = () => {
             <div key={index} ref={(el) => { if (el) cardRefs.current[item.title] = el; }} className="mb-4">
              {/* {console.log('videoUrls new',item.videos)} */}
              {/* {console.log('videoUrls',videoUrls)} */}
-              <BlogCard
-               id={item.id}
-                key={index}
-                imageUrls={item.images.map((image: any) => ({ title:image.title, url: image.image.url }))}
-                videoUrls={item.videos && item.videos.length > 0 ? item.videos.map((video: any) => ({ title: video.title, url: video.video.url })) : []}                title={item.title}
-                createdAt={item.createdAt}  
-                content={item.content}
-                // description={item.content.document[0].children[0].text}
-                // sessions={item.content.document}
-              />
+             <BlogCard
+  id={item.id}
+  key={index}
+  imageUrls={item.images.map((image: any) => ({
+    title: image.title,
+    url: image?.image?.url || '',
+  }))}
+  videoUrls={
+    item.videos && item.videos.length > 0
+      ? item.videos.map((video: any) => ({
+          title: video.title,
+          url: video?.video?.url || '',
+        }))
+      : []
+  }
+  title={item.title}
+  createdAt={item.createdAt}
+  content={item.content}
+  // description={item.content.document[0].children[0].text}
+  // sessions={item.content.document}
+/>
             </div>
           ))
         ) : (

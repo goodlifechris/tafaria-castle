@@ -82,20 +82,31 @@ const PostGallery = () => {
         </div>
       )}
       <div>
-        {data.pages.flatMap((page, index) =>
-          page.map((post: Post) => (
-            <BlogCard
+      {data.pages.flatMap((page, index) =>
+        page.map((post: Post) => (
+          <BlogCard
             key={index}
             id={post.id}
-            imageUrls={post.images.map((image: any) => ({ title:image.title, url: image.image.url }))}
-            videoUrls={post.videos && post.videos.length > 0 ? post.videos.map((video: any) => ({ title: video.title, url: video.video.url })) : []}                title={post.title}
-            createdAt={post.createdAt}  
+            imageUrls={post.images.map((image: any) => ({
+              title: image.title,
+              url: image?.image?.url || '',
+            }))}
+            videoUrls={
+              post.videos && post.videos.length > 0
+                ? post.videos.map((video: any) => ({
+                    title: video.title,
+                    url: video?.video?.url || '',
+                  }))
+                : []
+            }
+            title={post.title}
+            createdAt={post.createdAt}
             content={post.content}
-            // description={item.content.document[0].children[0].text}
-            // sessions={item.content.document}
+            // description={post.content.document[0].children[0].text}
+            // sessions={post.content.document}
           />
-          ))
-        )}
+        ))
+      )}
       </div>
 
       <div ref={loadMoreRef} className="h-20 mt-4">

@@ -48,6 +48,7 @@ type FetchCategoriesResponse = {
   categories: Category[];
 };
 
+// after fetching categories would like to get also a specific category
 export const fetchCategories = async (): Promise<Category[]> => {
   const data: FetchCategoriesResponse = await graphqlClient.request(GET_CATEGORIES);
   return data.categories;

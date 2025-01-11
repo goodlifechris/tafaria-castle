@@ -64,25 +64,7 @@ const Stories = () => {
 
 
   const router = useRouter(); // Initialize useRouter
-  const activities = [
-    { id: 2, name: "Archery" },
-    { id: 3, name: "Horseback riding" },
-    { id: 4, name: "Horse Carriage driving" },
-    { id: 5, name: "Medieval bowling" },
-    { id: 6, name: "High altitude swimming" },
-    { id: 7, name: "Open-air gym" },
-    { id: 8, name: "A dance studio" },
-    { id: 9, name: "The outdoor Viking’s pillow" },
-    { id: 10, name: "Mini-golf" },
-    { id: 11, name: "Lawn tennis" },
-    { id: 12, name: "Basketball" },
-    { id: 13, name: "Pool table" },
-    { id: 14, name: "Big-screen cinema" },
-    { id: 15, name: "Art tours" },
-    { id: 16, name: "Museum tours" },
-    { id: 17, name: "Herbarium tours" },
-    { id: 18, name: "Farm tours" },
-  ];
+
   const scrollTo = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const scrollAmount = scrollRef.current.clientWidth / 2; // Scroll half the width of the container
@@ -97,9 +79,12 @@ const Stories = () => {
       setShowRightArrow(scrollLeft + clientWidth < scrollWidth); // Show right arrow if not at the end
     }
   };
-  const handleActivitySelect = (activity: { id: number; name: string }) => {
+  const handleActivitySelect = (activity: { id: string; name: string }) => {
+    // http://209.38.189.197:3001/blog?id=${id}
     // Navigate to the menu page with the selected activity's ID and name
-    router.push(`/menu?id=Tafaria Experience&name=Tafaria Experience&card=${activity.name}`);
+    router.push(`/menu?id=Tafaria experience&name=Tafaria experience&card=${activity.name}`);
+    // let id="cm5m1izia0002l0z0r58z4r6w";
+    // router.push(`/menu?id=${id}`);
   };
   useEffect(() => {
 
@@ -169,7 +154,10 @@ const Stories = () => {
         </button>
       )}
     </div>
-    <Search activities={activities} onActivitySelect={handleActivitySelect} />
+    <QueryClientProvider client={queryClient}>
+    <Search onActivitySelect={handleActivitySelect} />
+    </QueryClientProvider>
+
     </div>
   );
 };

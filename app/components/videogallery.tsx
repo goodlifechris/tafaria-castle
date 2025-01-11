@@ -89,11 +89,15 @@ const VideoGallery = () => {
               onClick={() => openVideoModal(video)}
             >
               <div className="relative w-full h-auto overflow-hidden">
-                <video
-                  src={video.video.url}
-                  className="w-full object-cover h-auto transition duration-300"
-                  controls
-                />
+              {video?.video?.url ? (
+  <video
+    src={video.video.url}
+    className="w-full object-cover h-auto transition duration-300"
+    controls
+  />
+) : (
+  <>No video available</>
+)}
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300">
                 <h3 className="text-white font-bold">{video.title}</h3>
