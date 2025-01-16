@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */ 
 import React from "react";
 
 // TypeScript Interfaces
@@ -8,6 +9,7 @@ interface DocumentChild {
 }
 
 interface Document {
+  [x: string]: any;
   type: string;
   children: DocumentChild[];
 }
@@ -28,15 +30,36 @@ const ContentView: React.FC<ContentViewProps> = ({ content }) => {
         case "paragraph":
           return (
             <p key={index} className="mt-2 text-gray-600">
-              {block.children.map((child, i) =>
-                "text" in child ? <span key={i}>{child.text}</span> : null
-              )}
+              {block.children.map((child, i) => {
+                // Check if child has 'bold' property and apply 'font-bold' class
+                if (child.bold) {
+                  return (
+                    <span key={i} className="font-bold mt-4 text-[#902729]">
+                      {child.text}
+                    </span>
+                  );
+                }
+                // Otherwise, render as normal text
+                return (
+                  <span key={i}>{child.text}</span>
+                );
+              })}
             </p>
           );
+          
+          case "heading":
+  const HeadingTag = `h${block.level}` as string;  // Cast to string type
+  return React.createElement(
+    HeadingTag,
+    { key: index, className: "mt-4 text-[#902729] font-semibold" },
+    block.children.map((child, i) => (
+      <span key={i}>{child.text}</span>
+    ))
+  );
 
         case "unordered-list":
           return (
-            <ul key={index} className="mt-2 text-gray-600">
+            <ul key={index} className="mt-2 list-disc pl-5 text-gray-600">
               {block.children.map((listItem, liIndex) => (
                 <li key={liIndex}>
                   {"children" in listItem &&
@@ -63,7 +86,35 @@ const ContentView: React.FC<ContentViewProps> = ({ content }) => {
             </ul>
           );
 
-        default:
+          case "ordered-list":
+            return (
+              <ol key={index} className="mt-2 text-gray-600 list-decimal ml-6">
+                {block.children.map((listItem, liIndex) => (
+                  <li key={liIndex}>
+                    {listItem.children?.map((child, childIndex) => {
+                      if (child.children) {
+                        return (
+                          <div key={childIndex}>
+                            {child.children.map((nestedChild, nestedIndex) => (
+                              <span key={nestedIndex} className={nestedChild.bold ? "font-bold text-[#902729]" : ""}>
+                                {nestedChild.text}
+                              </span>
+                            ))}
+                          </div>
+                        );
+                      } else {
+                        return (
+                          <span key={childIndex} className={child.bold ? "font-bold text-[#902729]" : ""}>
+                            {child.text}
+                          </span>
+                        );
+                      }
+                    })}
+                  </li>
+                ))}
+              </ol>
+            );
+          default:
           return null;
       }
     });

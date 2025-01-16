@@ -5,6 +5,7 @@ import { FaGift } from 'react-icons/fa';
 import { Barlow_Condensed } from 'next/font/google';
 import { IoIosRemoveCircle } from 'react-icons/io';
 import { useQuery } from '@tanstack/react-query';
+import 'animate.css'; // Import animation styles
 
 import { fetchGiftShops, GiftShop } from '../../querries/giftshop/getgiftshops';
 
@@ -39,6 +40,7 @@ const Cart = () => {
 
   const [cart, setCart] = useState<GiftShop[]>([]);
   const [activeTab, setActiveTab] = useState<'items' | 'cart'>('items');
+  const [isAddedToCart, setIsAddedToCart] = useState(false); // State for animation
 
   const addToCart = (item: GiftShop) => {
     setCart((prevCart) => {
@@ -51,6 +53,10 @@ const Cart = () => {
         return [...prevCart, { ...item, quantity: 1 }];
       }
     });
+    
+    setIsAddedToCart(true); // Trigger the animation when item is added
+    setTimeout(() => setIsAddedToCart(false), 3000); // Reset after 1 second
+
   };
   const businessPhoneNumber = '+254705000315'; // Replace with your WhatsApp number (in international format)
 
@@ -128,8 +134,8 @@ const Cart = () => {
             {data?.map((item) => (
               <div key={item.id} className="border p-4 rounded-lg">
                 <img src={item.images[0].image.url} alt={item.title} className="w-full object-cover mb-2" />
-                <h2 className="text-lg text-left font-bold">{item.title}</h2>
-                {/* <p className="text-sm">{item.description}</p> */}
+                <h3 className="text-lg text-left font-bold">{item.title}</h3>
+                <p className="text-sm text-left ">{item.description}</p>
                 <p className="text-lg text-left font-bold">Kes {item.amount}</p>
                 <button
                   onClick={() => addToCart(item)}
@@ -150,8 +156,9 @@ const Cart = () => {
               <div key={item.id} className="flex items-center border p-4 rounded-lg">
                 <img src={item.images[0].image.url} alt={item.title} className="w-16 h-16 object-cover mr-4" />
                 <div className="flex-1">
-                  <h2 className="text-left text-lg font-bold">{item.title}</h2>
-                  <p className="text-sm text-left">Quantity: {item.quantity}</p>
+                <h3 className="text-left text-lg font-bold">{item.title}</h3>
+                <h2 className="text-left">{item.description}</h2>
+                <p className="text-sm text-left">Quantity: {item.quantity}</p>
                 </div>
                 <p className="text-lg font-bold">Kes {(item.amount * item.quantity).toFixed(2)}</p>
                 <button
@@ -171,6 +178,12 @@ const Cart = () => {
               Make order
             </button>
           </div>
+        </div>
+      )}
+            {/* Sticky Cart Notification */}
+            {isAddedToCart && (
+        <div className="fixed bottom-20 right-5 p-4 bg-green-500 text-white rounded-lg shadow-lg animate__animated animate__bounceIn"  onClick={() => setActiveTab('cart')}>
+          <p>Item added to cart!</p>
         </div>
       )}
     </div>

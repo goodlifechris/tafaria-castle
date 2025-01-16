@@ -72,8 +72,11 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
     .map(doc => doc.children.map(child => child.text).join(" "))
     .join(" ");
   
-  const isLongContent = contentText.length > 200; // Check if content is more than 200 characters
 
+ 
+
+
+  
   return (
     <div className={`flex flex-col md:flex-row m-5 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mt-5 ${barlow_condensed.className}`}>
       {/* Image Section */}
@@ -122,7 +125,7 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
           </div>
 
           {/* Conditionally render Read More / Read Less based on content length */}
-          {isLongContent && (
+          {  (
             <div className="mt-4 flex space-x-4">
               <div
                 className="text-[#902729] text-sm hover:text-[#b33235] transition-colors duration-200 flex items-center cursor-pointer"

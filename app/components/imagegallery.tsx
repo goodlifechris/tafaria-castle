@@ -105,8 +105,8 @@ const ImageGallery = () => {
 )}
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 className="text-white font-bold text-center">{image.title}</h3>
-                <p className="text-sm text-gray-200">{image.description}</p>
+                <h3 className="text-white font-bold text-center ma-2">{image.title}</h3>
+                <p className="text-sm text-gray-200 ma-2">{image.description}</p>
                 <div className="flex mt-2 space-x-4">
                   <button
                     className={`p-2 rounded-full ${

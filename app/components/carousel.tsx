@@ -21,11 +21,9 @@ interface CarouselsProps {
 }
 
 const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
-  console.log("imagesN", images); 
-  console.log("videos", videos);
+
 
   const combinedUrls = [...images, ...videos];
-  console.log("combinedUrls", combinedUrls);
 
   const [activeIndex, setActiveIndex] = useState(0); // State to track the active index
   const [isPlaying, setIsPlaying] = useState(false); // State to track if the video is playing
@@ -66,10 +64,7 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
         onChange={handleChange}
         swipeable={!isPlaying} // Disable swipe gestures when video is playing
       >
-        <div>
-     
-          
-        </div>
+  
        
         {combinedUrls.map((media, index) => (
           <div key={index} className="relative">
