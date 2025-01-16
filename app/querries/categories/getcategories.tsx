@@ -4,35 +4,39 @@ import { gql } from 'graphql-request';
 
 const GET_CATEGORIES = gql`
   query {
-  categories {
-    name
-    image {
-      url
-    }
-    id
-    posts {
-      title
-      images {
-        image {
-          url
-        }
+    categories(orderBy: { priority: asc }) {
+      name
+      priority
+      image {
+        url
       }
-      content {
-        document
+      id
+      posts {
+        priority
+        title
+        images {
+          image {
+            url
+          }
+        }
+        content {
+          document
+        }
       }
     }
   }
-}
 `;
 
 type Category = {
   name: string;
+  priorrity:number;
   image: {
     url: string;
   };
   id: string;
   posts: {
     title: string;
+    priority: number;
     images: {
       image: {
         url: string;

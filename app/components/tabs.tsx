@@ -252,12 +252,12 @@ const TabComponent = () => {
   {/* Responsive grid layout */}
   {/* // <VideoPlayer key={video.id} video={video}  /> */}
 
-{videos.map((video,index) => (
 
-<div key={index} className={video.title}>
+
+<div>
   <VideoGallery/>
 </div>
-))}
+
 
 {/* </div> */}
            

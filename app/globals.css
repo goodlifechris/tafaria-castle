@@ -49,7 +49,7 @@ body {
 
 /* Default styles for when the dropdown is closed */
 .bartop.closed {
-  top: 8rem; /* Mobile */
+  top: 14rem; /* Mobile */
 }
 
 /* Styles for when the dropdown is open */
@@ -60,7 +60,7 @@ body {
 /* Tablet styles */
 @media (min-width: 481px) and (max-width: 768px) {
   .bartop.closed {
-    top: 20rem; /* Tablet */
+    top: 18rem; /* Tablet */
   }
   .bartop.open {
     top: 32rem; /* Tablet */
@@ -80,7 +80,7 @@ body {
 /* Large screen styles */
 @media (min-width: 1024px) {
   .bartop.closed {
-    top: 10rem; /* Large */
+    top: 16rem; /* Large */
   }
   .bartop.open {
     top: 31rem; /* Large */
@@ -157,4 +157,58 @@ sudo ln -s /etc/nginx/sites-available/tafaria-castle /etc/nginx/sites-enabled/ *
 
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
+}
+
+@media screen and (min-width: 640px) {
+  .masonry-gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .masonry-item:nth-child(6),
+  .masonry-item:nth-child(7) {
+    grid-row: span 2;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .masonry-gallery {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .masonry-item:nth-child(6),
+  .masonry-item:nth-child(7) {
+    grid-row: span 1;
+  }
+}
+
+/* Masonry Layout for larger screens */
+.masonry {
+  column-count: 3; /* Number of columns for large screens */
+  column-gap: 1rem;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+/* For smaller screens, switch to a simple grid layout */
+@media (max-width: 768px) {
+  .masonry {
+    column-count: 1; /* One column for smaller screens */
+  }
+}
+
+/* For very small screens, use Flexbox for single column layout */
+@media (max-width: 480px) {
+  .masonry {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust spacing between images */
+  }
+
+  .masonry-item {
+    width: 100%;
+  }
 }

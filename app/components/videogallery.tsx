@@ -80,12 +80,12 @@ const VideoGallery = () => {
           <p className="text-gray-500">No videos available at the moment.</p>
         </div>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="masonry">
         {data.pages.flatMap((page, index) =>
           page.map((video: Video) => (
             <div
               key={index}
-              className="relative bg-black rounded shadow-lg overflow-hidden group transition-transform transform hover:scale-105"
+              className="relative bg-black rounded shadow-lg overflow-hidden group transition-transform transform hover:scale-105 masonry-item"
               onClick={() => openVideoModal(video)}
             >
               <div className="relative w-full h-auto overflow-hidden">
@@ -157,13 +157,14 @@ const VideoGallery = () => {
             >
               <FiX />
             </button>
+            <h3 className="text-xl   text-[#902729] mt-5 font-bold mb-2">{selectedVideo.title}</h3>
+
             <div className="flex flex-col items-center">
               <video
                 src={selectedVideo.video.url}
                 className="w-full object-contain h-auto max-h-96 mb-4"
                 controls
               />
-              <h3 className="text-xl font-bold mb-2">{selectedVideo.title}</h3>
               <p className="text-md text-gray-700 mb-4">{selectedVideo.description}</p>
               <div className="flex space-x-6">
                 <button

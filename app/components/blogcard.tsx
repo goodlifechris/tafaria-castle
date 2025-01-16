@@ -50,30 +50,34 @@ interface BlogCardProps {
   content: Content;
 }
 
-
 const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, createdAt, content }) => {
-  const [showSessions, setShowSessions] = useState(false); // State to manage session visibility
+  // const [showSessions, setShowSessions] = useState(false); // State to manage session visibility
   const [liked, setLiked] = useState(false); // State to manage like status
+  const [isReadMore, setIsReadMore] = useState(false); // State to manage "Read More" / "Read Less"
 
-  const toggleSessions = () => {
-    setShowSessions((prev) => !prev); // Toggle the visibility
-  };
+  // const toggleSessions = () => {
+  //   setShowSessions((prev) => !prev); // Toggle the visibility
+  // };
 
   const handleLike = () => {
     setLiked(!liked); // Toggle like status
   };
 
-  // const handleShare = () => {
-  //   const link = "https://tafaria-castle.vercel.app/categories"; // The link you want to share
-  //   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent("Welcome to tafaria" + " " + link)}`; // Share text and link
-  //   window.open(whatsappUrl, "_blank"); // Open WhatsApp share link
-  // };
+  const handleReadMore = () => {
+    setIsReadMore((prev) => !prev); // Toggle "Read More" / "Read Less"
+  };
+
+  // Get the plain text content length
+  const contentText = content.document
+    .map(doc => doc.children.map(child => child.text).join(" "))
+    .join(" ");
+  
+  const isLongContent = contentText.length > 200; // Check if content is more than 200 characters
 
   return (
     <div className={`flex flex-col md:flex-row m-5 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mt-5 ${barlow_condensed.className}`}>
       {/* Image Section */}
       <div className="relative w-full md:w-1/3">
-
         <Carousels images={imageUrls} videos={videoUrls} />
       </div>
 
@@ -84,16 +88,53 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
           <div className="flex items-center mb-4 text-sm">
             <img src="/images/carlendar.svg" alt="SVG image" />
             <span className={`ml-2 my-2 text-gray-500 ${montaga.className}`}>
-              {/* {createdAt} */}
               {new Date(createdAt).toLocaleDateString('en-US', {
-              day: '2-digit',
-              month: 'long',
-              year: 'numeric',
-            })}
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+              })}
             </span>
           </div>
-          <ContentView content={content} />
-          <br />
+
+          {/* Show either full content or truncated content based on isReadMore */}
+          <div className="text-gray-700">
+            {isReadMore ? (
+              <ContentView content={content} /> // Show full content if "Read More" is clicked
+            ) : (
+              <div>
+                {/* Truncate content to first 200 characters */}
+                <ContentView
+                  content={{
+                    document: [
+                      {
+                        type: "paragraph",
+                        children: [
+                          {
+                            text: contentText.slice(0, 200) + "..."
+                          }
+                        ]
+                      }
+                    ]
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Conditionally render Read More / Read Less based on content length */}
+          {isLongContent && (
+            <div className="mt-4 flex space-x-4">
+              <div
+                className="text-[#902729] text-sm hover:text-[#b33235] transition-colors duration-200 flex items-center cursor-pointer"
+                onClick={handleReadMore}
+              >
+                <span>{isReadMore ? 'Read Less' : 'Read More'}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="mt-4 flex space-x-4">
@@ -107,37 +148,25 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
             </svg>
           </Link>
 
-          <div className="text-[#902729] text-sm hover:text-[#b33235] transition-colors duration-200 flex items-center" onClick={toggleSessions}>
-            <span className='text-[#902729] text-sm hover:text-[#b33235] transition-colors duration-200 flex items-center'>{showSessions ? 'Read Less' : 'Read More'}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </div>
-        </div>
+          <div className="flex items-center justify-start mb-2 space-x-4 pt-4">
+            <button
+              onClick={handleLike}
+              className={`text-2xl ${liked ? "text-red-500" : "text-gray-400"}`}
+            >
+              {liked ? <FaHeart /> : <FaRegHeart />}
+            </button>
 
-        <div className="flex items-center justify-start mb-2 space-x-4 pt-4">
-          <button
-            onClick={handleLike}
-            className={`text-2xl ${liked ? "text-red-500" : "text-gray-400"}`}
-          >
-            {liked ? <FaHeart /> : <FaRegHeart />} {/* Conditional rendering of heart icon */}
-          </button>
-                           <a
-            href={`https://wa.me/?text=${encodeURIComponent(
-              `Check out this image: ${title} - View it here: http://209.38.189.197:3001/blog?id=${id}`
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 bg-green-500 text-white rounded-full"
-          >
-          <FiSend />
-          </a>
-          {/* <button
-            onClick={handleShare}
-            className="text-2xl text-gray-400 hover:text-blue-500"
-          >
-            <FiSend />
-          </button> */}
+            <a
+              href={`https://wa.me/?text=${encodeURIComponent(
+                `Check out this image: ${title} - View it here: http://209.38.189.197:3001/blog?id=${id}`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-green-500 text-white rounded-full"
+            >
+              <FiSend />
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
- /* eslint-disable @typescript-eslint/no-explicit-any */ 
+/* eslint-disable @typescript-eslint/no-explicit-any */ 
 import graphqlClient from '../../../graphql-client';
 import { gql } from 'graphql-request';
 
@@ -10,10 +10,11 @@ const GET_POSTS_BY_CATEGORY = gql`
         url
       }
       id
-      posts {
+      posts(where: { status: { equals: "published" } }, orderBy: { priority: asc }) {
         id
         createdAt
         title
+        priority
         images {
           title
           image {
@@ -45,9 +46,10 @@ type PostContent = {
 };
 
 export type Post = {
-  id:string;
+  id: string;
   title: string;
   createdAt: string;
+  priority: number; // Added priority here
   images: {
     image: Image;
   }[];

@@ -4,8 +4,6 @@ import { Montaga } from 'next/font/google';
 import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import arrow icons
-import Search from "./search";
-import { useRouter } from "next/navigation"; // Import useRouter
 import { useQuery } from '@tanstack/react-query';
 import { fetchCategories } from "../querries/categories/getcategories";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -60,10 +58,6 @@ const Stories = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null); // Ref for the scrollable container
   const [showLeftArrow, setShowLeftArrow] = useState(false); // State for left arrow visibility
   const [showRightArrow, setShowRightArrow] = useState(true); // State for right arrow visibility
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-
-  const router = useRouter(); // Initialize useRouter
 
   const scrollTo = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -79,23 +73,23 @@ const Stories = () => {
       setShowRightArrow(scrollLeft + clientWidth < scrollWidth); // Show right arrow if not at the end
     }
   };
-  const handleActivitySelect = (activity: { id: string; name: string }) => {
-    // http://209.38.189.197:3001/blog?id=${id}
-    // Navigate to the menu page with the selected activity's ID and name
-    router.push(`/menu?id=Tafaria experience&name=Tafaria experience&card=${activity.name}`);
-    // let id="cm5m1izia0002l0z0r58z4r6w";
-    // router.push(`/menu?id=${id}`);
-  };
+  // const handleActivitySelect = (activity: { id: string; name: string }) => {
+  //   // http://209.38.189.197:3001/blog?id=${id}
+  //   // Navigate to the menu page with the selected activity's ID and name
+  //   router.push(`/menu?id=Tafaria experience&name=Tafaria experience&card=${activity.name}`);
+  //   // let id="cm5m1izia0002l0z0r58z4r6w";
+  //   // router.push(`/menu?id=${id}`);
+  // };
   useEffect(() => {
 
     const handleScroll = () => {
-      if (window.scrollY > 500) {
-        setIsCollapsed(true);
+      if (window.scrollY > 800) {
+        // setIsCollapsed(true);
         setShowLeftArrow(false);
         setShowRightArrow(false);
 
       } else {
-        setIsCollapsed(false);
+        // setIsCollapsed(false);
         if (scrollRef.current) {
           const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
           setShowLeftArrow(scrollLeft > 0); // Show left arrow if not at the start
@@ -141,7 +135,8 @@ const Stories = () => {
             <div className="animate-pulse">Loading...</div>
           </div>
         }>
-              <div className={`transition-all duration-300 ${isCollapsed ? 'max-h-0 overflow-hidden' : 'max-h-screen'}`}>
+              {/* <div className={`transition-all? 'max-h-0 overflow-hidden' : 'max-h-screen'}`}> */}
+             <div> 
               <QueryClientProvider client={queryClient}>
           <StoriesContent />
           </QueryClientProvider>
@@ -154,9 +149,9 @@ const Stories = () => {
         </button>
       )}
     </div>
-    <QueryClientProvider client={queryClient}>
+    {/* <QueryClientProvider client={queryClient}>
     <Search onActivitySelect={handleActivitySelect} />
-    </QueryClientProvider>
+    </QueryClientProvider> */}
 
     </div>
   );

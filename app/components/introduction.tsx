@@ -2,19 +2,14 @@
 import React, { useState, useEffect } from "react";
 import AfterIntroduction from "./afterintroduction";
 import { motion, AnimatePresence } from "framer-motion";
-import { Barlow_Condensed } from 'next/font/google';
+import Hero from "./hero";
 
-//👇 Configure our font object
-const barlow_condensed = Barlow_Condensed({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
+
 
 
 const Introduction = () => {
   const [showAfterIntroduction, setShowAfterIntroduction] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false); // State to track image loading
+  // const [imageLoaded, setImageLoaded] = useState(false); // State to track image loading
 
   const toggleReadMore = () => {
     setShowAfterIntroduction((prevState) => !prevState);
@@ -25,14 +20,14 @@ const Introduction = () => {
     const img = new Image();
     img.src = '/images/home.png';
     img.onload = () => {
-      setImageLoaded(true); // Set imageLoaded to true when the image is loaded
+      // setImageLoaded(true); // Set imageLoaded to true when the image is loaded
     };
   }, []);
 
   return (
     <>
       {/* Parallax Section */}
-      {imageLoaded && ( // Render only if the image is loaded
+      {/* {imageLoaded && ( // Render only if the image is loaded
         <div
           className="relative w-full aspect-[1.75] bg-no-repeat bg-cover bg-center"
           style={{ backgroundImage: `url('/images/home.png')` }}
@@ -47,7 +42,9 @@ const Introduction = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
+
+      <Hero/>
 
       <div className="text-center text-black text-base px-4">
         {!showAfterIntroduction && (
@@ -72,6 +69,7 @@ const Introduction = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
     </>
   );
 };

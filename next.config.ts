@@ -23,6 +23,12 @@ const nextConfig: NextConfig = {
         pathname: '/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'tafariabucket.fra1.digitaloceanspaces.com',
+        port: '',
+        pathname: '/**'
+      },
     ],
   },
   async rewrites() {

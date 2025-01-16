@@ -28,6 +28,7 @@ const ImageGallery = () => {
     initialPageParam: 1,
   });
 
+  console.log("data is",data);
   const toggleLike = (id: string) => {
     setLikedImages((prev) =>
       prev.includes(id) ? prev.filter((likedId) => likedId !== id) : [...prev, id]
@@ -79,15 +80,16 @@ const ImageGallery = () => {
           <p className="text-gray-500">No images available at the moment.</p>
         </div>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+       
+      <div className="masonry mb-5">
         {data.pages.flatMap((page,index) =>
           page.map((image: Image) => (
             <div
               key={index}
-              className="relative bg-black rounded shadow-lg overflow-hidden group transition-transform transform hover:scale-105"
+              className="relative bg-white rounded shadow-lg overflow-hidden group transition-transform transform hover:scale-105"
               onClick={() => openImageModal(image)}
             >
-              <div className="relative w-full h-auto overflow-hidden">
+              <div className="masonry-item">
               {image?.image?.url ? (
   <img
     src={image.image.url}
@@ -96,12 +98,14 @@ const ImageGallery = () => {
     className="w-full object-cover h-auto transition duration-300"
     style={{ aspectRatio: 'auto' }}
   />
+
+  
 ) : (
   <></>
 )}
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 className="text-white font-bold">{image.title}</h3>
+                <h3 className="text-white font-bold text-center">{image.title}</h3>
                 <p className="text-sm text-gray-200">{image.description}</p>
                 <div className="flex mt-2 space-x-4">
                   <button
@@ -151,21 +155,22 @@ const ImageGallery = () => {
       )}
 
       {selectedImage && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-75 flex justify-center items-center">
+        <div className="fixed inset-0 z-50 bg-white bg-opacity-75 flex justify-center items-center">
           <div className="relative bg-white p-6 rounded-lg w-3/4 max-w-4xl">
             <button
               onClick={closeImageModal}
-              className="absolute top-4 left-4 text-[#902729] text-3xl"
+              className="absolute top-4 rounded left-4 text-[#902729] text-3xl"
             >
               <FiX />
             </button>
+            <h3 className="text-xl text-[#902729] font-bold mt-4 mb-2">{selectedImage.title}</h3>
+
             <div className="flex flex-col items-center">
               <img
                 src={selectedImage.image.url}
                 alt={selectedImage.title}
                 className="w-full object-contain h-auto max-h-96 mb-4"
               />
-              <h3 className="text-xl font-bold mb-2">{selectedImage.title}</h3>
               <p className="text-md text-gray-700 mb-4">{selectedImage.description}</p>
               <div className="flex space-x-6">
                 <button

@@ -82,6 +82,8 @@ const PostGallery = () => {
         </div>
       )}
       <div>
+ 
+
       {data.pages.flatMap((page, index) =>
         page.map((post: Post) => (
           <BlogCard

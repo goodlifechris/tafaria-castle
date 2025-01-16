@@ -54,7 +54,7 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
   };
 
   return (
-    <div className="carousel rounded-box w-56 mb-4 sm:w-full bg-black">
+    <div className="carousel w-56 mb-4 sm:w-full bg-black">
       <br />
       <Carousel
         dynamicHeight
@@ -66,15 +66,10 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
         onChange={handleChange}
         swipeable={!isPlaying} // Disable swipe gestures when video is playing
       >
-        <div>
-     
-          
-        </div>
-       
         {combinedUrls.map((media, index) => (
           <div key={index} className="relative">
             <p>{media.title}</p>
-            {media?.url?.endsWith('.mp4') ? (
+            {media.url.endsWith('.mp4') ? (
               <div>
                 <video
                   onClick={handleVideoClick}

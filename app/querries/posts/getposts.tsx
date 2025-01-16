@@ -5,7 +5,8 @@ import { gql } from 'graphql-request';
 // Define the GET_POSTS query to fetch posts, including images, content, and categories.
 const GET_POSTS = gql`
   query {
-    posts {
+    posts(orderBy: { priority: asc }) {
+      priority
       images {
         image {
           url
@@ -78,6 +79,7 @@ export type Post = {
   };
   title:string;
   id:string;
+  priority:number;
   createdAt: string;
   content: {
     document: any; // Document content is dynamic, so we use `any` for flexibility
