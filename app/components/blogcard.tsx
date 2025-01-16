@@ -80,6 +80,8 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
   return (
     <div className={`flex flex-col md:flex-row m-5 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mt-5 ${barlow_condensed.className}`}>
       {/* Image Section */}
+      <h2 className="text-xl font-semibold ml-5 mt-4 lg:hidden md:hidden pb-5 text-[#902729]">{title}</h2>
+
       <div className="relative w-full md:w-1/3">
         <Carousels images={imageUrls} videos={videoUrls} />
       </div>
@@ -87,7 +89,7 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
       {/* Content Section */}
       <div className="flex flex-col justify-between px-4 pb-4 md:w-2/3">
         <div>
-          <h2 className="text-xl font-semibold text-[#902729]">{title}</h2>
+          <h2 className="text-xl font-semibold sm:hidden max-sm:hidden  text-[#902729]">{title}</h2>
           <div className="flex items-center mb-4 text-sm">
             <img src="/images/carlendar.svg" alt="SVG image" />
             <span className={`ml-2 my-2 text-gray-500 ${montaga.className}`}>
