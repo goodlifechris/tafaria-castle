@@ -9,6 +9,7 @@ import TopBar from "../components/topbar";
 const VideoDetails = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
+  const type = searchParams.get('type');
 
   console.log("id ", id);
   // Use React Query to fetch video details by ID
@@ -55,7 +56,7 @@ const VideoDetails = () => {
   // Render the video detail page
   return (
     <div>
-      <TopBar title={data.title || ''} />
+      <TopBar title={data.title || ''} type={type || 'Blogs'} />
 
       <div className="flex items-center bg-white shadow-md">
         {/* Video Details */}
