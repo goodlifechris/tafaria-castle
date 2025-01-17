@@ -17,14 +17,14 @@ const barlow_condensed = Barlow_Condensed({
 });
 
 const TabComponent = () => {
-  
+
   const [activeTab, setActiveTab] = useState("Images");
 
   const [images, setImages] = useState([
     "/images/1.png",
     "/images/3.png",
     "/images/5.png",
-    "/images/4.png",  
+    "/images/4.png",
     "/images/15.jpeg",
     "/images/16.jpeg",
     "/images/7.png",
@@ -91,7 +91,7 @@ const TabComponent = () => {
     "/images/herbarium/2.jpg",
     "/images/herbarium/3.jpg",
     "/images/herbarium/4.jpg",
-  
+
 
     //hiking
     "/images/hiking/1.jpg",
@@ -101,34 +101,34 @@ const TabComponent = () => {
     //horseriding
     "/images/horseriding/horseriding.jpg",
 
-      //posts
-      "/images/posts/1.png",
-      "/images/posts/2.png",
-      "/images/posts/3.png",
-      "/images/posts/4.png",
-      "/images/posts/5.png",
-      "/images/posts/6.png",
+    //posts
+    "/images/posts/1.png",
+    "/images/posts/2.png",
+    "/images/posts/3.png",
+    "/images/posts/4.png",
+    "/images/posts/5.png",
+    "/images/posts/6.png",
 
-      //status_images
-  
-      "/images/status_images/6.png",
-      "/images/status_images/7.png",
+    //status_images
 
-      //wedding
-      "/images/wedding/1.jpg",
-      "/images/wedding/2.jpg",
-      "/images/wedding/3.jpg",
-      "/images/wedding/4.jpg",
-      "/images/wedding/5.jpg",
+    "/images/status_images/6.png",
+    "/images/status_images/7.png",
+
+    //wedding
+    "/images/wedding/1.jpg",
+    "/images/wedding/2.jpg",
+    "/images/wedding/3.jpg",
+    "/images/wedding/4.jpg",
+    "/images/wedding/5.jpg",
 
 
-      //swimming
-      "/images/swimming/1.jpg",
+    //swimming
+    "/images/swimming/1.jpg",
 
     //hiking
     "/images/hiking/horseriding.jpg",
-    
-    
+
+
     //dining
     "/images/dining/1.jpg",
 
@@ -148,7 +148,8 @@ const TabComponent = () => {
       date: "2024-03-20",
       duration: "3:45",
       src: "/videos/tafaria_video2.mp4",
-      description: "TAFARIA CASTLE🏰🎠 Tafaria Castle and Country Lodge endeavors to be guests’ dream come true. George "   },
+      description: "TAFARIA CASTLE🏰🎠 Tafaria Castle and Country Lodge endeavors to be guests’ dream come true. George "
+    },
     {
       id: 3, title: "Video 3",
       date: "2024-03-20",
@@ -158,11 +159,11 @@ const TabComponent = () => {
     },
   ]);
   const [blogs, setBlogs] = useState([
-    { id: 1, title: "Blog Post 1" ,media_type:"video", url: "/videos/tafaria_video.mp3" }    ,
-    { id: 2, title: "Blog Post 1" ,media_type:"image", url: "/images/1.png" }    ,
-    { id: 3, title: "Blog Post 1" ,media_type:"image", url: "/images/2.png" }    ,
-    { id: 4, title: "Blog Post 1" ,media_type:"image", url: "/images/3.png" }    ,
-    { id: 5, title: "Blog Post 1" ,media_type:"image", url: "/images/4.png" }    ,
+    { id: 1, title: "Blog Post 1", media_type: "video", url: "/videos/tafaria_video.mp3" },
+    { id: 2, title: "Blog Post 1", media_type: "image", url: "/images/1.png" },
+    { id: 3, title: "Blog Post 1", media_type: "image", url: "/images/2.png" },
+    { id: 4, title: "Blog Post 1", media_type: "image", url: "/images/3.png" },
+    { id: 5, title: "Blog Post 1", media_type: "image", url: "/images/4.png" },
   ]);
 
   const loadMoreItems = () => {
@@ -200,7 +201,7 @@ const TabComponent = () => {
   // }, [pathname, addToHistory]);
 
   useEffect(() => {
-        addToHistory(pathname); // Add current path to history
+    addToHistory(pathname); // Add current path to history
 
     const handleScroll = () => {
       const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100; // Trigger before reaching the bottom
@@ -221,7 +222,7 @@ const TabComponent = () => {
       <div className={`sticky bartop ${isDropdownOpen ? 'open' : 'closed'} z-10 bg-white shadow-md`}>
         {/* Tabs */}
         <div className="flex justify-center space-x-6 border-b-2 border-gray-200">
-          {["Images", "Videos"].map((tab) => (
+          {["Images", "Videos", "Blogs"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -235,75 +236,28 @@ const TabComponent = () => {
           ))}
         </div>
       </div>
-
       {/* Content - Moved outside sticky container */}
       <div className="mt-6 w-full m">
         {(activeTab === "Images") && (
-            <QueryClientProvider client={queryClient}>
-          <ImageGallery/>
-</QueryClientProvider>
+          <QueryClientProvider client={queryClient}>
+            <ImageGallery />
+          </QueryClientProvider>
         )}
 
         {(activeTab === "Videos") && (
-  <QueryClientProvider client={queryClient}>
-
-{/* <div className="container mx-auto px-4 mt-5"> */}
-{/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">  */}
-  {/* Responsive grid layout */}
-  {/* // <VideoPlayer key={video.id} video={video}  /> */}
-
-
-
-<div>
-  <VideoGallery/>
-</div>
-
-
-{/* </div> */}
-           
-
-            {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <VideoPlayer />
-            <VideoPlayer />
-            <VideoPlayer />
-            <VideoPlayer />
-
-              {videos.map((video) => (
-
-                <VideoCard
-                  key={video.id}
-                  title={video.title}
-                  date={video.date}
-                  description={video.description}
-                  thumbnailUrl={video.thumbnail}
-                  duration={video.duration}
-                  link={`/categories/${video.id}`}
-                />
-              ))}
-            </div> */}
-          {/* </div> */}
+          <QueryClientProvider client={queryClient}>
+            <div>
+              <VideoGallery />
+            </div>
           </QueryClientProvider>
 
         )}
         {(activeTab === "Blogs") && (
 
-<QueryClientProvider client={queryClient}>
-<PostGallery/>
-</QueryClientProvider>
-          // <div className="m-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          //   {blogs.map((blog) => (
-          //     <div key={blog.id}>
-          //       <BlogPostCard
-          //         key={blog.id}
-          //         title="Uncover Tafaria's Heritage"
-          //         date="2024-09-18"
-          //         description="Explore the rich history and cultural significance of Tafaria Castle, from its architecture to the local legends."
-          //         imageUrl="/images/1.png"
-          //         link="/categories"
-          //       />
-          //     </div>
-          //   ))}
-          // </div>
+          <QueryClientProvider client={queryClient}>
+                       <PostGallery />
+          </QueryClientProvider>
+
         )}
       </div>
     </>

@@ -5,7 +5,10 @@ import { gql } from 'graphql-request';
 // Define the GET_POSTS query to fetch posts, including images, content, and categories.
 const GET_POSTS = gql`
   query {
-    posts(orderBy: { priority: asc }) {
+    posts(
+      where: { categories: { some: { name: { equals: "Blogs" } } } } 
+      orderBy: { priority: asc }
+    ) {
       priority
       images {
         image {
@@ -30,6 +33,7 @@ const GET_POSTS = gql`
     }
   }
 `;
+
 
 const GET_POST_BY_ID = gql`
   query GetPostById($id: ID!) {

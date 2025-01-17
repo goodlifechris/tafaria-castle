@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaAngleLeft, FaGift } from 'react-icons/fa';
 import { Barlow_Condensed } from 'next/font/google';
 import { useRouter } from 'next/navigation';
@@ -6,6 +6,7 @@ import { useNavigation } from '../context/NavigationContext';
 import { PiCastleTurretFill } from 'react-icons/pi';
 import { useCart } from '../context/hook/UseCart';
 import CartDetails from './cart/cartDetails';
+import Link from 'next/link';
 
 // Configure font
 const barlow_condensed = Barlow_Condensed({
@@ -21,6 +22,7 @@ const TopBar = ({ title }: { title: string }) => {
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>(title); // Default to 'images' tab
 
   const handleBackClick = () => {
     if (history.length > 0) {
@@ -35,9 +37,15 @@ const TopBar = ({ title }: { title: string }) => {
     router.push('/');
   };
 
+   useEffect(() => {
+     // Scroll to the specific card if the card parameter is present
+     if (title) {
+      setActiveTab(title)
+     }
+   }, [title]);
   return (
-    <div className="w-full">
-      <h2 className={`${barlow_condensed.className} text-xl fixed bg-white z-10 w-full px-4 py-2 font-semibold text-center tracking-tight text-[#902729] capitalize border-b-2 border-[#902729] mx-auto flex items-center`}>
+    <div className="w-full flex">
+      <div className={`${barlow_condensed.className} text-xl fixed bg-white z-10 w-full px-4 py-2 font-semibold text-center tracking-tight text-[#902729] capitalize border-b-2 border-[#902729] mx-auto flex items-center`}>
         <a onClick={handleBackClick} className="text-[#94723C] hover:underline cursor-pointer">
           <FaAngleLeft className="mr-2" />
         </a>
@@ -58,8 +66,43 @@ const TopBar = ({ title }: { title: string }) => {
             )}
           </button>
         )}
-      </h2>
-
+             <div className="flex justify-center space-x-4 m-auto">
+             <Link 
+       
+          href={`/menu?id=Images&name=${encodeURIComponent('Images')}`}
+        >
+          <button 
+            className={`px-4 py-2 ${activeTab === 'Images' ? 'bg-[#902729] text-white' : 'bg-gray-200 text-[#902729]'} rounded-full`}
+            onClick={() => setActiveTab('Images')}
+          >
+            Images
+          </button>
+          </Link>
+          <Link 
+       
+       href={`/menu?id=Videos&name=${encodeURIComponent('Videos')}`}
+     >
+          <button 
+            className={`px-4 py-2 ${activeTab === 'Videos' ? 'bg-[#902729] text-white' : 'bg-gray-200 text-[#902729]'} rounded-full`}
+            onClick={() => setActiveTab('Videos')}
+          >
+            Videos
+          </button>
+          </Link>
+          <Link 
+       
+       href={`/menu?id=Blogs&name=${encodeURIComponent('Blogs')}`}
+     >
+          <button 
+            className={`px-4 py-2 ${activeTab === 'Blogs' ? 'bg-[#902729] text-white' : 'bg-gray-200 text-[#902729]'} rounded-full`}
+            onClick={() => setActiveTab('Blogs')}
+          >
+            Blogs
+          </button>
+          </Link>
+        </div>
+      </div>
+ 
       {/* Modal for showing Cart Details */}
       {isModalOpen && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

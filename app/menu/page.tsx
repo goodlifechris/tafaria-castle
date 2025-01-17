@@ -9,6 +9,8 @@ import Cart from "../components/cart/cart";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { fetchPostsByCategory } from "../querries/categories/getpostsfromcategories";
+import ImageGallery from "../components/imagegallery";
+import VideoGallery from "../components/videogallery";
 
 export interface Session {
   title: string;
@@ -20,6 +22,7 @@ const MenuContent = () => {
   const title = searchParams.get('name');
   const card = searchParams.get('card'); // Get the card parameter
   const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({}); // Ref to store card references
+  const [queryClient] = useState(() => new QueryClient());
 
   useEffect(() => {
     // Scroll to the specific card if the card parameter is present
@@ -63,14 +66,28 @@ const MenuContent = () => {
      <Cart />
    </div>
 ) : <></>}
+      {title=== 'Images' ? (
+     <div className="text-center  text-gray-600">
+              <QueryClientProvider client={queryClient}>
+          <ImageGallery/>
+</QueryClientProvider>
+   </div>
+) : <></>}
+      { title=== 'Videos' ? (
+     <div className="text-center  text-gray-600">
+          <QueryClientProvider client={queryClient}>
+    <VideoGallery/>
+    </QueryClientProvider>
+
+   </div>
+) : <></>}
+     
 
 
 
         {data? (
           data?.posts.map((item, index) => (
             <div key={index} ref={(el) => { if (el) cardRefs.current[item.title] = el; }} className="mb-4">
-             {/* {console.log('videoUrls new',item.videos)} */}
-             {/* {console.log('videoUrls',videoUrls)} */}
              <BlogCard
   id={item.id}
   key={index}

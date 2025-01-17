@@ -1,24 +1,11 @@
 // app/components/Toolbar.tsx
 "use client";
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const Toolbar = () => {
   // const [isCollapsed, setIsCollapsed] = useState(false);
 
-  useEffect(() => {
-    // const handleScroll = () => {
-      // if (window.scrollY > 100) {
-      //   setIsCollapsed(true);
-      // } else {
-      //   setIsCollapsed(false);
-      // }
-    // };
 
-    // window.addEventListener('scroll', handleScroll);
-    // return () => {
-    //   window.removeEventListener('scroll', handleScroll);
-    // };
-  }, []);
 
   return (
     <div className={`transition-all 'max-h-0 overflow-hidden' : 'max-h-screen'}`}>
