@@ -53,9 +53,13 @@ const MenuContent = () => {
     queryFn: () => fetchPostsByCategory(title || ''),
   });
 
-  if (isLoading) return <p>Loading categories...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  console.log("data wellcome", data);
+  if (isLoading) return (
+    <div className="flex flex-col min-h-screen justify-center items-center">
+      <div className="w-16 h-16 border-4 border-gray-300 border-t-[#94723C] rounded-full animate-spin"></div>
+      <p className="mt-4 text-gray-700 text-lg font-semibold">🛡️ Preparing your royal treasures... 🏰</p>
+    </div>
+  );
+    if (error) return <p>Error: {error.message}</p>;
 
 
   return (

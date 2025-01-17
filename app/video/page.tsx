@@ -10,8 +10,6 @@ const VideoDetails = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
   const type = searchParams.get('type');
-
-  console.log("id ", id);
   // Use React Query to fetch video details by ID
   const { data, isLoading, error } = useQuery({
     queryKey: ['videos', id],

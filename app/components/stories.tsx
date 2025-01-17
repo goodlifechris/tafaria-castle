@@ -25,7 +25,6 @@ const StoriesContent = () => {
   return (
     <div className="flex space-x-6 px-4">
       {categories && Array.from(categories).map((img) => (
-        console.log("img", img),
         <Link 
           key={img.image.url} 
           href={`/menu?id=${img.name}&name=${encodeURIComponent(img.name)}&type=${encodeURIComponent('Blogs')}`}

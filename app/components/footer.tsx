@@ -17,7 +17,7 @@ const Footer = () => {
           <p className='text-white'><span className='text-[#902729]'>Location:</span> 1910 Park Rise, off Asunder Road on Deighton Downs Avenue along Nyeri Nyahururu Road</p>
         </a>
       </div>
-      <div className='flex items-center space-x-4 m-5'>
+      <div className='flex items-center space-x-4 mr-20'>
         <a href="https://www.facebook.com/TafariaCaslteArts/" target="_blank" rel="noopener noreferrer">
           <FaFacebookF className="text-white" />
         </a>

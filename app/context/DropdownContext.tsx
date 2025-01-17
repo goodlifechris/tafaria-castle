@@ -5,7 +5,6 @@ import React, { createContext, useContext, useState } from 'react';
 const DropdownContext = createContext({
   isDropdownOpen: false,
   toggleDropdown: () => {
-    console.log("welcome");
   },
 });
 
@@ -14,7 +13,6 @@ export const DropdownProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
-    console.log("are you here");
     setIsDropdownOpen((prev) => !prev);
   };
 

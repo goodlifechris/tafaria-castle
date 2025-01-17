@@ -11,8 +11,6 @@ const PostDetails = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const type = searchParams.get("type");
-
-  console.log("Post ID: ", id);
   // Use React Query to fetch post details by ID
   const { data, isLoading, error } = useQuery({
     queryKey: ["post", id],

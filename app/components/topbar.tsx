@@ -38,7 +38,6 @@ const TopBar = ({ title, type }: { title: string, type: string }) => {
   };
 
   useEffect(() => {
-    console.log("you there ", type)
     // Scroll to the specific card if the card parameter is present
     if (type) {
       setActiveTab(type)
