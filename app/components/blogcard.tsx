@@ -89,7 +89,7 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
       {/* Content Section */}
       <div className="flex flex-col justify-between px-4 pb-4 md:w-2/3">
         <div>
-          <h2 className="text-xl font-semibold sm:hidden max-sm:hidden  text-[#902729]">{title}</h2>
+          <h2 className="text-xl font-semibold md:block lg:block sm:hidden max-sm:hidden  text-[#902729]">{title}</h2>
           <div className="flex items-center mb-4 text-sm">
             <img src="/images/carlendar.svg" alt="SVG image" />
             <span className={`ml-2 my-2 text-gray-500 ${montaga.className}`}>
@@ -163,7 +163,7 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
 
             <a
               href={`https://wa.me/?text=${encodeURIComponent(
-                `Check out this image: ${title} - View it here: http://209.38.189.197:3001/blog?id=${id}`
+                `Check out this image: ${title} - View it here: http://209.38.189.197:3005/blog?id=${id}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"

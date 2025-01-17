@@ -82,8 +82,6 @@ const PostGallery = () => {
         </div>
       )}
       <div>
- 
-
       {data.pages.flatMap((page, index) =>
         page.map((post: Post) => (
           <BlogCard
@@ -96,6 +94,7 @@ const PostGallery = () => {
             videoUrls={
               post.videos && post.videos.length > 0
                 ? post.videos.map((video: any) => ({
+                  
                     title: video.title,
                     url: video?.video?.url || '',
                   }))

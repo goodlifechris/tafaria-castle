@@ -52,9 +52,9 @@ const ImageGallery = () => {
   }, []);
 
   // Handle fullscreen image modal
-  const openImageModal = (image: Image) => {
-    setSelectedImage(image);
-  };
+  // const openImageModal = (image: Image) => {
+  //   setSelectedImage(image);
+  // };
 
   const closeImageModal = () => {
     setSelectedImage(null);
@@ -74,20 +74,20 @@ const ImageGallery = () => {
   }
 
   return (
-    <div className="p-4">
+    <div className="">
       {data.pages.flatMap((page) => page).length === 0 && (
         <div className="flex justify-center items-center min-h-screen">
           <p className="text-gray-500">No images available at the moment.</p>
         </div>
       )}
        
-      <div className="masonry mb-5">
+      <div className="masonry mx-5 ">
         {data.pages.flatMap((page,index) =>
           page.map((image: Image) => (
             <div
               key={index}
-              className="relative bg-white rounded shadow-lg overflow-hidden group transition-transform transform hover:scale-105"
-              onClick={() => openImageModal(image)}
+              className="relative bg-white rounded shadow-lg overflow-hidden group transition-transform transform hover:scale-105 pb-0 m-2"
+              // onClick={() => openImageModal(image)}
             >
               <div className="masonry-item">
               {image?.image?.url ? (

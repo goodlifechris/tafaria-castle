@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */ 
 import React, { useState, useRef } from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import { FaPlay } from 'react-icons/fa'; // Import play icon
+import { FaPlay, FaPause } from 'react-icons/fa'; // Import play/pause icons
 
 export interface Image {
   title: string;
@@ -14,89 +13,108 @@ export interface Video {
   url: string;
 }
 
-// Define the props interface
 interface CarouselsProps {
-  images: Image[]; // Array of image objects
-  videos: Video[]; // Array of video objects
+  images: Image[];
+  videos: Video[];
 }
 
 const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
-
-
   const combinedUrls = [...images, ...videos];
 
-  const [activeIndex, setActiveIndex] = useState(0); // State to track the active index
-  const [isPlaying, setIsPlaying] = useState(false); // State to track if the video is playing
-  const videoRef = useRef<HTMLVideoElement | null>(null); // Ref to access the video element
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [carouselHeight, setCarouselHeight] = useState<number | string>('auto');
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
+  // Handle slide change
   const handleChange = (index: number) => {
-    if (isPlaying) {
-      return; // Prevent slide change if video is playing
-    }
+    if (isPlaying) return; // Prevent slide change while playing video
     setActiveIndex(index);
+    updateCarouselHeight();
   };
 
+  // Handle Play/Pause Toggle
   const handlePlayPause = () => {
-    if (isPlaying) {
-      setIsPlaying(false);
-      videoRef.current?.pause(); // Pause the video
-    } else {
-      setIsPlaying(true);
-      videoRef.current?.play(); // Play the video
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+      updateCarouselHeight();
     }
   };
 
-  const handleVideoClick = () => {
-    // Toggle play/pause when the video container is clicked
-    handlePlayPause();
+  // Ensure correct height when video loads
+  const handleVideoLoaded = () => {
+    setTimeout(() => {
+      if (videoRef.current) {
+        setCarouselHeight(videoRef.current.clientHeight+25);
+      }
+    }, 100);
+  };
+
+  // Adjust height dynamically
+  const updateCarouselHeight = () => {
+    setTimeout(() => {
+      if (containerRef.current) {
+        setCarouselHeight(containerRef.current.clientHeight);
+      }
+    }, 100);
   };
 
   return (
-    <div className="carousel rounded-box w-56 mb-4 sm:w-full bg-black">
-      <br />
+    <div ref={containerRef} className="carousel rounded-box w-56 mb-4 sm:w-full bg-black" style={{ height: carouselHeight }}>
       <Carousel
-        dynamicHeight
+        dynamicHeight={false}
         showThumbs={false}
         infiniteLoop
-        autoPlay={!isPlaying} // Only autoPlay when no video is playing
+        autoPlay={!isPlaying}
         showStatus={false}
-        selectedItem={activeIndex} // Track the selected index manually
+        selectedItem={activeIndex}
         onChange={handleChange}
-        swipeable={!isPlaying} // Disable swipe gestures when video is playing
+        swipeable={!isPlaying}
       >
-  
-       
         {combinedUrls.map((media, index) => (
           <div key={index} className="relative">
             <p>{media.title}</p>
             {media?.url?.endsWith('.mp4') ? (
               <div>
                 <video
-                  onClick={handleVideoClick}
+                  playsInline
                   ref={videoRef}
-                  controls
+                  controls={false} // Disable default controls
+                  onClick={handlePlayPause} // Play/Pause on video click
+                  onLoadedMetadata={handleVideoLoaded}
                   width="100%"
-                  height="auto" // Ensure video adjusts to its natural aspect ratio
-                  className={`video-player ${isPlaying && activeIndex === index ? 'playing' : ''}`}
-                  style={{ maxHeight: '500px' }} // Adjust this to match your preferred height for videos
+                  className="w-full object-cover h-auto transition duration-300"
+                  style={{ maxHeight: 'auto' }}
                 >
                   <source src={media.url} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
 
-                {!isPlaying && activeIndex === index && (
-                  <div className="absolute inset-0 flex items-center justify-center" onClick={handlePlayPause}>
-                    <div className="bg-white rounded-full p-3 shadow-lg cursor-pointer">
+                {/* Custom Play/Pause Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button 
+                    onClick={handlePlayPause} 
+                    className="bg-white rounded-full p-3 shadow-lg cursor-pointer"
+                  >
+                    {isPlaying ? (
+                      <FaPause className="text-[#902729] text-2xl" />
+                    ) : (
                       <FaPlay className="text-[#902729] text-2xl" />
-                    </div>
-                  </div>
-                )}
+                    )}
+                  </button>
+                </div>
               </div>
             ) : (
               <img 
                 src={media.url} 
                 alt={`Carousel image ${index + 1}`} 
-                className="w-full object-cover" // Ensure the image takes its natural height and width, maintaining aspect ratio
+                className="w-full object-cover"
               />
             )}
           </div>

@@ -24,6 +24,10 @@ const MenuContent = () => {
   useEffect(() => {
     // Scroll to the specific card if the card parameter is present
     if (card) {
+            // Reload the page with the updated parameters
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set('reload', Date.now().toString()); // Add a timestamp to prevent caching issues
+            window.location.href = newUrl.toString();
       const targetCard = cardRefs.current[card];
       if (targetCard) {
         // Calculate the position to scroll to, adjusting for fixed header height
@@ -52,13 +56,11 @@ const MenuContent = () => {
   return (
     <div className="w-full">
       <TopBar title={title || ''} />
-   
+    
       <div className="mt-20">
       {data && data.name === 'Gift Shop' ? (
      <div className="text-center  text-gray-600">
      <Cart />
-
-
    </div>
 ) : <></>}
 

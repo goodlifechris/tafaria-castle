@@ -221,7 +221,7 @@ const TabComponent = () => {
       <div className={`sticky bartop ${isDropdownOpen ? 'open' : 'closed'} z-10 bg-white shadow-md`}>
         {/* Tabs */}
         <div className="flex justify-center space-x-6 border-b-2 border-gray-200">
-          {["Images", "Videos", "Blogs"].map((tab) => (
+          {["Images", "Videos"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -237,7 +237,7 @@ const TabComponent = () => {
       </div>
 
       {/* Content - Moved outside sticky container */}
-      <div className="mt-6 w-full">
+      <div className="mt-6 w-full m">
         {(activeTab === "Images") && (
             <QueryClientProvider client={queryClient}>
           <ImageGallery/>

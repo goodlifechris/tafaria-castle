@@ -9,6 +9,7 @@ import Footer from "./components/footer";
 import { GoogleTagManager } from '@next/third-parties/google'
 import { DropdownProvider } from "./context/DropdownContext";
 import { NavigationProvider } from "./context/NavigationContext";
+import { CartProvider } from "./context/CartContext";
 
 
 
@@ -52,7 +53,10 @@ export default function RootLayout({
       
             <Stories />
           </div>
+          <CartProvider >
+
          {children}  
+         </CartProvider>
           <Footer />
           <WhatsAppButton />
         </div>
