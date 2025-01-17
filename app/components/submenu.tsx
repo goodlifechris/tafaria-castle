@@ -14,7 +14,7 @@ const montaga = Montaga({
   subsets: ['latin'],
   display: 'swap',
 })
-const SubMenu = ({ title,description }: { title: string ,description:string}) => {
+const SubMenu = ({ title,description ,type}: { title: string ,description:string,type: string }) => {
 
 
   return (
@@ -31,7 +31,7 @@ const SubMenu = ({ title,description }: { title: string ,description:string}) =>
               </h1>
               <br/>
                 <p className={montaga.className} >
-                  {description} heellelle
+                  {description} / {type}
                   </p>
 
             </div>

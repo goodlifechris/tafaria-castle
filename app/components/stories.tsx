@@ -28,7 +28,7 @@ const StoriesContent = () => {
         console.log("img", img),
         <Link 
           key={img.image.url} 
-          href={`/menu?id=${img.name}&name=${encodeURIComponent(img.name)}`}
+          href={`/menu?id=${img.name}&name=${encodeURIComponent(img.name)}&type=${encodeURIComponent('Blogs')}`}
         >
           <div
             className="flex-shrink-0 flex flex-col items-center space-y-1 py-2 min-w-[80px] sm:min-w-[100px]"

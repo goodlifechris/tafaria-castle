@@ -16,11 +16,12 @@ export default function Categories() {
 function CategoriesContent() {
   const searchParams = useSearchParams();
   const title = searchParams.get("title") || "";
+  const type = searchParams.get("type") || "";
   const imageUrl = searchParams.get("imageUrl") || "";
 
   return (
     <div>
-      <TopBar title={title || "Categories"} />
+      <TopBar title={title || "Categories"} type={type || "Blogs"} />
       <div className="flex items-center bg-white shadow-md"></div>
       <div className="mt-16">
         <PostCard

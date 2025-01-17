@@ -8,11 +8,12 @@ import { useSearchParams } from 'next/navigation';
 const SubMenuContent = () => {
   const searchParams = useSearchParams();
   const title = searchParams.get('title');
+  const type = searchParams.get('type');
   const description = searchParams.get('description');
 
   return (
     <div>   
-      <SubMenu title={title || ''} description={description || ''}/>
+      <SubMenu title={title || ''} description={description || ''}  type={type || ''} />
       <TabComponent />
     </div>
   );

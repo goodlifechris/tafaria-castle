@@ -10,6 +10,8 @@ import PostCard from "../components/post";
 const PostDetails = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const type = searchParams.get("type");
+
   console.log("Post ID: ", id);
   // Use React Query to fetch post details by ID
   const { data, isLoading, error } = useQuery({
@@ -56,7 +58,7 @@ const PostDetails = () => {
   // Render the post detail page
   return (
     <div>
-      <TopBar title={data.title || "Post Details"} />
+      <TopBar title={data.title || "Post Details"} type={type || "Blogs"} />
 
       <div className="flex items-center bg-white shadow-md">
         {/* Post Details */}

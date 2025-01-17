@@ -10,8 +10,8 @@ import PostCard from "../components/post";
 const ImageDetails = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const type = searchParams.get("type");
 
-  console.log("id ", id);
   // Use React Query to fetch image details by ID
   const { data, isLoading, error } = useQuery({
     queryKey: ["categories", id],
@@ -57,7 +57,7 @@ const ImageDetails = () => {
   // Render the image detail page
   return (
     <div>
-      <TopBar title={data.title || ""} />
+      <TopBar title={data.title || ""}  type={type || ''}/>
 
       <div className="flex items-center bg-white shadow-md">
         {/* Image Details */}

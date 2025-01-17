@@ -17,12 +17,21 @@ const GET_POSTS_BY_CATEGORY = gql`
         priority
         images {
           title
+          description
+          id
           image {
             url
+            width
+            height
+            id
+            extension
+            filesize
           }
         }
         videos {
           title
+          description
+          id
           video {
             url
           }
@@ -35,9 +44,17 @@ const GET_POSTS_BY_CATEGORY = gql`
   }
 `;
 
+
 type Image = {
   url: string;
+  width: number;
+  height: number;
+  id: string;
+  extension: string;
+  filesize: number;
 };
+
+
 type Video = {
   url: string;
 };
@@ -49,11 +66,17 @@ export type Post = {
   id: string;
   title: string;
   createdAt: string;
-  priority: number; // Added priority here
+  priority: number; 
   images: {
+    description: string;
+    id: string;
+    title: string;
     image: Image;
   }[];
   videos: {
+    description: string;
+    id: string;
+    title: string;
     video: Video;
   }[];
   content: PostContent;
@@ -64,6 +87,8 @@ type Category = {
   image: Image;
   id: string;
   posts: Post[];
+  images:Image[];
+  videos:Video[];
 };
 
 type FetchCategoryResponse = {
