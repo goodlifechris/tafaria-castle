@@ -2,7 +2,7 @@
 import { GraphQLClient } from 'graphql-request';
 
 const graphqlClient = new GraphQLClient(
-    'http://209.38.189.197:3003/api/graphql',
+    'https://www.tafaria.com/api/graphql',
     {
       headers: {
         'Content-Type': 'application/json', // Ensure the correct content type

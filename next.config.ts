@@ -18,8 +18,8 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'http',
-        hostname: '209.38.189.197:3003',
-        port: '',
+        hostname: '209.38.189.197',
+        port: '3003',
         pathname: '/**',
         search: '',
       },
