@@ -136,9 +136,7 @@ const VideoGallery = () => {
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 cursor-pointer">
                 <h3 className="text-white text-lg font-bold text-center pa-5">{video.title}</h3>
                 <p className="text-sm text-gray-200 text-center pa-5">{video.description}</p>
-         
-      
-           
+
 
               {/* Like and Share buttons */}
               <div className=" flex space-x-4">

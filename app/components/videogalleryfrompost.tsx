@@ -107,10 +107,35 @@ const VideoGalleryFromPost = ({videos}:{videos:Video[]}) => {
               </div>
 
               {/* Title, description, and play icon */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-[#902729] to-transparent p-6">
-                <h3 className="text-white text-lg font-bold">{video.title}</h3>
-                <p className="text-sm text-gray-200">{video.description}</p>
-         
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 cursor-pointer">
+              <h3 className="text-white text-lg font-bold text-center pa-5">{video.title}</h3>
+              <p className="text-sm text-gray-200 text-center pa-5">{video.description}</p>
+              {/* Like and Share buttons */}
+                       <div className=" flex space-x-4">
+                         <button
+                           className={`p-2 rounded-full ${
+                             likedVideos.includes(video.id)
+                               ? "bg-red-500 text-white"
+                               : "bg-gray-700 text-gray-200"
+                           }`}
+                           onClick={(e) => {
+                             e.stopPropagation();
+                             toggleLike(video.id);
+                           }}
+                         >
+                           <FiHeart size={20} />
+                         </button>
+                         <a
+                           href={`https://wa.me/?text=${encodeURIComponent(
+                             `See this 😍: ${video.title} - View it here:  https://www.tafaria.com/video?id=${video.id}`
+                           )}`}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="p-2 bg-green-500 text-white rounded-full"
+                         >
+                           <FiShare2 size={20} />
+                         </a>
+                       </div>
               </div>
 
      
@@ -141,7 +166,7 @@ const VideoGalleryFromPost = ({videos}:{videos:Video[]}) => {
           <div className="relative w-full max-w-4xl ">
             {/* Dark overlay from bottom */}
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-transparent to-transparent p-6">
-              <h3 className="text-white text-2xl font-bold ">{selectedVideo.title}</h3>
+              <h3 className="text-white text-2xl font-bold ">{selectedVideo.title} </h3>
               <p className="text-white text-sm  mb-10">{selectedVideo.description}</p>
             </div>
             <video
