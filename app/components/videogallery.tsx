@@ -133,14 +133,15 @@ const VideoGallery = () => {
               </div>
 
               {/* Title, description, and play icon */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-[#902729] to-transparent p-6">
-                <h3 className="text-white text-lg font-bold">{video.title}</h3>
-                <p className="text-sm text-gray-200">{video.description}</p>
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 cursor-pointer">
+                <h3 className="text-white text-lg font-bold text-center pa-5">{video.title}</h3>
+                <p className="text-sm text-gray-200 text-center pa-5">{video.description}</p>
          
-              </div>
+      
+           
 
               {/* Like and Share buttons */}
-              {/* <div className="absolute bottom-4 right-4 flex space-x-4">
+              <div className=" flex space-x-4">
                 <button
                   className={`p-2 rounded-full ${
                     likedVideos.includes(video.id)
@@ -156,7 +157,7 @@ const VideoGallery = () => {
                 </button>
                 <a
                   href={`https://wa.me/?text=${encodeURIComponent(
-                    `Check out this video: ${video.title} - View it here: http://209.38.189.197:3001/video?id=${video.id}`
+                    `See this 😍: ${video.title} - View it here:  https://www.tafaria.com/video?id=${video.id}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -164,7 +165,8 @@ const VideoGallery = () => {
                 >
                   <FiShare2 size={20} />
                 </a>
-              </div> */}
+              </div>
+              </div>
             </div>
           ))
         )}
@@ -223,7 +225,7 @@ const VideoGallery = () => {
               </button>
               <a
                 href={`https://wa.me/?text=${encodeURIComponent(
-                  `Check out this video: ${selectedVideo.title} - View it here: https://www.tafaria.com/video?id=${selectedVideo.id}`
+                  `See this 😍: ${selectedVideo.title} - View it here: https://www.tafaria.com/video?id=${selectedVideo.id}`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

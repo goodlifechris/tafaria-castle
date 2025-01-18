@@ -167,7 +167,7 @@ const VideoGalleryFromPost = ({videos}:{videos:Video[]}) => {
               </button>
               <a
                 href={`https://wa.me/?text=${encodeURIComponent(
-                  `Check out this video: ${selectedVideo.title} - View it here: https://www.tafaria.com/video?id=${selectedVideo.id}`
+                  `See this 😍: ${selectedVideo.title} - View it here: https://www.tafaria.com/video?id=${selectedVideo.id}`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

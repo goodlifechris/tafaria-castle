@@ -163,7 +163,7 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
 
             <a
               href={`https://wa.me/?text=${encodeURIComponent(
-                `See this 😍: ${title} - View it here: http://209.38.189.197:3005/blog?id=${id}`
+                `See this 😍: ${title} - View it here: https://www.tafaria.com/blog?id=${id}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import AfterIntroduction from "./afterintroduction";
 import { motion, AnimatePresence } from "framer-motion";
 import Hero from "./hero";
@@ -43,8 +43,10 @@ const Introduction = () => {
           </div>
         </div>
       )} */}
+        <Suspense fallback={<div className="preloader">Loading...</div>}>
 
       <Hero/>
+      </Suspense>
 
       <div className="text-center text-black text-base px-4">
         {!showAfterIntroduction && (

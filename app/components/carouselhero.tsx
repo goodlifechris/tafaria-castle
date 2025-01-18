@@ -76,10 +76,9 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
   // };
 
   return (
-    <div className="carousel w-56 mb-4 sm:w-full bg-black">
+    <div className="carousel w-56 mb-4 sm:w-full bg-[#902729]">
       <br />
       <Carousel
-        dynamicHeight
         showThumbs={false}
         infiniteLoop
         autoPlay={playingIndex === null} // Only autoPlay when no video is playing
