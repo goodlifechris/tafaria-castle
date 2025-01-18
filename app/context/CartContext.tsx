@@ -80,7 +80,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     const totalPrice = getTotalPrice();
     const whatsappMessage = `Hello, I would like to order:\n\n${message}\n\nTotal: Kes ${totalPrice}`;
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    window.open(`https://wa.me/+254708877224?text=${encodedMessage}`, "_blank");
+    window.open(`https://wa.me/+25470887724?text=${encodedMessage}`, "_blank");
   };
 
   return (
