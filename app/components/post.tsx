@@ -43,7 +43,7 @@ const PostCard = ({ imageUrl, text ,title,createdAt }: { imageUrl: string; text:
           </button>
           <a
             href={`https://wa.me/?text=${encodeURIComponent(
-              `Check out this image: ${title} - ${imageUrl}`
+              `See this 😍: ${title} - ${imageUrl}`
             )}`}
             target="_blank"
             rel="noopener noreferrer"

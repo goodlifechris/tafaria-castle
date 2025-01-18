@@ -93,7 +93,7 @@ const TopBar = ({ title, type }: { title: string, type: string }) => {
                   Videos
                 </button>
               </Link>
-              <Link
+              {/* <Link
 
                 href={`/menu?id=${title}&name=${encodeURIComponent(title)}&type=${encodeURIComponent('Blogs')}`}
               >
@@ -103,7 +103,7 @@ const TopBar = ({ title, type }: { title: string, type: string }) => {
                 >
                   Blogs
                 </button>
-              </Link>
+              </Link> */}
             </>
           )}
         </div>

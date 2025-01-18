@@ -119,7 +119,7 @@ const ImageGallery = () => {
                   </button>
                   <a
   href={`https://wa.me/?text=${encodeURIComponent(
-    `Check out this image: ${image.title} - View it here: http://209.38.189.197:3001/image?id=${image.id}`
+    `See this 😍: ${image.title} - View it here: https://www.tafaria.com/image?id=${image.id}`
   )}`}
   target="_blank"
   rel="noopener noreferrer"
@@ -185,7 +185,7 @@ const ImageGallery = () => {
                 <a
            
                   href={`https://wa.me/?text=${encodeURIComponent(
-                    `Check out this image: ${selectedImage.title} - View it here: http://209.38.189.197:3001/image?id=${selectedImage.id}`
+                    `See this 😍: ${selectedImage.title} - View it here: https://www.tafaria.com/image?id=${selectedImage.id}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

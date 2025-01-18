@@ -160,7 +160,7 @@ const PostGallery = () => {
                 </button>
                 <a
                   href={`https://wa.me/?text=${encodeURIComponent(
-                    `Check out this post: ${selectedPost.title} - View it here: http://209.38.189.197:3001/post?id=${selectedPost.id}`
+                    `Check out this post: ${selectedPost.title} - View it here: https://www.tafaria.com/post?id=${selectedPost.id}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

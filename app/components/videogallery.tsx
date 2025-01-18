@@ -223,7 +223,7 @@ const VideoGallery = () => {
               </button>
               <a
                 href={`https://wa.me/?text=${encodeURIComponent(
-                  `Check out this video: ${selectedVideo.title} - View it here: http://209.38.189.197:3001/video?id=${selectedVideo.id}`
+                  `Check out this video: ${selectedVideo.title} - View it here: https://www.tafaria.com/video?id=${selectedVideo.id}`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

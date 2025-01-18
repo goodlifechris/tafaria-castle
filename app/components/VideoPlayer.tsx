@@ -39,7 +39,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ video }) => {
     setLiked(!liked); // Toggle like status
   };
   const handleShare = () => {
-    const link = `http://209.38.189.197:3001/?tab=Videos&videoId=${video.id}`; // The link you want to share
+    const link = ` https://www.tafaria.com/?tab=Videos&videoId=${video.id}`; // The link you want to share
     // const link = `https://tafaria-castle.vercel.app?tab=Videos&videoId=${videoId}`; // The link you want to share
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent("Welcome to tafaria" + " " + link)}`; // Share text and link
 

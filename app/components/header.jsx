@@ -49,7 +49,7 @@ const Header = () => {
       <IoLocation className="lg:text-4xl sm:text-sm md:text-2xl text-[#902729]"/>
         </a>
       <a href="tel:070015000" className="text-black  text-xs underline">
-        070015148
+        0700151480
       </a>
       <a href="mailto:info@tafaria.com" className="text-black text-xs underline">
         info@tafaria.com
