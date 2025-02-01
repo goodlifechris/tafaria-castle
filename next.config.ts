@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
         pathname: '/**',
         search: '',
       },
+{protocol:'https',
+hostname:'app.tafaria.com',
+port:'',
+pathname:'/**',
+},
       {
         protocol: 'https',
         hostname: 'tafaria.com',
