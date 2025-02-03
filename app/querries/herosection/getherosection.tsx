@@ -15,6 +15,12 @@ const GET_PUBLISHED_HERO_SECTION = gql`
           id
         }
       }
+      videolinks {
+        id
+        title
+        description
+        link
+      }
       videos {
         id
         title
@@ -57,6 +63,12 @@ export type HeroSection = {
     };
     description: string;
   }[];
+  videolinks: {
+    id: string;
+    title: string;
+    link:string;
+    description: string;
+  }[];
 };
 
 // Define the expected response type from the query
@@ -68,7 +80,9 @@ type FetchHeroSectionResponse = {
 export const fetchHerosection = async (): Promise<HeroSection | null> => {
   try {
     const data: FetchHeroSectionResponse = await graphqlClient.request(GET_PUBLISHED_HERO_SECTION, variables);
+    console.log("wassuop ",data.heroSections[0] )
     return data.heroSections[0] || null; // Returning the first published hero section or null if none
+
   } catch (error) {
     console.error('Error fetching hero section:', error);
     throw error; // You may want to handle errors more gracefully in a production app

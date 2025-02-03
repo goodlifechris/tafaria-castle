@@ -21,11 +21,18 @@ const HeroSection = () => {
    <CarouselHero 
    images={herosection?.images?.map((image: any) => ({
     title: image.title,
+    link:'',
     url: image?.image?.url || '',
   })) || []}
   videos={herosection?.videos?.map((video: any) => ({
     title: video.title,
+    link:'',
     url: video?.video?.url || '',
+  })) || []}
+  videolinks={herosection?.videolinks?.map((videolink: any) => ({
+    title: videolink.title,
+    link: videolink.link,
+    url: videolink?.videolink?.url || '',
   })) || []} />
     </div>
   );

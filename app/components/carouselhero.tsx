@@ -4,25 +4,36 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import { FaPause, FaPlay } from "react-icons/fa"; // Import play icon
 import { Video, VideoPlayerRef } from "reactjs-media";
+import VideoYouTubePlayer from "./videoyoutubeplayer";
 
 export interface Image {
   title: string;
   url: string;
+  link: string;
+
 }
 
 export interface Video {
   title: string;
   url: string;
+  link: string;
 }
 
+
+export interface VideoLinks {
+  title: string;
+  url: string;
+  link: string;
+}
 // Define the props interface
 interface CarouselsProps {
   images: Image[]; // Array of image objects
   videos: Video[]; // Array of video objects
+  videolinks: VideoLinks[]; // Array of video objects
 }
 
-const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
-  const combinedUrls = [...images, ...videos];
+const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => {
+  const combinedUrls = [...images, ...videos, ...videolinks];
 
   const [activeIndex, setActiveIndex] = useState(0); // Track active slide
   const [playingIndex, setPlayingIndex] = useState<number | null>(null); // Track which video is playing
@@ -38,7 +49,13 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
 
-    // Toggle play/pause on screen tap
+  function getYouTubeVideoID(url: string) {
+    const regex = /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/|.*embed\/))([^?&]+)/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  }
+
+  // Toggle play/pause on screen tap
   // Toggle play/pause on screen tap
   const handleTogglePlayPause = async () => {
     if (!videoRef.current) return;
@@ -56,12 +73,12 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
       console.error("Error toggling play/pause:", error);
     }
   };
-  
-    // Show controls temporarily on tap
-    const showTemporaryControls = () => {
-      setShowControls(true);
-      setTimeout(() => setShowControls(false), 3000); // Hide after 3 seconds
-    };
+
+  // Show controls temporarily on tap
+  const showTemporaryControls = () => {
+    setShowControls(true);
+    setTimeout(() => setShowControls(false), 3000); // Hide after 3 seconds
+  };
 
   // const handlePlay = () => {
   //   if (videoRef.current) {
@@ -74,6 +91,7 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
   //     videoRef.current.pause(); // Directly call pause on the video ref
   //   }
   // };
+  console.log("what is the data", videolinks)
 
   return (
     <div className="carousel w-56 mb-4 sm:w-full bg-[#902729]">
@@ -88,13 +106,16 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
         swipeable={playingIndex === null} // Disable swipe when video is playing
       >
         {combinedUrls.map((media, index) => (
-          <div key={index} className="relative bg-[#902729] ">
-            {media.url.endsWith(".mp4") ? (
-              <div className="relative">
-                {/* Video Element */}
-                <p className="mb-5">{media.title }</p>
 
-                {/* <video
+          <div key={index} className="relative bg-[#902729] ">
+
+            {
+              media.url.endsWith(".mp4") && (
+                <div className="relative">
+                  {/* Video Element */}
+                  <p className="mb-5">{media.title}</p>
+
+                  {/* <video
                 playsInline
                   ref={(el) => {
                     videoRefs.current[index] = el;
@@ -111,8 +132,8 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
                   <source src={media.url} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video> */}
-                <div className="flex justify-center bg-[#d . . . . . . .  wdmnc ewmn, wemv wnv ] items-center w-full pb-10">
-                {/* <Video
+                  <div className="flex justify-center bg-[#d . . . . . . .  wdmnc ewmn, wemv wnv ] items-center w-full pb-10">
+                    {/* <Video
                         ref={videoRef} // Attach ref to Video component
 
          src={media.url} 
@@ -120,49 +141,63 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
         height={500}
         width={800}
       /> */}
-            {/* <button onClick={handlePlay}>Play</button>
+                    {/* <button onClick={handlePlay}>Play</button>
             <button onClick={handlePause}>Pause</button> */}
 
-            <div
-      style={{
-        position: "relative",
-        cursor: "pointer",
-      }}
-      onClick={handleTogglePlayPause} // Toggle video on click/tap
-    >
-      {/* Video Component */}
-      <Video
-        ref={videoRef}
-        src={media.url}
-        controls={false} // Hide default controls
-        height={800}
-        width={'1000vh'}
-      />
+                    <div
+                      style={{
+                        position: "relative",
+                        cursor: "pointer",
+                      }}
+                      onClick={handleTogglePlayPause} // Toggle video on click/tap
+                    >
+                      {/* Video Component */}
+                      <Video
+                        ref={videoRef}
+                        src={media.url}
+                        controls={false} // Hide default controls
+                        height={800}
+                        width={'1000vh'}
+                      />
+                      {/* <VideoYouTubePlayer videoId="DWLQS_wei_s" /> */}
 
-     
-    </div>
-      </div>
 
-                {/* Play Button Overlay */}
-                {showControls && (
-                  <div
-                    className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                    onClick={handleTogglePlayPause}
-                  >
-                    <div className="bg-white rounded-full p-3 shadow-lg">
-                    {isPlaying ?  <FaPause className="text-[#902729] text-2xl" /> :  <FaPlay className="text-[#902729] text-2xl" />}
-                     
+
                     </div>
                   </div>
-                )}
-              </div>
-            ) : (
-              <img
-                src={media.url}
-                alt={`Carousel image ${index + 1}`}
-                className="w-full object-cover"
-              />
-            )}
+
+                  {/* Play Button Overlay */}
+                  {showControls && (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                      onClick={handleTogglePlayPause}
+                    >
+                      <div className="bg-white rounded-full p-3 shadow-lg">
+                        {isPlaying ? <FaPause className="text-[#902729] text-2xl" /> : <FaPlay className="text-[#902729] text-2xl" />}
+
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
+            }
+
+            {media.link && media.link?.includes("youtube") &&
+
+              <VideoYouTubePlayer videoId={getYouTubeVideoID(media.link)} />
+            }
+
+
+{/* //show image */}
+{
+              media.url.endsWith(".png") &&
+             <img
+              src={media.url}
+              alt={`Carousel imagew ${index + 1}`}
+              className="w-full object-cover"
+            />
+}
+
           </div>
         ))}
       </Carousel>

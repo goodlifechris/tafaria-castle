@@ -10,6 +10,7 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import { DropdownProvider } from "./context/DropdownContext";
 import { NavigationProvider } from "./context/NavigationContext";
 import { CartProvider } from "./context/CartContext";
+import NextTopLoader from 'nextjs-toploader';
 
 
 
@@ -31,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
+
       <body className="min-h-screen flex flex-col bg-white"> {/* Set min height and flex column layout */}
+      <NextTopLoader />
 
      <NavigationProvider>
 
@@ -64,6 +67,7 @@ export default function RootLayout({
 
         </NavigationProvider>
       </body>
+      
     </html>
   );
 }

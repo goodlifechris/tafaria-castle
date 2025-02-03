@@ -3,6 +3,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import AfterIntroduction from "./afterintroduction";
 import { motion, AnimatePresence } from "framer-motion";
 import Hero from "./hero";
+import Videoyoutubeplayer from "./videoyoutubeplayer";
 
 
 
@@ -45,7 +46,7 @@ const Introduction = () => {
       )} */}
         <Suspense fallback={<div className="preloader">Loading...</div>}>
 
-      <Hero/>
+        <Hero/>
       </Suspense>
 
       <div className="text-center text-black text-base px-4">
