@@ -33,7 +33,7 @@ type AboutsIntroData = {
 };
 
 const fetchAboutsIntro = async (): Promise<AboutsIntroData> => {
-  const endpoint = "http://209.38.189.197:3003/api/graphql";
+  const endpoint = "https://app.tafaria.com/api/graphql";
   return request(endpoint, GET_ABOUTS_INTRO);
 };
 //👇 Configure our font object
