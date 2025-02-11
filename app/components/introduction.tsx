@@ -1,20 +1,23 @@
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
-import AfterIntroduction from "./afterintroduction";
-import { motion, AnimatePresence } from "framer-motion";
+// import AfterIntroduction from "./afterintroduction";
+// import { motion, AnimatePresence } from "framer-motion";
 import Hero from "./hero";
-import Videoyoutubeplayer from "./videoyoutubeplayer";
+// import Videoyoutubeplayer from "./videoyoutubeplayer";
+import AboutsIntro from "./aboutsintro";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 
 
 
 const Introduction = () => {
-  const [showAfterIntroduction, setShowAfterIntroduction] = useState(false);
+  // const [showAfterIntroduction, setShowAfterIntroduction] = useState(false);
   // const [imageLoaded, setImageLoaded] = useState(false); // State to track image loading
 
-  const toggleReadMore = () => {
-    setShowAfterIntroduction((prevState) => !prevState);
-  };
+  // const toggleReadMore = () => {
+  //   setShowAfterIntroduction((prevState) => !prevState);
+  // };
+  const [queryClient] = useState(() => new QueryClient());
 
   useEffect(() => {
     // Preload the background image
@@ -47,9 +50,17 @@ const Introduction = () => {
         <Suspense fallback={<div className="preloader">Loading...</div>}>
 
         <Hero/>
-      </Suspense>
 
-      <div className="text-center text-black text-base px-4">
+      </Suspense>
+      <QueryClientProvider client={queryClient}>
+
+
+              <AboutsIntro/>
+    
+              </QueryClientProvider>
+
+
+      {/* <div className="text-center text-black text-base px-4">
         {!showAfterIntroduction && (
           <p className="cutom-text">
             Eunice and I founded the Tafaria Castle in 2012AD to transform
@@ -57,10 +68,10 @@ const Introduction = () => {
             <span onClick={toggleReadMore} className="underline text-blue-600">read more</span>
           </p>
         )}
-      </div>
+      </div> */}
 
       {/* Animated AfterIntroduction Section */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showAfterIntroduction && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -71,7 +82,7 @@ const Introduction = () => {
             <AfterIntroduction toggleReadMore={toggleReadMore}/>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
     </>
   );

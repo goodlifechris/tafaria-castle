@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import { FaPause, FaPlay } from "react-icons/fa"; // Import play icon
 import { Video, VideoPlayerRef } from "reactjs-media";
-import VideoYouTubePlayer from "./videoyoutubeplayer";
+// import VideoYouTubePlayer from "./videoyoutubeplayer";
 
 export interface Image {
   title: string;
@@ -33,7 +33,7 @@ interface CarouselsProps {
 }
 
 const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => {
-  const combinedUrls = [...images, ...videos, ...videolinks];
+  const combinedUrls = [...images, ...videos];
 
   const [activeIndex, setActiveIndex] = useState(0); // Track active slide
   const [playingIndex, setPlayingIndex] = useState<number | null>(null); // Track which video is playing
@@ -49,11 +49,11 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => 
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
 
-  function getYouTubeVideoID(url: string) {
-    const regex = /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/|.*embed\/))([^?&]+)/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
-  }
+  // function getYouTubeVideoID(url: string) {
+  //   const regex = /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/|.*embed\/))([^?&]+)/;
+  //   const match = url.match(regex);
+  //   return match ? match[1] : null;
+  // }
 
   // Toggle play/pause on screen tap
   // Toggle play/pause on screen tap
@@ -111,7 +111,7 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => 
 
             {
               media.url.endsWith(".mp4") && (
-                <div className="relative">
+                <div className="relative ">
                   {/* Video Element */}
                   <p className="mb-5">{media.title}</p>
 
@@ -181,21 +181,22 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => 
                 </div>
               )
             }
-
+{/* 
             {media.link && media.link?.includes("youtube") &&
 
               <VideoYouTubePlayer videoId={getYouTubeVideoID(media.link)} />
-            }
+            } */}
 
 
 {/* //show image */}
 {
-              media.url.endsWith(".png") &&
-             <img
-              src={media.url}
-              alt={`Carousel imagew ${index + 1}`}
-              className="w-full object-cover"
-            />
+              media.url.endsWith(".jpg") &&
+<img
+  src={media.url}
+  alt={`Carousel image ${index + 1}`}
+  className="w-full   object-cover "
+/>
+
 }
 
           </div>

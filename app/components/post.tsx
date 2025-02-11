@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa"; // Import both outline and filled heart icons
 import { FiSend } from "react-icons/fi";
-import { formatTimestamp } from "../video/dateutil";
 
 const PostCard = ({ imageUrl, text ,title,createdAt }: { imageUrl: string; text: string;  title: string; createdAt: string }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -77,7 +76,11 @@ const PostCard = ({ imageUrl, text ,title,createdAt }: { imageUrl: string; text:
       {/* Footer */}
       <div className="p-4 text-gray-400 text-sm">
         <span>
-          {formatTimestamp(createdAt)}
+        {new Date(createdAt).toLocaleDateString('en-US', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+              })}
         </span>
       </div>
     </div>
