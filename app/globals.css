@@ -3354,3 +3354,20 @@ label.value {
 .bn-rate-deposit-policy-container p {
   color: brown;
 }
+
+.bn-itinerary {
+  color: black;
+}
+
+.bn-pax-input-value {
+  min-width: 16px;
+  text-align: center;
+  color: dimgray;
+}
+
+.bn-date-picker-footer {
+  color: dimgrey;
+}
+tr.rdp-head_row {
+  color: dimgrey;
+}
