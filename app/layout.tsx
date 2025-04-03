@@ -10,7 +10,6 @@ import { DropdownProvider } from "./context/DropdownContext";
 import { NavigationProvider } from "./context/NavigationContext";
 import { CartProvider } from "./context/CartContext";
 import NextTopLoader from "nextjs-toploader";
-import "https://nebulacrs.hti.app/hostech/booknow/static/css/booknow.css"
 
 export const metadata: Metadata = {
   title: "Tafaria Castle",
@@ -28,6 +27,8 @@ export default function RootLayout({
       <Head>
     
         <meta name="description" content="Tafaria Castle - Once upon a Dream" />
+        <link rel="stylesheet" href="https://nebulacrs.hti.app/hostech/booknow/static/css/booknow.css" />
+
       </Head>
 
       <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
