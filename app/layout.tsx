@@ -10,6 +10,7 @@ import { DropdownProvider } from "./context/DropdownContext";
 import { NavigationProvider } from "./context/NavigationContext";
 import { CartProvider } from "./context/CartContext";
 import NextTopLoader from "nextjs-toploader";
+import "https://nebulacrs.hti.app/hostech/booknow/static/css/booknow.css"
 
 export const metadata: Metadata = {
   title: "Tafaria Castle",
