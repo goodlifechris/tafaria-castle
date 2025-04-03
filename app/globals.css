@@ -3375,3 +3375,13 @@ tr.rdp-head_row {
 .bn-itinerary-item {
   color:dimgrey;
 }
+.bn-pax-input-value {
+  color: dimgrey !important;
+}
+.bn-date-picker-footer {
+  color: dimgray !important;
+}
+
+tr.rdp-head_row {
+  color: dimgray !important;
+}
