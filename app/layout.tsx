@@ -25,11 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        {/* ✅ Load CSS properly */}
-        <link
-          rel="stylesheet"
-          href="https://nebulacrs.hti.app/hostech/booknow/static/css/booknow.css"
-        />
+    
         <meta name="description" content="Tafaria Castle - Once upon a Dream" />
       </Head>
 

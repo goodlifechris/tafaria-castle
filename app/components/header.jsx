@@ -4,11 +4,12 @@ import Modal from "react-modal";
 import Select from "react-select";
 import Link from "next/link";
 import { IoLocation } from "react-icons/io5";
-import BookNow from "./booknow";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedActivities, setSelectedActivities] = useState([]);
+  const router = useRouter();
 
   const activitiesOptions = [
     { value: "hospitality", label: "Hospitality" },
@@ -16,7 +17,9 @@ const Header = () => {
     { value: "conferencing", label: "Conferencing" },
     { value: "arts", label: "Arts" },
   ];
-
+  const handleBook = () => {
+    router.push('/book');
+  };
   const openBookingPage = () => {
     window.location.href = "https://apps.hti-systems.com/hostech/tafaria/desktop.html?locale=en_US";
   };
@@ -55,10 +58,10 @@ const Header = () => {
       <a href="mailto:info@tafaria.com" className="text-black text-xs underline">
         info@tafaria.com
       </a>
-      <button  onClick={openBookingPage} className="bg-[#94723C] text-white px-5 py-2 text-sm sm:text-base sm:px-6 sm:py-2 rounded-md font-semibold hover:bg-[#902729]">
+      <button  onClick={handleBook} className="bg-[#94723C] text-white px-5 py-2 text-sm sm:text-base sm:px-6 sm:py-2 rounded-md font-semibold hover:bg-[#902729]">
         Book 
       </button>
-      <BookNow />
+
     </div>
   </div>
 </header>

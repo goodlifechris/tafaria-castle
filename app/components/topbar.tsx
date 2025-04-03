@@ -37,6 +37,7 @@ const TopBar = ({ title, type }: { title: string, type: string }) => {
     router.push('/');
   };
 
+
   useEffect(() => {
     // Scroll to the specific card if the card parameter is present
     if (type) {
