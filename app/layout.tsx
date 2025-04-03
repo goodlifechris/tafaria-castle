@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Head from "next/head";
 import Header from "./components/header";
 import Stories from "./components/stories";
 import WhatsAppButton from "./components/whatsappbutton";
@@ -24,12 +23,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-    
-        <meta name="description" content="Tafaria Castle - Once upon a Dream" />
-        <link rel="stylesheet" href="https://nebulacrs.hti.app/hostech/booknow/static/css/booknow.css" />
-
-      </Head>
 
       <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
 

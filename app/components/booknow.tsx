@@ -14,10 +14,12 @@ declare global {
 
 export default function BookNow() {
   useEffect(() => {
+    // Add JavaScript dynamically
     const script = document.createElement("script");
     script.src = "https://nebulacrs.hti.app/hostech/booknow/static/js/booknow.js";
     script.type = "text/javascript";
     script.async = true;
+
     script.onload = () => {
       if (typeof window.displayBookNow === "function") {
         window.displayBookNow({
@@ -27,14 +29,22 @@ export default function BookNow() {
           autoSearch: true,
           singleProperty: true,
         });
-      }  else {
+      } else {
         console.error("displayBookNow function not found!");
       }
     };
 
+    // Add CSS dynamically
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://nebulacrs.hti.app/hostech/booknow/static/css/booknow.css";
+    link.type = "text/css";
+
+    document.head.appendChild(link);
     document.body.appendChild(script);
 
     return () => {
+      document.head.removeChild(link);
       document.body.removeChild(script);
     };
   }, []);
