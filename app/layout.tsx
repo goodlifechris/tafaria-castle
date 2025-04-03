@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "./booknow.css";
 import Head from "next/head";
 import Header from "./components/header";
 import Stories from "./components/stories";
