@@ -3334,3 +3334,23 @@ td.rdp-cell {
   }
 }
 /*# sourceMappingURL=booknow.css.map*/
+
+p.bn-room-description {
+  color: black;
+}
+
+label.value {
+  color: black;
+}
+
+.bn-hotel-description p {
+  color: black;
+}
+
+.bn-rate-info p {
+  color: black;
+}
+
+.bn-rate-deposit-policy-container p {
+  color: brown;
+}

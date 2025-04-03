@@ -10,8 +10,7 @@ const Book = () => {
       <>
  
       <div className="flex justify-center items-center min-h-screen">
-        <p className="text-2xl font-bold mb-4">Book Now</p>
-             <BookNow />
+        <BookNow />
       </div>
       </>
 

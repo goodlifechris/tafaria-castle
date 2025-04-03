@@ -49,5 +49,5 @@ export default function BookNow() {
     };
   }, []);
 
-  return <div id="booknow"> SWAS</div>;
+  return <div id="booknow"> Book</div>;
 }
