@@ -38,11 +38,14 @@ export default function RootLayout({
 
      <NavigationProvider>
 
-
       <DropdownProvider>
         <div className="bg-white flex flex-col">
           <Head>
             <title>Tafaria Castle</title>
+            <link
+          rel="stylesheet"
+          href="https://cors-anywhere.herokuapp.com/https://nebulacrs.hti.app/hostech/booknow/static/css/booknow.css"
+        />
             <meta
               name="description"
               content="Tafaria Castle - Once upon a Dream"

@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import Select from "react-select";
 import Link from "next/link";
 import { IoLocation } from "react-icons/io5";
+import BookNow from "./booknow";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,6 +58,7 @@ const Header = () => {
       <button  onClick={openBookingPage} className="bg-[#94723C] text-white px-5 py-2 text-sm sm:text-base sm:px-6 sm:py-2 rounded-md font-semibold hover:bg-[#902729]">
         Book 
       </button>
+      <BookNow />
     </div>
   </div>
 </header>
