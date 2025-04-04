@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { FaMailBulk, FaPhone, FaWhatsapp, FaWhatsappSquare } from "react-icons/fa";
-import WhatsAppButton from "../components/whatsappbutton";
+import { FaMailBulk, FaPhone, FaWhatsapp } from "react-icons/fa";
 
 
 const Book = () => {
