@@ -5,7 +5,7 @@ import Header from "./components/header";
 import Stories from "./components/stories";
 import WhatsAppButton from "./components/whatsappbutton";
 import Footer from "./components/footer";
-import { GoogleTagManager } from "@next/third-parties/google";
+// import { GoogleTagManager } from "@next/third-parties/google";
 import { DropdownProvider } from "./context/DropdownContext";
 import { NavigationProvider } from "./context/NavigationContext";
 import { CartProvider } from "./context/CartContext";
