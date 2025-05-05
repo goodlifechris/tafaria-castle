@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Header from "./components/header";
 import Stories from "./components/stories";
@@ -9,6 +10,37 @@ import { DropdownProvider } from "./context/DropdownContext";
 import { NavigationProvider } from "./context/NavigationContext";
 import { CartProvider } from "./context/CartContext";
 import NextTopLoader from "nextjs-toploader";
+// For the <head> section
+ const GoogleTagManagerHead = () => (
+  <Script id="gtm-head" strategy="afterInteractive">
+    {`
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NW6CBG57');
+    `}
+  </Script>
+)
+
+// For the <body> section
+ const GoogleTagManagerBody = () => (
+  <noscript>
+    <iframe 
+      src={`https://www.googletagmanager.com/ns.html?id=GTM-NW6CBG57`}
+      height="0" 
+      width="0" 
+      style={{display:'none',visibility:'hidden'}}
+      aria-hidden="true"
+      tabIndex={-1}
+    />
+  </noscript>
+)
 export const metadata: Metadata = {
   title: {
     default: "Tafaria Castle & Center for the Arts | Luxury Castle Resort Kenya",
@@ -111,7 +143,7 @@ export const metadata: Metadata = {
     siteName: "Tafaria Castle",
     images: [
       {
-        url: "https://www.tafaria.com/og-image.jpg",
+        url: "https://tafariabucket.fra1.cdn.digitaloceanspaces.…oceanspaces.com/images/121kr5y1WqbmUrprl_iMIA.jpg",
         width: 1200,
         height: 630,
         alt: "Tafaria Castle aerial view",
@@ -125,7 +157,7 @@ export const metadata: Metadata = {
     title: "Tafaria Castle | Unique Kenya Castle Resort",
     description: "Luxury castle stays, artist workshops & nature adventures in Aberdare",
     creator: "@TafariaCastle",
-    images: ["https://www.tafaria.com/twitter-card.jpg"],
+    images: ["https://tafariabucket.fra1.cdn.digitaloceanspaces.…oceanspaces.com/images/_TpHwX5AKuuE94KuxjJJbA.jpg"],
   },
   alternates: {
     canonical: "https://www.tafaria.com",
@@ -164,9 +196,13 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
+
+<head>
+        <GoogleTagManagerHead />
+      </head>
 
       <body className="min-h-screen flex flex-col bg-white">
+      <GoogleTagManagerBody />
         <NextTopLoader />
 
         <NavigationProvider>
