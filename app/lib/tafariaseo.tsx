@@ -1,14 +1,6 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "./components/header";
-import Stories from "./components/stories";
-import WhatsAppButton from "./components/whatsappbutton";
-import Footer from "./components/footer";
-import { GoogleTagManager } from "@next/third-parties/google";
-import { DropdownProvider } from "./context/DropdownContext";
-import { NavigationProvider } from "./context/NavigationContext";
-import { CartProvider } from "./context/CartContext";
-import NextTopLoader from "nextjs-toploader";
+// app/layout.tsx
+import type { Metadata } from 'next'
+
 export const metadata: Metadata = {
   title: {
     default: "Tafaria Castle & Center for the Arts | Luxury Castle Resort Kenya",
@@ -155,36 +147,67 @@ export const metadata: Metadata = {
   },
 }
 
+// // Structured data component (add to your layout)
+// export function JsonLdData() {
+//   return (
+//     <script type="application/ld+json">
+//       {JSON.stringify({
+//         "@context": "https://schema.org",
+//         "@type": "Hotel",
+//         "name": "Tafaria Castle & Center for the Arts",
+//         "image": "https://www.tafaria.com/images/logo.jpg",
+//         "@id": "https://www.tafaria.com",
+//         "url": "https://www.tafaria.com",
+//         "telephone": "+254-XXX-XXXXXX",
+//         "priceRange": "$$$",
+//         "address": {
+//           "@type": "PostalAddress",
+//           "streetAddress": "P.O Box 123",
+//           "addressLocality": "Nyeri",
+//           "addressRegion": "Central",
+//           "postalCode": "10100",
+//           "addressCountry": "KE"
+//         },
+//         "geo": {
+//           "@type": "GeoCoordinates",
+//           "latitude": "-0.4201",
+//           "longitude": "36.9476"
+//         },
+//         "openingHoursSpecification": {
+//           "@type": "OpeningHoursSpecification",
+//           "dayOfWeek": [
+//             "Monday",
+//             "Tuesday",
+//             "Wednesday",
+//             "Thursday",
+//             "Friday",
+//             "Saturday",
+//             "Sunday"
+//           ],
+//           "opens": "08:00",
+//           "closes": "20:00"
+//         },
+//         "sameAs": [
+//           "https://www.facebook.com/TafariaCastle",
+//           "https://www.instagram.com/TafariaCastle"
+//         ]
+//       })}
+//     </script>
+//   )
+// }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-
-      <GoogleTagManager gtmId="G-GZKC1WP7FJ" />
-
-      <body className="min-h-screen flex flex-col bg-white">
-        <NextTopLoader />
-
-        <NavigationProvider>
-          <DropdownProvider>
-            <div className="bg-white flex flex-col">
-              <div className="sticky top-0 z-10 w-full">
-                {/* Header */}
-                <Header />
-                {/* Stories */}
-                <Stories />
-              </div>
-              <CartProvider>{children}</CartProvider>
-              <Footer />
-              <WhatsAppButton />
-            </div>
-          </DropdownProvider>
-        </NavigationProvider>
-      </body>
-    </html>
-  );
-}
+// // Usage in layout component
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode
+// }) {
+//   return (
+//     <html lang="en">
+//       <body>
+//         <JsonLdData />
+//         {children}
+//       </body>
+//     </html>
+//   )
+// }

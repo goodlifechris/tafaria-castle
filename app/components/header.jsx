@@ -5,6 +5,7 @@ import Select from "react-select";
 import Link from "next/link";
 import { IoLocation } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { FaFacebookF, FaInstagram, FaLocationArrow, FaMapMarked, FaMapMarker, FaMapPin, FaTwitter } from "react-icons/fa";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,9 +50,23 @@ const Header = () => {
 
     </div>
        <div className="flex items-center space-x-3">
-    <a className="bg-[#f673735d]  rounded-full p-2" href="https://www.google.com/maps/search/Tafaria+Castle/@-0.1164533,36.6279602,17z?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" >
+             <div className='hidden  items-center space-x-4   md:flex '>
+                <a href="https://www.facebook.com/TafariaCaslteArts/" target="_blank" rel="noopener noreferrer">
+                  <FaFacebookF className="text-white bg-[#902729] rounded-full p-2 "  size={28} />
+                </a>
+                <a href="https://x.com/tafariacastle?lang=en" target="_blank" rel="noopener noreferrer">
+                  <FaTwitter className="text-white  bg-[#902729]  rounded-full p-2 "  size={28}/>
+                </a>
+                <a href="https://www.instagram.com/tafaria.castle/" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram className="text-white  bg-[#902729]  rounded-full p-2 "  size={28} />
+                </a>
+                <a href="https://www.google.com/maps/search/Tafaria+Castle/@-0.1164533,36.6279602,17z?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+                  <FaMapMarker className="text-white  bg-[#902729]  rounded-full p-2 "  size={28} />
+                </a>
+              </div>
+    {/* <a className="bg-[#f673735d]  rounded-full p-2" href="https://www.google.com/maps/search/Tafaria+Castle/@-0.1164533,36.6279602,17z?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" >
       <IoLocation className="lg:text-4xl sm:text-sm md:text-2xl text-[#902729]"/>
-        </a>
+        </a> */}
       <a href="tel:070015000" className="text-black  text-xs underline">
         0700151480
       </a>

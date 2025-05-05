@@ -36,6 +36,14 @@ const nextConfig: NextConfig = {
         search: "",
       },
       {
+        protocol: "http",
+        hostname: "10.106.5.117:3000",
+        port: "3000",
+        pathname: "/**",
+        search: "",
+      },
+      
+      {
         protocol: "https",
         hostname: "tafariabucket.fra1.digitaloceanspaces.com",
         port: "",
