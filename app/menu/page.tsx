@@ -12,6 +12,7 @@ import { fetchPostsByCategory } from "../querries/categories/getpostsfromcategor
 import ImageGallery from "../components/imagegallery";
 import VideoGallery from "../components/videogallery";
 import VideoGalleryFromPost from "../components/videogalleryfrompost";
+import BlogCardHorizontal from "../components/blogCardHorizontal";
 
 export interface Session {
   title: string;
@@ -91,33 +92,69 @@ const MenuContent = () => {
 
 
 
-        {data && type == "Blogs" ? (
-          data?.posts.map((item, index) => (
-            <div key={index} ref={(el) => { if (el) cardRefs.current[item.title] = el; }} className="mb-4">
-              <BlogCard
-                id={item.id}
-                key={index}
-                imageUrls={item.images.map((image: any) => ({
-                  title: image.title,
-                  url: image?.image?.url || '',
-                }))}
-                videoUrls={
-                  item.videos && item.videos.length > 0
-                    ? item.videos.map((video: any) => ({
-                      title: video.title,
-                      url: video?.video?.url || '',
-                    }))
-                    : []
-                }
-                title={item.title}
-                createdAt={item.createdAt}
-                content={item.content}
-              />
-            </div>
-          ))
-        ) : (
-          <></>
-        )}
+{data && type === "Blogs" ? (
+  <div className="relative">
+    {/* Horizontal scroll container for mobile */}
+    <div className="flex overflow-x-auto pb-4 space-x-4 md:hidden hide-scrollbar">
+      {data?.posts.map((item, index) => (
+        <div 
+          key={index}
+          ref={(el) => { if (el) cardRefs.current[item.title] = el; }}
+          className="flex-shrink-0 w-[85vw]"
+        >
+          <BlogCard
+            id={item.id}
+            imageUrls={item.images.map((image: any) => ({
+              title: image.title,
+              url: image?.image?.url || '',
+            }))}
+            videoUrls={
+              item.videos && item.videos.length > 0
+                ? item.videos.map((video: any) => ({
+                  title: video.title,
+                  url: video?.video?.url || '',
+                }))
+                : []
+            }
+            title={item.title}
+            createdAt={item.createdAt}
+            content={item.content}
+          />
+        </div>
+      ))}
+    </div>
+
+    {/* Grid layout for desktop */}
+    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {data?.posts.map((item, index) => (
+        <div 
+          key={index}
+          className="h-full"
+          ref={(el) => { if (el) cardRefs.current[item.title] = el; }}
+        >
+          <BlogCardHorizontal
+            id={item.id}
+            imageUrls={item.images.map((image: any) => ({
+              title: image.title,
+              url: image?.image?.url || '',
+            }))}
+            videoUrls={
+              item.videos && item.videos.length > 0
+                ? item.videos.map((video: any) => ({
+                  title: video.title,
+                  url: video?.video?.url || '',
+                }))
+                : []
+            }
+            title={item.title}
+            createdAt={item.createdAt}
+            content={item.content}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+) : null}
 
 {data && type == "Images" ? (
 

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { IoLocation } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { FaFacebookF, FaInstagram, FaLocationArrow, FaMapMarked, FaMapMarker, FaMapPin, FaTwitter } from "react-icons/fa";
+import Image from "next/image";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,8 +42,10 @@ const Header = () => {
     {/* Logo */}
     <div className="flex items-center">
       <Link href="/">
-        <img
-          src="./logo.png"
+        <Image
+          src="/logo.png"
+          width={100}
+          height={100}
           alt="Tafaria Castle Logo"
           className="w-16 h-16 sm:w-24 sm:h-24 "
         />

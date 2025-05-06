@@ -80,7 +80,6 @@ type FetchHeroSectionResponse = {
 export const fetchHerosection = async (): Promise<HeroSection | null> => {
   try {
     const data: FetchHeroSectionResponse = await graphqlClient.request(GET_PUBLISHED_HERO_SECTION, variables);
-    console.log("wassuop ",data.heroSections[0] )
     return data.heroSections[0] || null; // Returning the first published hero section or null if none
 
   } catch (error) {

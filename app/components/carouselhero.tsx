@@ -4,13 +4,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import { FaPause, FaPlay } from "react-icons/fa"; // Import play icon
 import { Video, VideoPlayerRef } from "reactjs-media";
+import Image from "next/image";
 // import VideoYouTubePlayer from "./videoyoutubeplayer";
 
 export interface Image {
   title: string;
   url: string;
   link: string;
-
 }
 
 export interface Video {
@@ -18,7 +18,6 @@ export interface Video {
   url: string;
   link: string;
 }
-
 
 export interface VideoLinks {
   title: string;
@@ -32,7 +31,11 @@ interface CarouselsProps {
   videolinks: VideoLinks[]; // Array of video objects
 }
 
-const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => {
+const Carousels: React.FC<CarouselsProps> = ({
+  images,
+  videos,
+  videolinks,
+}) => {
   const combinedUrls = [...images, ...videos];
 
   const [activeIndex, setActiveIndex] = useState(0); // Track active slide
@@ -42,7 +45,6 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => 
     if (playingIndex !== null) return; // Prevent slide change when a video is playing
     setActiveIndex(index);
   };
-
 
   const videoRef = useRef<VideoPlayerRef | null>(null); // Video ref
 
@@ -91,7 +93,6 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => 
   //     videoRef.current.pause(); // Directly call pause on the video ref
   //   }
   // };
-  console.log("what is the data", videolinks)
 
   return (
     <div className="carousel w-56 mb-4 sm:w-full bg-[#902729]">
@@ -106,16 +107,13 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => 
         swipeable={playingIndex === null} // Disable swipe when video is playing
       >
         {combinedUrls.map((media, index) => (
-
           <div key={index} className="relative bg-[#902729] ">
+            {media.url.endsWith(".mp4") && (
+              <div className="relative ">
+                {/* Video Element */}
+                <p className="mb-5">{media.title}</p>
 
-            {
-              media.url.endsWith(".mp4") && (
-                <div className="relative ">
-                  {/* Video Element */}
-                  <p className="mb-5">{media.title}</p>
-
-                  {/* <video
+                {/* <video
                 playsInline
                   ref={(el) => {
                     videoRefs.current[index] = el;
@@ -132,8 +130,8 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => 
                   <source src={media.url} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video> */}
-                  <div className="flex justify-center bg-[#d . . . . . . .  wdmnc ewmn, wemv wnv ] items-center w-full pb-10">
-                    {/* <Video
+                <div className="flex justify-center bg-[#d . . . . . . .  wdmnc ewmn, wemv wnv ] items-center w-full pb-10">
+                  {/* <Video
                         ref={videoRef} // Attach ref to Video component
 
          src={media.url} 
@@ -141,64 +139,76 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos, videolinks }) => 
         height={500}
         width={800}
       /> */}
-                    {/* <button onClick={handlePlay}>Play</button>
+                  {/* <button onClick={handlePlay}>Play</button>
             <button onClick={handlePause}>Pause</button> */}
 
-                    <div
-                      style={{
-                        position: "relative",
-                        cursor: "pointer",
-                      }}
-                      onClick={handleTogglePlayPause} // Toggle video on click/tap
-                    >
-                      {/* Video Component */}
-                      <Video
-                        ref={videoRef}
-                        src={media.url}
-                        controls={false} // Hide default controls
-                        height={800}
-                        width={'1000vh'}
-                      />
-                      {/* <VideoYouTubePlayer videoId="DWLQS_wei_s" /> */}
+                  <div
+                    style={{
+                      position: "relative",
+                      cursor: "pointer",
+                    }}
+                    onClick={handleTogglePlayPause} // Toggle video on click/tap
+                  >
+                    {/* Video Component */}
+                    <Video
+                      ref={videoRef}
+                      src={media.url}
+                      controls={false} // Hide default controls
+                      height={800}
+                      width={"1000vh"}
+                    />
+                    {/* <VideoYouTubePlayer videoId="DWLQS_wei_s" /> */}
+                  </div>
+                </div>
 
-
-
+                {/* Play Button Overlay */}
+                {showControls && (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                    onClick={handleTogglePlayPause}
+                  >
+                    <div className="bg-white rounded-full p-3 shadow-lg">
+                      {isPlaying ? (
+                        <FaPause className="text-[#902729] text-2xl" />
+                      ) : (
+                        <FaPlay className="text-[#902729] text-2xl" />
+                      )}
                     </div>
                   </div>
-
-                  {/* Play Button Overlay */}
-                  {showControls && (
-                    <div
-                      className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                      onClick={handleTogglePlayPause}
-                    >
-                      <div className="bg-white rounded-full p-3 shadow-lg">
-                        {isPlaying ? <FaPause className="text-[#902729] text-2xl" /> : <FaPlay className="text-[#902729] text-2xl" />}
-
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            }
-{/* 
+                )}
+              </div>
+            )}
+            {/* 
             {media.link && media.link?.includes("youtube") &&
 
               <VideoYouTubePlayer videoId={getYouTubeVideoID(media.link)} />
             } */}
 
+            {/* //show image */}
+            <div className="grid grid-cols-1">
+  {/* Iframe positioned first in DOM but visually on top */}
+  <div className="row-start-1 col-start-1 z-10 mt-5 bottom-50" >
+    <iframe
+      src="https://booking-engine-self.vercel.app"
+      height="280px"
+      title="Example Embed"
+    />
 
-{/* //show image */}
-{
-              media.url.endsWith(".jpg") &&
-<img
-  src={media.url}
-  alt={`Carousel image ${index + 1}`}
-  className="w-full   object-cover "
-/>
-
-}
-
+  </div>
+  
+  {/* Image positioned behind */}
+  {media.url.endsWith(".jpg") && (
+    <div className="row-start-1 col-start-1 z-0">
+      <Image
+        width={1000}
+        height={500}
+        src={media.url}
+        alt={`Carousel image ${index + 1}`}
+        className="w-full object-contain"
+      />
+    </div>
+  )}
+</div>
           </div>
         ))}
       </Carousel>

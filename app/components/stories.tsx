@@ -7,6 +7,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import arrow 
 import { useQuery } from '@tanstack/react-query';
 import { fetchCategories } from "../querries/categories/getcategories";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Image from "next/image";
 
 const montaga = Montaga({
   weight: '400',
@@ -32,7 +33,9 @@ const StoriesContent = () => {
           <div
             className="flex-shrink-0 flex flex-col items-center space-y-1 py-2 min-w-[80px] sm:min-w-[100px]"
           >
-            <img
+            <Image
+            width={100}
+            height={100}
               className={`w-26 h-20 sm:w-24 sm:h-24 md:w-24 md:h-24 rounded-full object-cover
                 ${activeCategory === img.name 
                   ? 'ring-4 ring-white' 

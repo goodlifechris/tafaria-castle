@@ -7,9 +7,6 @@ import Hero from "./hero";
 import AboutsIntro from "./aboutsintro";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-
-
-
 const Introduction = () => {
   // const [showAfterIntroduction, setShowAfterIntroduction] = useState(false);
   // const [imageLoaded, setImageLoaded] = useState(false); // State to track image loading
@@ -22,7 +19,7 @@ const Introduction = () => {
   useEffect(() => {
     // Preload the background image
     const img = new Image();
-    img.src = '/images/home.png';
+    img.src = "/images/home.png";
     img.onload = () => {
       // setImageLoaded(true); // Set imageLoaded to true when the image is loaded
     };
@@ -30,45 +27,12 @@ const Introduction = () => {
 
   return (
     <>
-      {/* Parallax Section */}
-      {/* {imageLoaded && ( // Render only if the image is loaded
-        <div
-          className="relative w-full aspect-[1.75] bg-no-repeat bg-cover bg-center"
-          style={{ backgroundImage: `url('/images/home.png')` }}
-        >
-          <div className="flex w-full bottom-0 absolute py-2 text-center our-story-background">
-            <div className="w-screen flex justify-center items-center">
-              <div className="text-gray-800 text-center mx-4 md:mx-20 lg:mx-40 text-sm md:text-base lg:text-lg">
-                <h1 className={`font-inter mt-9 text-2xl font-extrabold tracking-tight text-[#902729] ${barlow_condensed.className}`}>
-                  Once upon a Dream ...,
-                </h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      )} */}
-        <Suspense fallback={<div className="preloader">Loading...</div>}>
-
-        <Hero/>
-
+      <Suspense fallback={<div className="preloader">Loading...</div>}>
+        <Hero />
       </Suspense>
       <QueryClientProvider client={queryClient}>
-
-
-              <AboutsIntro/>
-    
-              </QueryClientProvider>
-
-
-      {/* <div className="text-center text-black text-base px-4">
-        {!showAfterIntroduction && (
-          <p className="cutom-text">
-            Eunice and I founded the Tafaria Castle in 2012AD to transform
-            this village where I grew up...{" "}
-            <span onClick={toggleReadMore} className="underline text-blue-600">read more</span>
-          </p>
-        )}
-      </div> */}
+        <AboutsIntro />
+      </QueryClientProvider>
 
       {/* Animated AfterIntroduction Section */}
       {/* <AnimatePresence>
@@ -83,7 +47,6 @@ const Introduction = () => {
           </motion.div>
         )}
       </AnimatePresence> */}
-
     </>
   );
 };

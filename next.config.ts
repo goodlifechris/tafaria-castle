@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "app.tafaria.com",
+        hostname: "tafaria.com",
         port: "",
         pathname: "/**",
       },
@@ -49,7 +49,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: 'https',
+        hostname: 'tafariabucket.fra1.cdn.digitaloceanspaces.com',
+      },
     ],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
   async rewrites() {
     return [

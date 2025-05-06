@@ -5,6 +5,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { FiShare2, FiHeart, FiX } from "react-icons/fi";
 import { useInView } from "react-intersection-observer";
 import BlogCard from "./blogcard";
+import Image from "next/image";
 
 const PostGallery = () => {
   const [likedPosts, setLikedPosts] = useState<string[]>([]); // Track liked posts
@@ -136,7 +137,7 @@ const PostGallery = () => {
             </button>
             <div className="flex flex-col items-center">
               {selectedPost.images && selectedPost.images[0] && (
-                <img
+                <Image
                   src={selectedPost.images[0].image.url}
                   alt={selectedPost.title}
                   className="w-full object-contain h-auto max-h-96 mb-4"

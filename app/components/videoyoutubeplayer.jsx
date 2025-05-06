@@ -10,7 +10,7 @@ const VideoYouTubePlayer = ({ videoId }) => {
     <div className="relative  mx-auto h-96">
       {!isPlaying ? (
         <div className="relative cursor-pointer h-full" onClick={() => setIsPlaying(true)}>
-          <img src={thumbnailUrl} alt="Video Thumbnail" className="w-full h-full object-cover rounded-lg" />
+          <Image src={thumbnailUrl} alt="Video Thumbnail" className="w-full h-full object-cover rounded-lg" />
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
             <button className="bg-red-600 text-white p-3 rounded-full shadow-lg">
               ▶

@@ -5,6 +5,7 @@ import Carousels from './carousel';
 import { FaRegHeart, FaHeart } from 'react-icons/fa'; // Import both outline and filled heart icons
 import { FiSend } from "react-icons/fi";
 import ContentView from './contentview';
+import Image from 'next/image';
 
 //👇 Configure our font object
 const barlow_condensed = Barlow_Condensed({
@@ -91,7 +92,7 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
         <div>
           <h2 className="text-xl font-semibold md:block lg:block sm:hidden max-sm:hidden  text-[#902729]">{title}</h2>
           <div className="flex items-center mb-4 text-sm">
-            <img src="/images/carlendar.svg" alt="SVG image" />
+            <Image width={18} height={18} src="/images/carlendar.svg" alt="SVG image" />
             <span className={`ml-2 my-2 text-gray-500 ${montaga.className}`}>
               {new Date(createdAt).toLocaleDateString('en-US', {
                 day: '2-digit',

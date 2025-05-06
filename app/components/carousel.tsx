@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { FaPlay, FaPause } from 'react-icons/fa'; // Import play/pause icons
+import Image from 'next/image';
 
 export interface Image {
   title: string;
@@ -111,7 +112,9 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
                 </div>
               </div>
             ) : (
-              <img 
+              <Image
+              width={1000}
+              height={100} 
                 src={media.url} 
                 alt={`Carousel image ${index + 1}`} 
                 className="w-full object-cover"

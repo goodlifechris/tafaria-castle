@@ -47,7 +47,7 @@ const BlogPostCard = ({ title, date, description, imageUrl }: BlogPostCardProps)
           {title}
         </h3>
         <div className="flex items-center mb-4 text-sm">
-          <img src="/images/carlendar.svg" alt="SVG image" />
+          <Image width={10} height={10} src="/images/carlendar.svg" alt="SVG image" />
           <span className={`ml-2 text-gray-500 ${montaga.className}`}>
             {new Date(date).toLocaleDateString('en-US', {
               day: '2-digit',

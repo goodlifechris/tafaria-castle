@@ -3,6 +3,7 @@ import React from 'react';
 import { GiftShop } from '../../querries/giftshop/getgiftshops';
 import { IoIosRemoveCircle } from 'react-icons/io';
 import { Barlow_Condensed } from 'next/font/google';
+import Image from 'next/image';
 
 interface CartDetailsProps {
   cart: GiftShop[];
@@ -24,7 +25,7 @@ const CartDetails: React.FC<CartDetailsProps> = ({ cart, removeFromCart, getTota
       <div className="flex flex-col space-y-4 text-black">
         {cart.map((item) => (
           <div key={item.id} className="flex items-center border p-4 rounded-lg">
-            <img src={item.images[0].image.url} alt={item.title} className="w-16 h-16 object-cover mr-4" />
+            <Image src={item.images[0].image.url} alt={item.title} className="w-16 h-16 object-cover mr-4" />
             <div className="flex-1">
               <h3 className="text-left text-lg font-bold">{item.title}</h3>
               <h2 className="text-left">{item.description}</h2>

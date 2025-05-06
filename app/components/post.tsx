@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa"; // Import both outline and filled heart icons
 import { FiSend } from "react-icons/fi";
@@ -23,7 +24,7 @@ const PostCard = ({ imageUrl, text ,title,createdAt }: { imageUrl: string; text:
     <div className="max-w-md mx-auto mt-2 rounded-lg overflow-hidden shadow-lg bg-white">
       {/* Image */}
       <div className="relative">
-        <img
+        <Image
           src={imageUrl}
           alt="Post Image"
           className="w-full object-cover"

@@ -1,6 +1,7 @@
 import React from "react";
 import { GiftShop } from "../../querries/giftshop/getgiftshops";
 import { useCart } from "../../context/hook/UseCart"
+import Image from "next/image";
 
 interface ItemsListProps {
   items: GiftShop[] | undefined;
@@ -16,7 +17,9 @@ const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
 
         return (
           <div key={item.id} className="border p-4 rounded-lg">
-            <img
+            <Image
+            width={100}
+            height={100}
               src={item.images[0]?.image.url}
               alt={item.title}
               className="w-full object-cover mb-2"
