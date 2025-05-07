@@ -187,7 +187,7 @@ const Carousels: React.FC<CarouselsProps> = ({
             {/* //show image */}
             <div>
               {/* Full-width background image */}
-              {media.url.endsWith(".jpg") && (
+              {(media.url.endsWith(".jpg")||media.url.endsWith(".png") ) && (
                 <div className="w-full">
                   <Image
                     width={1000}
@@ -200,16 +200,26 @@ const Carousels: React.FC<CarouselsProps> = ({
                 </div>
               )}
 
+
+
               {/* Iframe positioned absolutely on the right */}
-              <div className="flex items-center w-full">
-                <iframe
-                  src="https://booking-engine-self.vercel.app"
-                  height="440px"
-                  // width="300px" // Adjust width as needed
-                  title="Example Embed"
-                  className="border-none m-0 p-0 absolute right-0 flex bg-red"
-                />
-              </div>
+              <div className="flex items-center w-full relative bottom-20 ">
+      <iframe
+        src="https://booking-engine-self.vercel.app"
+        height="300px"
+        width={300}
+        title="Booking Engine"
+        className="border-none m-0 p-0 absolute right-0 flex w-full z-10 bg-transparent mb-10"
+        style={{ background: "red !important", paddingBottom:"100px" }} // Match iframe height
+        
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        loading="lazy"
+        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-presentation"
+
+     
+      />
+    </div>
             </div>
           </div>
         ))}
