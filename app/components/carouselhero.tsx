@@ -48,6 +48,7 @@ const Carousels: React.FC<CarouselsProps> = ({
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
+    console.log(isMobile,videolinks)
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);

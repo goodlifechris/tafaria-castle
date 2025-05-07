@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchHerosection } from "../querries/herosection/getherosection";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import CarouselHero from "./carouselhero";
-import Image from "next/image";
 import BannerPopup from "./bannerpopup";
 
 // Create a separate component for the stories content
