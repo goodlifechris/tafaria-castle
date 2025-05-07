@@ -24,8 +24,8 @@ const BannerPopup = () => {
     return () => clearInterval(interval);
   }, [isOpen, banners.length]);
 
-  const goToSlide = (index:any) => {
-    setCurrentSlide(index);
+  const goToSlide = (indexs:number) => {
+    setCurrentSlide(indexs);
   };
 
   const goToPrevSlide = () => {
@@ -152,7 +152,7 @@ const BannerPopup = () => {
               }}>
                 {banners.map((banner, index) => (
                   <div 
-                    key={banner.id}
+                    key={index}
                     style={{
                       minWidth: '100%',
                       height: '100%',
