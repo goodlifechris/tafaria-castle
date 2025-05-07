@@ -8,6 +8,8 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchCategories } from "../querries/categories/getcategories";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Image from "next/image";
+import FlyingAdBanner from "./flyingbanner";
+import AnimatedImage from "./flyingbanner";
 
 const montaga = Montaga({
   weight: '400',
@@ -151,6 +153,12 @@ const Stories = () => {
         </button>
       )}
     </div>
+    {/* <AnimatedImage 
+  src="/images/banner.png" 
+  alt="Description" 
+  width={500} 
+  height={300}
+/> */}
     {/* <QueryClientProvider client={queryClient}>
     <Search onActivitySelect={handleActivitySelect} />
     </QueryClientProvider> */}
