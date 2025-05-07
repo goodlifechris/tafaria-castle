@@ -193,6 +193,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
 
@@ -216,8 +218,8 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-white">
       <GoogleTagManagerBody />
         <NextTopLoader />
-
         <NavigationProvider>
+     
           <DropdownProvider>
             <div className="bg-white flex flex-col">
               <div className="sticky top-0 z-10 w-full">
@@ -228,6 +230,7 @@ export default function RootLayout({
               </div>
               <CartProvider>{children}</CartProvider>
               <Footer />
+
               <WhatsAppButton />
             </div>
           </DropdownProvider>

@@ -185,30 +185,32 @@ const Carousels: React.FC<CarouselsProps> = ({
             } */}
 
             {/* //show image */}
-            <div className="grid grid-cols-1">
-  {/* Iframe positioned first in DOM but visually on top */}
-  <div className="row-start-1 col-start-1 z-10 mt-5 bottom-50" >
-    <iframe
-      src="https://booking-engine-self.vercel.app"
-      height="280px"
-      title="Example Embed"
-    />
+            <div>
+              {/* Full-width background image */}
+              {media.url.endsWith(".jpg") && (
+                <div className="w-full">
+                  <Image
+                    width={1000}
+                    height={500}
+                    src={media.url}
+                    alt={`Carousel image ${index + 1}`}
+                    className="w-full object-cover"
+                    style={{ height: "600px" }} // Match iframe height
+                  />
+                </div>
+              )}
 
-  </div>
-  
-  {/* Image positioned behind */}
-  {media.url.endsWith(".jpg") && (
-    <div className="row-start-1 col-start-1 z-0">
-      <Image
-        width={1000}
-        height={500}
-        src={media.url}
-        alt={`Carousel image ${index + 1}`}
-        className="w-full object-contain"
-      />
-    </div>
-  )}
-</div>
+              {/* Iframe positioned absolutely on the right */}
+              <div className="flex items-center w-full bg-red-800">
+                <iframe
+                  src="https://booking-engine-self.vercel.app"
+                  height="440px"
+                  width="300px" // Adjust width as needed
+                  title="Example Embed"
+                  className="border-none m-0 p-0 absolute right-0 flex bg-red-800"
+                />
+              </div>
+            </div>
           </div>
         ))}
       </Carousel>
