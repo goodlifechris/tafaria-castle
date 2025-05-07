@@ -8,8 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchCategories } from "../querries/categories/getcategories";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Image from "next/image";
-import FlyingAdBanner from "./flyingbanner";
-import AnimatedImage from "./flyingbanner";
+
 
 const montaga = Montaga({
   weight: '400',

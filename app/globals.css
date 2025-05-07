@@ -185,7 +185,6 @@ sudo ln -s /etc/nginx/sites-available/tafaria-castle /etc/nginx/sites-enabled/ *
 
 .masonry-item {
   break-inside: avoid;
-  margin-bottom: 1rem;
   width: 100%;
 }
 

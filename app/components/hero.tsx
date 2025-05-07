@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchHerosection } from "../querries/herosection/getherosection";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import CarouselHero from "./carouselhero";
+import Image from "next/image";
+import BannerPopup from "./bannerpopup";
 
 // Create a separate component for the stories content
 const HeroSection = () => {
@@ -16,7 +18,11 @@ const HeroSection = () => {
   if (error) return <p>Error: {error.message}</p>;
   const herosection = data;
   return (
+    <div>
+
+  <BannerPopup />
     <div className="flex space-x-6">
+
       <CarouselHero
         images={
           herosection?.images?.map((image: any) => ({
@@ -40,6 +46,7 @@ const HeroSection = () => {
           })) || []
         }
       />
+    </div>
     </div>
   );
 };
