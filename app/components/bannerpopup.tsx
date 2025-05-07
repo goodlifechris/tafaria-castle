@@ -24,7 +24,7 @@ const BannerPopup = () => {
     return () => clearInterval(interval);
   }, [isOpen, banners.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = (index:any) => {
     setCurrentSlide(index);
   };
 
@@ -47,7 +47,6 @@ const BannerPopup = () => {
           position: 'fixed',
           right: '20px',
           top: '50%',
-          transform: 'translateY(-50%)',
           zIndex: 10,
           padding: '18px 24px',
           backgroundColor: '#902729',
