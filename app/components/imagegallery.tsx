@@ -13,7 +13,7 @@ const ImageGallery = () => {
     useInfiniteQuery({
       queryKey: ["images"],
       queryFn: async ({}) => {
-        const images = await fetchImages(); // Modify fetchImages to accept pagination if needed
+        const images = await fetchImages({tagTitle:"Homepage"}); // Modify fetchImages to accept pagination if needed
         return images;
       },
       getNextPageParam: (pages) => {

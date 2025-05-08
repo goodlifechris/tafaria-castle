@@ -74,8 +74,9 @@ const TopBar = ({ title, type }: { title: string, type: string }) => {
 
               <Link
 
-                href={`/menu?id=${title}&name=${encodeURIComponent(title)}&type=${encodeURIComponent('Images')}`}
-              >
+// href={`/menu?id=${title}&name=${encodeURIComponent(title)}&type=${encodeURIComponent('Images')}`}
+href={`/menu/${encodeURIComponent(title)}/${encodeURIComponent('Images')}`}
+>
                 <button
                   className={`px-4 py-2 ${activeTab === 'Images' ? 'bg-[#902729] text-white' : 'bg-gray-200 text-[#902729]'} rounded-full`}
                   onClick={() => setActiveTab('Images')}
@@ -85,8 +86,9 @@ const TopBar = ({ title, type }: { title: string, type: string }) => {
               </Link>
               <Link
 
-                href={`/menu?id=${title}&name=${encodeURIComponent(title)}&type=${encodeURIComponent('Videos')}`}
-              >
+// href={`/menu?id=${title}&name=${encodeURIComponent(title)}&type=${encodeURIComponent('Videos')}`}
+href={`/menu/${encodeURIComponent(title)}/${encodeURIComponent('Videos')}`}
+>
                 <button
                   className={`px-4 py-2 ${activeTab === 'Videos' ? 'bg-[#902729] text-white' : 'bg-gray-200 text-[#902729]'} rounded-full`}
                   onClick={() => setActiveTab('Videos')}

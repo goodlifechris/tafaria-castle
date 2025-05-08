@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 
+// Function to escape XML special characters
 function escapeXml(unsafe: string): string {
   return unsafe.replace(/[<>&'"]/g, (c) => {
     switch (c) {
@@ -13,60 +14,36 @@ function escapeXml(unsafe: string): string {
   });
 }
 
+// Dynamically determine base URL
+const isDev = process.env.NODE_ENV === 'development';
+const baseUrl = isDev ? 'http://localhost:3000' : 'https://tafaria.com';
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://tafaria.com'; // Always use production URL
+  // Paths that define categories, and these will have the last segment for each of Blogs, Videos, Images
+  const categories = ['Blogs', 'Videos', 'Images'];
   
-  // Your exact URLs (converted from localhost to production domain)
-  const urls = [
-    {
-      url: `${baseUrl}/`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/menu?id=Country%20Lodge&name=Country%20Lodge&type=Blogs`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/menu?id=Conference%20Center&name=Conference%20Center&type=Blogs`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/menu?id=For%20Students&name=For%20Students&type=Blogs`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/menu?id=Leisure%20Activities&name=Leisure%20Activities&type=Blogs`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/menu?id=Gift%20Shop&name=Gift%20Shop&type=Blogs`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/menu?id=Blogs&name=Blogs&type=Blogs`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    }
+  // These are the different sections like 'Country Lodge', 'For Students', etc.
+  const sections = [
+    'Country Lodge',
+    'Conference Center',
+    'For Students',
+    'Leisure Activities',
+    'Gift Shop',
+    'Blogs',
   ];
 
-  // Properly escape all URLs for XML output
-  return urls.map(item => ({
-    ...item,
-    url: escapeXml(item.url)
-  }));
-}
+  // Now, generate the URLs by iterating over both sections and categories
+  const urls = sections.flatMap(section => 
+    categories.map(category => {
+      const path = `/menu/${encodeURIComponent(section)}/${encodeURIComponent(category)}`;
+      return {
+        url: escapeXml(`${baseUrl}${path}`),
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      };
+    })
+  );
 
-// No need for revalidation since this is completely static
+  return urls;
+}

@@ -3,12 +3,10 @@
 "use client";
 
 import BlogCard from "../components/blogcard";
-import { useSearchParams } from 'next/navigation';
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef } from "react";
 import ImagegalleryFromPost from "../components/imagegalleryfrompost";
 import TopBar from "../components/topbar";
 import Cart from "../components/cart/cart";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { fetchPostsByCategory } from "../querries/categories/getpostsfromcategories";
 import ImageGallery from "../components/imagegallery";
@@ -22,39 +20,40 @@ export interface Session {
   description: string;
 }
 
-export default function MenuClient() {
-  const searchParams = useSearchParams();
-  const title = searchParams.get('name');
-  const type = searchParams.get('type');
-  const card = searchParams.get('card');
-  const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-//   const [queryClient] = useState(() => new QueryClient());
-const [queryClient] = useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: Infinity,
-      },
-    },
-  }));
-  useEffect(() => {
-    // Scroll to the specific card if the card parameter is present
-    if (card) {
-      const newUrl = new URL(window.location.href);
-      newUrl.searchParams.set('reload', Date.now().toString());
-      window.location.href = newUrl.toString();
-      const targetCard = cardRefs.current[card];
-      if (targetCard) {
-        const headerOffset = 360;
-        const elementPosition = targetCard.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - headerOffset;
+export default function MenuClient({
+    initialName,
+    initialType,
+  }: {
+    initialName?: string;
+    initialType?: string;
+  }) {
+    const title = initialName ? decodeURIComponent(initialName) : undefined;
+    const type = initialType ? decodeURIComponent(initialType) : undefined;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    }
-  }, [card]);
+  console.log("Title: ", title); //Country%20Lodge
+  console.log("type: ", type);
+
+  const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+//   useEffect(() => {
+//     // Scroll to the specific card if the card parameter is present
+//     if (card) {
+//       const newUrl = new URL(window.location.href);
+//       newUrl.searchParams.set('reload', Date.now().toString());
+//       window.location.href = newUrl.toString();
+//       const targetCard = cardRefs.current[card];
+//       if (targetCard) {
+//         const headerOffset = 360;
+//         const elementPosition = targetCard.getBoundingClientRect().top + window.scrollY;
+//         const offsetPosition = elementPosition - headerOffset;
+
+//         window.scrollTo({
+//           top: offsetPosition,
+//           behavior: 'smooth'
+//         });
+//       }
+//     }
+//   }, [card]);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['categories', title],
@@ -71,7 +70,7 @@ const [queryClient] = useState(() => new QueryClient({
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <QueryClientProvider client={queryClient}>
+    // <QueryClientProvider client={queryClient}>
       <div className="w-full">
         {title === 'Leisure Activities' ? (
           <LeisureTickets/>
@@ -162,6 +161,6 @@ const [queryClient] = useState(() => new QueryClient({
           </>
         )}
       </div>
-    </QueryClientProvider>
+    // </QueryClientProvider>
   );
 }

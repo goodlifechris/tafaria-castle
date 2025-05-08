@@ -10,6 +10,9 @@ import { DropdownProvider } from "./context/DropdownContext";
 import { NavigationProvider } from "./context/NavigationContext";
 import { CartProvider } from "./context/CartContext";
 import NextTopLoader from "nextjs-toploader";
+import type { Viewport } from 'next';
+
+
 // For the <head> section
  const GoogleTagManagerHead = () => (
   <Script id="gtm-head" strategy="afterInteractive">
@@ -187,14 +190,19 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
-  themeColor: '#5E3217',
   category: 'travel & hospitality',
   verification: {
     google: 'your-google-verification-code',
     yandex: 'your-yandex-verification-code',
   },
 }
-
+export const viewport: Viewport = {
+  themeColor: '#902729', // Your brand color
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export default function RootLayout({
   children,

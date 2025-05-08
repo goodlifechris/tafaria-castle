@@ -2,12 +2,12 @@
 import React, { Suspense, useRef, useState, useEffect } from "react"; // Add useState and useEffect
 import { Montaga } from 'next/font/google';
 import Link from "next/link";
-import { useSearchParams } from 'next/navigation';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import arrow icons
 import { useQuery } from '@tanstack/react-query';
 import { fetchCategories } from "../querries/categories/getcategories";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Image from "next/image";
+import { useParams } from "next/navigation";
 
 
 const montaga = Montaga({
@@ -18,8 +18,18 @@ const montaga = Montaga({
 
 // Create a separate component for the stories content
 const StoriesContent = () => {
-  const searchParams = useSearchParams();
-  const activeCategory = searchParams.get('name');
+  const params = useParams() as { slug: string[] };
+  const slugSegments = params?.slug || [];
+  // Decode segments
+  const [category = "Default Category", 
+    name = "Default Name", 
+    type = "All"] = slugSegments.map((segment: string) => 
+decodeURIComponent(segment)
+);
+  const activeCategory =category;
+  console.log("Active searchParams: ", category);
+  console.log("Active Category: ", name);
+  console.log("Active Category: ", type);
   const { data, isLoading, error } = useQuery({ queryKey: ['categories'], queryFn: fetchCategories });
   if (isLoading) return <p>Loading categories...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -29,7 +39,8 @@ const StoriesContent = () => {
       {categories && Array.from(categories).map((img) => (
         <Link 
           key={img.image.url} 
-          href={`/menu?id=${img.name}&name=${encodeURIComponent(img.name)}&type=${encodeURIComponent('Blogs')}`}
+          // href={`/menu?id=${img.name}&name=${encodeURIComponent(img.name)}&type=${encodeURIComponent('Blogs')}`}
+          href={`/menu/${encodeURIComponent(img.name)}/${encodeURIComponent('Blogs')}`}
         >
           <div
             className="flex-shrink-0 flex flex-col items-center space-y-1 py-2 min-w-[80px] sm:min-w-[100px]"
