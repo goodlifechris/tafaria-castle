@@ -9,28 +9,25 @@ const ImageGallery = () => {
   const [showScrollToTop, setShowScrollToTop] = useState(false); // Show "Scroll to Top" button
   const [selectedImage, setSelectedImage] = useState<Image | null>(null); // Track selected image for fullscreen modal
 
-  const {
-    data,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ["images"],
-    queryFn: async ({ }) => {
-      const images = await fetchImages({tagTitle:"Homepage"}); // Modify fetchImages to accept pagination if needed
-      return images;
-    },
-    getNextPageParam: ( pages) => {
-      if (pages.length < 5) return pages.length + 1; // Example: Limit to 5 pages
-      return undefined;
-    },
-    initialPageParam: 1,
-  });
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["images"],
+      queryFn: async ({}) => {
+        const images = await fetchImages(); // Modify fetchImages to accept pagination if needed
+        return images;
+      },
+      getNextPageParam: (pages) => {
+        if (pages.length < 5) return pages.length + 1; // Example: Limit to 5 pages
+        return undefined;
+      },
+      initialPageParam: 1,
+    });
 
   const toggleLike = (id: string) => {
     setLikedImages((prev) =>
-      prev.includes(id) ? prev.filter((likedId) => likedId !== id) : [...prev, id]
+      prev.includes(id)
+        ? prev.filter((likedId) => likedId !== id)
+        : [...prev, id]
     );
   };
 
@@ -49,8 +46,6 @@ const ImageGallery = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-
 
   const closeImageModal = () => {
     setSelectedImage(null);
@@ -76,33 +71,35 @@ const ImageGallery = () => {
           <p className="text-gray-500">No images available at the moment.</p>
         </div>
       )}
-       
+
       <div className="masonry mx-5 ">
-        {data.pages.flatMap((page,index) =>
-          page.map((image: Image) => (
+        {data.pages.flatMap((page) =>
+          page.map((image: Image,index:number) => (
             <div
               key={index}
               className="relative bg-white rounded shadow-lg overflow-hidden group transition-transform transform hover:scale-105 pb-0 m-2"
               // onClick={() => openImageModal(image)}
             >
               <div className="masonry-item">
-              {image?.image?.url ? (
-  <img
-    src={image.image.url}
-    alt={image.title || 'Image'}
-    loading="lazy"
-    className="w-full object-cover h-auto transition duration-300"
-    style={{ aspectRatio: 'auto' }}
-  />
-
-  
-) : (
-  <></>
-)}
+                {image?.image?.url ? (
+                  <img
+                    src={image.image.url}
+                    alt={image.title || "Image"}
+                    loading="lazy"
+                    className="w-full object-cover h-auto transition duration-300"
+                    style={{ aspectRatio: "auto" }}
+                  />
+                ) : (
+                  <></>
+                )}
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 className="text-white font-bold text-center p-5">{image.title}</h3>
-                <p className="text-sm text-gray-200 text-center p-5">{image.description}</p>
+                <h3 className="text-white font-bold text-center p-5">
+                  {image.title}
+                </h3>
+                <p className="text-sm text-gray-200 text-center p-5">
+                  {image.description}
+                </p>
                 <div className="flex mt-2 space-x-4">
                   <button
                     className={`p-2 rounded-full ${
@@ -118,16 +115,15 @@ const ImageGallery = () => {
                     <FiHeart size={20} />
                   </button>
                   <a
-  href={`https://wa.me/?text=${encodeURIComponent(
-    `See this 😍: ${image.title} - View it here: https://www.tafaria.com/image?id=${image.id}`
-  )}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="p-2 bg-green-500 text-white rounded-full"
->
-  <FiShare2 size={20} />
-</a>
-            
+                    href={`https://wa.me/?text=${encodeURIComponent(
+                      `See this 😍: ${image.title} - View it here: https://www.tafaria.com/image?id=${image.id}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-green-500 text-white rounded-full"
+                  >
+                    <FiShare2 size={20} />
+                  </a>
                 </div>
               </div>
             </div>
@@ -159,7 +155,9 @@ const ImageGallery = () => {
             >
               <FiX />
             </button>
-            <h3 className="text-xl text-[#902729] font-bold mt-4 mb-2">{selectedImage.title}</h3>
+            <h3 className="text-xl text-[#902729] font-bold mt-4 mb-2">
+              {selectedImage.title}
+            </h3>
 
             <div className="flex flex-col items-center">
               <img
@@ -167,7 +165,9 @@ const ImageGallery = () => {
                 alt={selectedImage.title}
                 className="w-full object-contain h-auto max-h-96 mb-4"
               />
-              <p className="text-md text-gray-700 mb-4">{selectedImage.description}</p>
+              <p className="text-md text-gray-700 mb-4">
+                {selectedImage.description}
+              </p>
               <div className="flex space-x-6">
                 <button
                   className={`p-2 rounded-full ${
@@ -183,7 +183,6 @@ const ImageGallery = () => {
                   <FiHeart size={24} />
                 </button>
                 <a
-           
                   href={`https://wa.me/?text=${encodeURIComponent(
                     `See this 😍: ${selectedImage.title} - View it here: https://www.tafaria.com/image?id=${selectedImage.id}`
                   )}`}
