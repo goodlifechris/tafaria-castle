@@ -13,6 +13,7 @@ import ImageGallery from "../components/imagegallery";
 import VideoGallery from "../components/videogallery";
 import VideoGalleryFromPost from "../components/videogalleryfrompost";
 import BlogCardHorizontal from "../components/blogCardHorizontal";
+import LeisureTickets from "../components/leisureActivities";
 
 export interface Session {
   title: string;
@@ -65,6 +66,8 @@ const MenuContent = () => {
 
   return (
     <div className="w-full">
+      {title === 'Leisure Activities' ? <><LeisureTickets/></> : <>
+
       <TopBar title={title || ''} type={type || ''} />
 
       <div className="mt-20">
@@ -187,6 +190,7 @@ const MenuContent = () => {
           <></>
         )}
       </div>
+      </>}
     </div>
   );
 };
