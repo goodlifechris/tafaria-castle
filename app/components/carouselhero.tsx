@@ -48,7 +48,7 @@ const Carousels: React.FC<CarouselsProps> = ({
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    console.log(isMobile,videolinks)
+    console.log(isMobile, videolinks);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -147,9 +147,9 @@ const Carousels: React.FC<CarouselsProps> = ({
                   <div className="md:hidden absolute bottom-8 left-0 right-0 px-4">
                     <button
                       onClick={() => setShowBookingModal(true)}
-                      className="bg-[#902729] hover:bg-[#902729]-600 text-white py-3 px-6 rounded-lg text-center block w-full transition-colors"
+                      className="bg-[#902729] hover:bg-[#a52b2d] text-white py-4 px-6 rounded-full w-full font-bold transition-all duration-300 ease-out shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95"
                     >
-                      Book Here
+                      Book Here 📅
                     </button>
                   </div>
                 </div>
@@ -185,7 +185,7 @@ const Carousels: React.FC<CarouselsProps> = ({
             <div className="flex-1 overflow-auto">
               <iframe
                 src="https://booking-engine-self.vercel.app"
-                height="500px"
+                height="600px"
                 width="100%"
                 title="Booking Embed"
                 className="border-none m-0 p-0"
