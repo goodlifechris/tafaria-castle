@@ -73,7 +73,7 @@ const ImageGallery = () => {
       )}
 
       <div className="masonry mx-5 ">
-        {data.pages.flatMap((page, index) =>
+        {data.pages.flatMap((page) =>
           page.map((image: Image,index:number) => (
             <div
               key={index}
