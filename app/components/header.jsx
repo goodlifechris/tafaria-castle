@@ -204,7 +204,7 @@ const Header = () => {
             <div className="flex-1 overflow-auto">
               <iframe
                 src="https://booking-engine-self.vercel.app"
-                height="500px"
+                height="600px"
                 width="100%"
                 title="Booking Embed"
                 className="border-none m-0 p-0"
