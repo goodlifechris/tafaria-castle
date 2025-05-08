@@ -41,6 +41,8 @@ import NextTopLoader from "nextjs-toploader";
     />
   </noscript>
 )
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.tafaria.com';
+
 export const metadata: Metadata = {
   title: {
     default: "Tafaria Castle & Center for the Arts | Luxury Castle Resort Kenya",
@@ -139,25 +141,31 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tafaria Castle | Luxury Accommodation & Arts Center Kenya",
     description: "Kenya's premier castle resort offering unique stays, creative residencies, and adventure in the Aberdare foothills.",
-    url: "https://www.tafaria.com",
+    url: baseUrl,
     siteName: "Tafaria Castle",
     images: [
       {
-        url: "https://tafariabucket.fra1.cdn.digitaloceanspaces.…oceanspaces.com/images/121kr5y1WqbmUrprl_iMIA.jpg",
-        width: 1200,
-        height: 630,
+        url: `${baseUrl}/images/og-image.jpg`,
+        width: 300,
+        height: 300,
         alt: "Tafaria Castle aerial view",
       },
     ],
     locale: "en_US",
     type: "website",
   },
+  other: {
+    "og:image:type": "image/jpeg",
+    "og:image:secure_url": `${baseUrl}/images/og-image.jpg`,
+    "og:updated_time": new Date().toISOString(),
+  },
   twitter: {
     card: "summary_large_image",
     title: "Tafaria Castle | Unique Kenya Castle Resort",
     description: "Luxury castle stays, artist workshops & nature adventures in Aberdare",
     creator: "@TafariaCastle",
-    images: ["https://tafariabucket.fra1.cdn.digitaloceanspaces.…oceanspaces.com/images/_TpHwX5AKuuE94KuxjJJbA.jpg"],
+    images: [ `${baseUrl}/images/og-image.jpg`,
+    ],
   },
   alternates: {
     canonical: "https://www.tafaria.com",

@@ -2,6 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    domains: [
+      "localhost",
+      "tafaria.com",
+      "www.tafaria.com",
+    ],
     remotePatterns: [
       {
         protocol: "https",

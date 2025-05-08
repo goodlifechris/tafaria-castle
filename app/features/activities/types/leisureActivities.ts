@@ -2,6 +2,7 @@ export interface LeisureActivity {
   id: string;
   name: string;
   description: string;
+  title: string;
   priority: number;
   image: {
     id: string;
