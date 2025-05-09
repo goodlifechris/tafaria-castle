@@ -219,7 +219,7 @@ const TabComponent = () => {
 
   return (
     <>
-      <div className={`sticky bartop ${isDropdownOpen ? 'open' : 'closed'} z-10 bg-white shadow-md`}>
+      <div id="sticky-bar" className={`sticky bartop ${isDropdownOpen ? 'open' : 'closed'} z-10 bg-white shadow-md`}>
         {/* Tabs */}
         <div className="flex justify-center space-x-6 border-b-2 border-gray-200">
           {["Images", "Videos", "Blogs"].map((tab) => (

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Modal from "react-modal";
 import Select from "react-select";
 import Link from "next/link";
@@ -45,6 +45,16 @@ const Header = () => {
   const handleLocation = () => {
     router.push("/"); // Redirect to home if no history
   };
+  useEffect(() => {
+    const stickyBar = document.getElementById('sticky-bar');
+    if (!stickyBar) return;
+
+    if (showBookingModal) {
+      stickyBar.style.display = 'none';
+    } else {
+      stickyBar.style.display = 'block';
+    }
+  }, [showBookingModal]);
   return (
     <div>
       <header className="w-full bg-white shadow-md">
@@ -190,7 +200,21 @@ const Header = () => {
 
       {/* Booking Modal for Mobile */}
       {showBookingModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div  style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(0,0,0,0.8)",
+          backdropFilter: "blur(5px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 1000,
+          animation: "fadeIn 0.3s ease-out",
+        }}>
+        
           <div className="bg-white rounded-lg w-full max-w-md max-h-[90vh] flex flex-col">
             <div className="flex justify-between items-center p-4 border-b">
               <h3 className="text-lg font-medium">Book Now</h3>

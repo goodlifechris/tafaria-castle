@@ -44,7 +44,7 @@ const LeisureTickets: React.FC = () => {
           TAFARIA LEISURE TICKETS 
         </h1>
         <p className="mt-4 text-lg italic text-gray-300">
-          Non-chargeable activities to inhouse guests: <span className="italic text-yellow-300">Kid `&apos;`s kingdom</span> (slides, swings, seesaw and Vikings pillow), Swimming, Outdoor gym
+          Non-chargeable activities to inhouse guests: <span className="italic text-yellow-300">Kid&apos;s kingdom</span> (slides, swings, seesaw and Vikings pillow), Swimming, Outdoor gym
         </p>
       </div>
 
