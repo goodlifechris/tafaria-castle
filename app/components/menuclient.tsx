@@ -77,6 +77,7 @@ export default function MenuClient({
         ) : (
           <>
             <TopBar title={title || ''} type={type || ''} />
+
             <div className="mt-20">
               {data && data.name === 'Gift Shop' && <Cart />}
               
@@ -95,6 +96,9 @@ export default function MenuClient({
            {data && type === "Blogs" && (
   <div className="relative">
     <div className=" pb-4 overflow-x-auto container mx-auto">
+    <p className=" max-w-1xl text-center mx-auto text-gray-700 leading-relaxed font-serif text-lg my-6">
+  {data?.description}
+</p>
               {data?.posts.map((item, index) => (
         <div 
           key={index}

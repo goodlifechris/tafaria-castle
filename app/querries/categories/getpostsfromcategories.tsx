@@ -6,6 +6,7 @@ const GET_POSTS_BY_CATEGORY = gql`
   query GetPostsByCategory($categoryName: String!) {
     categories(where: { name: { equals: $categoryName } }) {
       name
+      description
       image {
         url
       }
@@ -84,6 +85,7 @@ export type Post = {
 
 type Category = {
   name: string;
+  description: string;
   image: Image;
   id: string;
   posts: Post[];
