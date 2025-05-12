@@ -57,7 +57,7 @@ const ImageDetails = () => {
   // Render the image detail page
   return (
     <div>
-      <TopBar title={data.title || ""}  type={type || ''}/>
+      <TopBar slug={data.slug} title={data.title || ""}  type={type || ''}/>
 
       <div className="flex items-center bg-white shadow-md">
         {/* Image Details */}

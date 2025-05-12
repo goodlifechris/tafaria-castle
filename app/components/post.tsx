@@ -28,6 +28,8 @@ const PostCard = ({ imageUrl, text ,title,createdAt }: { imageUrl: string; text:
           src={imageUrl}
           alt="Post Image"
           className="w-full object-cover"
+          width={500}
+          height={300}
         />
       </div>
 

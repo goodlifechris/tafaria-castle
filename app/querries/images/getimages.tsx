@@ -29,6 +29,7 @@ const GET_SINGLE_IMAGE = gql`
     image(where: { id: $id }) {
       description
       id
+      slug
       image {
         url
         width
@@ -45,6 +46,7 @@ const GET_SINGLE_IMAGE = gql`
 export type Image = {
   description: string;
   id: string;
+  slug: string;
   image: {
     url: string;
     width: number;

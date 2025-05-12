@@ -6,6 +6,8 @@ const GET_CATEGORIES = gql`
   query {
     categories(orderBy: { priority: asc }) {
       name
+      slug
+      description
       priority
       image {
         url
@@ -29,6 +31,8 @@ const GET_CATEGORIES = gql`
 
 type Category = {
   name: string;
+  slug: string;
+  description: string;
   priorrity:number;
   image: {
     url: string;

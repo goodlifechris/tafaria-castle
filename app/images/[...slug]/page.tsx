@@ -26,7 +26,7 @@ export default async function MenuPage({
   params: Promise<{ slug?: string[] }>;
 }) {
   const resolvedParams = await params;
-  const [name, type] = resolvedParams.slug?.map(decodeURIComponent) ?? [];
+  const [name] = resolvedParams.slug?.map(decodeURIComponent) ?? [];
 
   return (
     <QueryProviders>
@@ -35,10 +35,10 @@ export default async function MenuPage({
           <div className="animate-pulse">Loading...</div>
         </div>
       }>
-        <p></p>
+        {/* <h1 className="text-black">Dynamic Page: {(await params).slug?.join('/')}</h1> */}
         <MenuClient
           initialName={name}
-          initialType={type}
+          initialType='images'
         />
       </Suspense>
     </QueryProviders>

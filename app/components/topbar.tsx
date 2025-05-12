@@ -15,7 +15,7 @@ const barlow_condensed = Barlow_Condensed({
   display: 'swap',
 });
 
-const TopBar = ({ title, type }: { title: string, type: string }) => {
+const TopBar = ({ slug,title, type }: { slug: string | '',title: string, type: string }) => {
   const router = useRouter();
   const { history, goBack } = useNavigation();
   const { cart, removeFromCart, getTotalItems, getTotalPrice, handleSendToWhatsApp } = useCart();
@@ -75,11 +75,13 @@ const TopBar = ({ title, type }: { title: string, type: string }) => {
               <Link
 
 // href={`/menu?id=${title}&name=${encodeURIComponent(title)}&type=${encodeURIComponent('Images')}`}
-href={`/menu/${encodeURIComponent(title)}/${encodeURIComponent('Images')}`}
+href={`/images/${encodeURIComponent(slug)}`}
+
+
 >
                 <button
-                  className={`px-4 py-2 ${activeTab === 'Images' ? 'bg-[#902729] text-white' : 'bg-gray-200 text-[#902729]'} rounded-full`}
-                  onClick={() => setActiveTab('Images')}
+                  className={`px-4 py-2 ${activeTab === 'images' ? 'bg-[#902729] text-white' : 'bg-gray-200 text-[#902729]'} rounded-full`}
+                  onClick={() => setActiveTab('images')}
                 >
                   Images
                 </button>
@@ -87,11 +89,11 @@ href={`/menu/${encodeURIComponent(title)}/${encodeURIComponent('Images')}`}
               <Link
 
 // href={`/menu?id=${title}&name=${encodeURIComponent(title)}&type=${encodeURIComponent('Videos')}`}
-href={`/menu/${encodeURIComponent(title)}/${encodeURIComponent('Videos')}`}
+href={`/videos/${encodeURIComponent(slug)}`}
 >
                 <button
-                  className={`px-4 py-2 ${activeTab === 'Videos' ? 'bg-[#902729] text-white' : 'bg-gray-200 text-[#902729]'} rounded-full`}
-                  onClick={() => setActiveTab('Videos')}
+                  className={`px-4 py-2 ${activeTab === 'videos' ? 'bg-[#902729] text-white' : 'bg-gray-200 text-[#902729]'} rounded-full`}
+                  onClick={() => setActiveTab('videos')}
                 >
                   Videos
                 </button>

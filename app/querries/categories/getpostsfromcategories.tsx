@@ -15,6 +15,53 @@ const GET_POSTS_BY_CATEGORY = gql`
         id
         createdAt
         title
+        slug
+        priority
+        images {
+          title
+          description
+          id
+          image {
+            url
+            width
+            height
+            id
+            extension
+            filesize
+          }
+        }
+        videos {
+          title
+          description
+          id
+          video {
+            url
+          }
+        }
+        content {
+          document
+        }
+      }
+    }
+  }
+`;
+
+const GET_POSTS_BY_CATEGOR_SLUG = gql`
+  query GetPostsByCategory($categorySlug: String!) {
+    categories(where: { slug: { equals: $categorySlug } }) {
+      name
+      description
+      slug
+      image {
+        url
+      }
+      id
+      slug
+      posts(where: { status: { equals: "published" } }, orderBy: { priority: asc }) {
+        id
+        createdAt
+        title
+        slug
         priority
         images {
           title
@@ -68,7 +115,9 @@ export type Post = {
   title: string;
   createdAt: string;
   priority: number; 
+  slug: string;
   images: {
+    slug: string;
     description: string;
     id: string;
     title: string;
@@ -85,6 +134,7 @@ export type Post = {
 
 type Category = {
   name: string;
+  slug: string;
   description: string;
   image: Image;
   id: string;
@@ -96,6 +146,14 @@ type Category = {
 type FetchCategoryResponse = {
   categories: Category[];
 };
+
+export const fetchPostsByCategorySlug = async (categorySlug: string): Promise<Category | null> => {
+  const data: FetchCategoryResponse = await graphqlClient.request(GET_POSTS_BY_CATEGOR_SLUG, { categorySlug });
+
+  // Return the first matching category or null if none found
+  return data.categories.length > 0 ? data.categories[0] : null;
+};
+
 
 export const fetchPostsByCategory = async (categoryName: string): Promise<Category | null> => {
   const data: FetchCategoryResponse = await graphqlClient.request(GET_POSTS_BY_CATEGORY, { categoryName });

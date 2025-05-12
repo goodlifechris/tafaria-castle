@@ -40,16 +40,18 @@ decodeURIComponent(segment)
         <Link 
           key={img.image.url} 
           // href={`/menu?id=${img.name}&name=${encodeURIComponent(img.name)}&type=${encodeURIComponent('Blogs')}`}
-          href={`/menu/${encodeURIComponent(img.name)}/${encodeURIComponent('Blogs')}`}
+          // href={`/menu/${encodeURIComponent(img.name)}/${encodeURIComponent('Blogs')}`}
+          href={`/${encodeURIComponent(img.slug)}`}
         >
           <div
             className="flex-shrink-0 flex flex-col items-center space-y-1 py-2 min-w-[80px] sm:min-w-[100px]"
           >
+
             <Image
             width={100}
             height={100}
               className={`w-26 h-20 sm:w-24 sm:h-24 md:w-24 md:h-24 rounded-full object-cover
-                ${activeCategory === img.name 
+                ${activeCategory === img.slug 
                   ? 'ring-4 ring-white' 
                   : 'ring-1 ring-gray-300'
                 }`}
@@ -133,9 +135,6 @@ const Stories = () => {
   return (
     <div className="items-center justify-items-center bg-[#902729] pb-5">
     <div className="flex space-x-6 px-4">
-
-  
-  
     </div>
     <div className={`w-full bg-[#902729] pt-4 flex justify-center items-stretch  relative ${montaga.className}`}>
       {showLeftArrow && (

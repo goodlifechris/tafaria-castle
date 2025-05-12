@@ -2,7 +2,7 @@ import { Barlow_Condensed, Montaga } from 'next/font/google';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import Carousels from './carousel';
-import { FaRegHeart, FaHeart } from 'react-icons/fa'; // Import both outline and filled heart icons
+// import { FaRegHeart, FaHeart } from 'react-icons/fa'; // Import both outline and filled heart icons
 import { FiSend } from "react-icons/fi";
 import ContentView from './contentview';
 import Image from 'next/image';
@@ -44,6 +44,8 @@ interface Content {
 }
 interface BlogCardProps {
   id: string;
+  type:string;
+  slug: string;
   imageUrls: Image[];
   videoUrls: Video[];
   title: string;
@@ -51,18 +53,19 @@ interface BlogCardProps {
   content: Content;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, createdAt, content }) => {
+const BlogCard: React.FC<BlogCardProps> = ({id,type,slug, imageUrls, videoUrls, title, createdAt, content }) => {
   // const [showSessions, setShowSessions] = useState(false); // State to manage session visibility
-  const [liked, setLiked] = useState(false); // State to manage like status
+  // const [liked, setLiked] = useState(false); // State to manage like status
+  console.log(id)
   const [isReadMore, setIsReadMore] = useState(false); // State to manage "Read More" / "Read Less"
 
   // const toggleSessions = () => {
   //   setShowSessions((prev) => !prev); // Toggle the visibility
   // };
 
-  const handleLike = () => {
-    setLiked(!liked); // Toggle like status
-  };
+  // const handleLike = () => {
+  //   setLiked(!liked); // Toggle like status
+  // };
 
   const handleReadMore = () => {
     setIsReadMore((prev) => !prev); // Toggle "Read More" / "Read Less"
@@ -155,16 +158,25 @@ const BlogCard: React.FC<BlogCardProps> = ({id, imageUrls, videoUrls, title, cre
           </Link>
 
           <div className="flex items-center justify-start mb-2 space-x-4 pt-4">
-            <button
+            {/* <button
               onClick={handleLike}
               className={`text-2xl ${liked ? "text-red-500" : "text-gray-400"}`}
             >
               {liked ? <FaHeart /> : <FaRegHeart />}
-            </button>
+            </button> */}
 
-            <a
+            {/* <a
               href={`https://wa.me/?text=${encodeURIComponent(
                 `See this 😍: ${title} - View it here: https://www.tafaria.com/blog?id=${id}`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-green-500 text-white rounded-full"
+            > */}
+
+           <a
+              href={`https://wa.me/?text=${encodeURIComponent(
+                `See this 😍: ${title} - View it here: https://www.tafaria.com/${type}/${slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"

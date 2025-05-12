@@ -21,7 +21,7 @@ function CategoriesContent() {
 
   return (
     <div>
-      <TopBar title={title || "Categories"} type={type || "Blogs"} />
+      <TopBar slug={title} title={title || "Categories"} type={type || "Blogs"} />
       <div className="flex items-center bg-white shadow-md"></div>
       <div className="mt-16">
         <PostCard

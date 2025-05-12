@@ -39,6 +39,7 @@ const GET_POST_BY_ID = gql`
   query GetPostById($id: ID!) {
     post(where: { id: $id }) {
       title
+      slug
       images {
         image {
           url
@@ -83,6 +84,7 @@ export type Post = {
   };
   title:string;
   id:string;
+  slug:string;
   priority:number;
   createdAt: string;
   content: {

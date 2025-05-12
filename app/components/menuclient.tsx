@@ -3,12 +3,12 @@
 "use client";
 
 import BlogCard from "../components/blogcard";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ImagegalleryFromPost from "../components/imagegalleryfrompost";
 import TopBar from "../components/topbar";
 import Cart from "../components/cart/cart";
 import { useQuery } from "@tanstack/react-query";
-import { fetchPostsByCategory } from "../querries/categories/getpostsfromcategories";
+import { fetchPostsByCategorySlug } from "../querries/categories/getpostsfromcategories";
 import ImageGallery from "../components/imagegallery";
 import VideoGallery from "../components/videogallery";
 import VideoGalleryFromPost from "../components/videogalleryfrompost";
@@ -27,38 +27,47 @@ export default function MenuClient({
   initialName?: string;
   initialType?: string;
 }) {
-  const title = initialName ? decodeURIComponent(initialName) : undefined;
-  const type = initialType ? decodeURIComponent(initialType) : undefined;
+  const slug = initialName ? decodeURIComponent(initialName) : "";
+  let type = initialType ? decodeURIComponent(initialType) : undefined;
+  let cardSlug= "";
+  if(initialType === undefined) {
+type = "blogs";
 
-  console.log("Title: ", title); //Country%20Lodge
+  }else if (initialType === "images") {
+    type = "images";
+  } else if (initialType === "videos") {
+    type = "videos";
+  } else {
+    type= initialType;
+    cardSlug=initialType
+  }
+
+  console.log("Title: ", slug); //Country%20Lodge
   console.log("type: ", type);
 
   const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  //   useEffect(() => {
-  //     // Scroll to the specific card if the card parameter is present
-  //     if (card) {
-  //       const newUrl = new URL(window.location.href);
-  //       newUrl.searchParams.set('reload', Date.now().toString());
-  //       window.location.href = newUrl.toString();
-  //       const targetCard = cardRefs.current[card];
-  //       if (targetCard) {
-  //         const headerOffset = 360;
-  //         const elementPosition = targetCard.getBoundingClientRect().top + window.scrollY;
-  //         const offsetPosition = elementPosition - headerOffset;
-
-  //         window.scrollTo({
-  //           top: offsetPosition,
-  //           behavior: 'smooth'
-  //         });
-  //       }
-  //     }
-  //   }, [card]);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["categories", title],
-    queryFn: () => fetchPostsByCategory(title || ""),
+    queryKey: ["categories", slug],
+    // queryFn: () => fetchPostsByCategory(title || ""),
+    queryFn: () => fetchPostsByCategorySlug(slug || ""),
   });
+
+  const title=data?.name;
+  useEffect(() => {
+    if (cardSlug && cardRefs.current[cardSlug]) {
+      // Wait a brief moment for the layout to settle
+      const timer = setTimeout(() => {
+        cardRefs.current[cardSlug]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center' // Scrolls to center the element vertically
+        });
+      }, 100); // Small delay to ensure DOM is ready
+      
+      return () => clearTimeout(timer); // Cleanup
+    }
+  }, [cardSlug, data]); // Depend on cardSlug and data
 
   if (isLoading)
     return (
@@ -79,39 +88,41 @@ export default function MenuClient({
         <LeisureTickets />
       ) : ( */}
         <>
-          <TopBar title={title || ""} type={type || ""} />
+          <TopBar slug={data?.slug || ''} title={data?.name || ''} type={type || ""} />
 
           <div className="mt-20">
             {data && data.name === "Gift Shop" && <Cart />}
 
-            {title === "Images" && (
+            {title === "images" && (
               <div className="text-center text-gray-600">
                 <ImageGallery />
               </div>
             )}
 
-            {title === "Videos" && (
+            {title === "videos" && (
               <div className="text-center text-gray-600">
                 <VideoGallery />
               </div>
             )}
 
-            {data && type === "Blogs" && (
+            {data && (type != "videos" && type !="images")  && (
               <div className="relative">
                 <div className=" pb-4 overflow-x-auto container mx-auto">
-                  {/* <p className=" max-w-1xl text-center mx-auto text-gray-700 leading-relaxed font-serif text-lg my-6 px-6">
+                  <p className=" max-w-1xl text-center mx-auto text-gray-700 leading-relaxed font-serif text-lg my-6 px-6">
   {data?.description}
-</p> */}
+</p>
                   {data?.posts.map((item, index) => (
                     <div
                       key={index}
                       ref={(el) => {
-                        if (el) cardRefs.current[item.title] = el;
+                        if (el) cardRefs.current[item.slug] = el;
                       }}
                       className="flex-shrink-0 snap-start"
                     >
+                      
+                      <p className="text-black">{slug} / {item.slug}</p>
                       <BlogCard
-                        id={item.id}
+                        id={item.slug}
                         imageUrls={item.images.map((image: any) => ({
                           title: image.title,
                           url: image?.image?.url || "",
@@ -122,6 +133,8 @@ export default function MenuClient({
                             url: video?.video?.url || "",
                           })) || []
                         }
+                        slug={item.slug}
+                        type={slug}
                         title={item.title}
                         createdAt={item.createdAt}
                         content={item.content}
@@ -160,15 +173,17 @@ export default function MenuClient({
               </div>
             )}
 
-            {data && type === "Images" && (
+            {data && type === "images" && (
               <ImagegalleryFromPost
+               
+              
                 images={data.posts.flatMap((post) =>
                   post.images?.map((img) => img)
                 )}
               />
             )}
 
-            {data && type === "Videos" && (
+            {data && type === "videos" && (
               <VideoGalleryFromPost
                 videos={data.posts.flatMap((post) =>
                   post.videos?.map((img) => img)

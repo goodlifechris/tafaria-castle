@@ -56,11 +56,13 @@ const PostDetails = () => {
   // Render the post detail page
   return (
     <div>
-      <TopBar title={data.title || "Post Details"} type={type || "Blogs"} />
+          <TopBar slug={data?.slug || ''} title={data?.title || ''} type={type || ""} />
 
       <div className="flex items-center bg-white shadow-md">
         {/* Post Details */}
         <div className="max-w-4xl mx-auto p-4 mt-16">
+        <p>{data.slug} wewewwwew</p>
+
           <PostCard
             imageUrl={data.images?.[0]?.image?.url || "/images/posts/default.png"}
             text={data.content?.document?.[0]?.children?.[0]?.text || "No description"}

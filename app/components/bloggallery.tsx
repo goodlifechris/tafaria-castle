@@ -6,6 +6,7 @@ import { FiShare2, FiHeart, FiX } from "react-icons/fi";
 import { useInView } from "react-intersection-observer";
 import BlogCard from "./blogcard";
 import Image from "next/image";
+import { title } from "process";
 
 const PostGallery = () => {
   const [likedPosts, setLikedPosts] = useState<string[]>([]); // Track liked posts
@@ -86,6 +87,8 @@ const PostGallery = () => {
       {data.pages.flatMap((page, index) =>
         page.map((post: Post) => (
           <BlogCard
+          type={title}
+          slug={post.slug}
             key={index}
             id={post.id}
             imageUrls={post.images.map((image: any) => ({
