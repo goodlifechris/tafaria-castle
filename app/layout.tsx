@@ -220,6 +220,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://www.tafaria.com",
+    languages: {
+      'en-US': 'https://www.tafaria.com',
+    }
   },
   robots: {
     index: true,
