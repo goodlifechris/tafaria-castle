@@ -56,17 +56,24 @@ type = "blogs";
   const title=data?.name;
   useEffect(() => {
     if (cardSlug && cardRefs.current[cardSlug]) {
-      // Wait a brief moment for the layout to settle
       const timer = setTimeout(() => {
-        cardRefs.current[cardSlug]?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center' // Scrolls to center the element vertically
-        });
-      }, 100); // Small delay to ensure DOM is ready
+        const element = cardRefs.current[cardSlug];
+        if (element) {
+          // Calculate position considering any fixed headers
+          const headerHeight = 70; // Adjust this to match your header height
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+  
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
       
-      return () => clearTimeout(timer); // Cleanup
+      return () => clearTimeout(timer);
     }
-  }, [cardSlug, data]); // Depend on cardSlug and data
+  }, [cardSlug, data]);
 
   if (isLoading)
     return (
