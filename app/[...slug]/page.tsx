@@ -2,12 +2,6 @@
 import { Suspense } from 'react';
 import MenuClient from '../../app/components/menuclient';
 import { QueryProviders } from '../../app/providers/providers';
-
-// type Props = {
-//     params: {
-//       slug: string[]
-//     }
-//   }
  
   
 // Page component

@@ -50,7 +50,6 @@ type = "blogs";
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["categories", slug],
-    // queryFn: () => fetchPostsByCategory(title || ""),
     queryFn: () => fetchPostsByCategorySlug(slug || ""),
   });
 
@@ -91,6 +90,9 @@ type = "blogs";
           <TopBar slug={data?.slug || ''} title={data?.name || ''} type={type || ""} />
 
           <div className="mt-20">
+          {/* <p className=" max-w-1xl text-center mx-auto text-gray-700 leading-relaxed font-serif text-lg my-6 px-6">
+  {data?.description}
+</p> */}
             {data && data.name === "Gift Shop" && <Cart />}
 
             {title === "images" && (
@@ -108,9 +110,7 @@ type = "blogs";
             {data && (type != "videos" && type !="images")  && (
               <div className="relative">
                 <div className=" pb-4 overflow-x-auto container mx-auto">
-                  <p className=" max-w-1xl text-center mx-auto text-gray-700 leading-relaxed font-serif text-lg my-6 px-6">
-  {data?.description}
-</p>
+
                   {data?.posts.map((item, index) => (
                     <div
                       key={index}

@@ -16,6 +16,8 @@ const GET_CATEGORIES = gql`
       posts {
         priority
         title
+        updatedAt
+        slug
         images {
           image {
             url
@@ -40,6 +42,8 @@ type Category = {
   id: string;
   posts: {
     title: string;
+    slug: string;
+    updatedAt: string;
     priority: number;
     images: {
       image: {

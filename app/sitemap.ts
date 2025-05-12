@@ -1,49 +1,56 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from 'next'
+import { fetchCategories } from './querries/categories/getcategories';
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const categories = await fetchCategories()
 
-// Function to escape XML special characters
-function escapeXml(unsafe: string): string {
-  return unsafe.replace(/[<>&'"]/g, (c) => {
-    switch (c) {
-      case '<': return '&lt;';
-      case '>': return '&gt;';
-      case '&': return '&amp;';
-      case '\'': return '&apos;';
-      case '"': return '&quot;';
-      default: return c;
+  const  baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://tafaria.com'
+  const entries: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1,
     }
-  });
-}
+  ]
 
-// Dynamically determine base URL
-const isDev = process.env.NODE_ENV === 'development';
-const baseUrl = isDev ? 'http://localhost:3000' : 'https://tafaria.com';
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  // Paths that define categories, and these will have the last segment for each of Blogs, Videos, Images
-  const categories = ['Blogs', 'Videos', 'Images'];
-  
-  // These are the different sections like 'Country Lodge', 'For Students', etc.
-  const sections = [
-    'Country Lodge',
-    'Conference Center',
-    'For Students',
-    'Leisure Activities',
-    'Gift Shop',
-    'Blogs',
-  ];
-
-  // Now, generate the URLs by iterating over both sections and categories
-  const urls = sections.flatMap(section => 
-    categories.map(category => {
-      const path = `/menu/${encodeURIComponent(section)}/${encodeURIComponent(category)}`;
-      return {
-        url: escapeXml(`${baseUrl}${path}`),
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-      };
+  categories.forEach(category => {
+    entries.push({
+      url: `${baseUrl}/${category.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
     })
-  );
+ 
+    category.posts.forEach(item => {
+      entries.push({
+        url: `${baseUrl}/${category.slug}/${item.slug}`,
+        lastModified: new Date(item.updatedAt),
+        changeFrequency: 'monthly',
+        priority: 0.5,
+      })
+    })
 
-  return urls;
+    //for images 
+    category.posts.forEach(item => {
+      entries.push({
+        url: `${baseUrl}/images/${category.slug}`,
+        lastModified: new Date(item.updatedAt),
+        changeFrequency: 'monthly',
+        priority: 0.5,
+      })
+    })
+
+
+    // //for videos 
+    // category.posts.forEach(item => {
+    //   entries.push({
+    //     url: `${baseUrl}/videos/${category.slug}`,
+    //     lastModified: new Date(item.updatedAt),
+    //     changeFrequency: 'monthly',
+    //     priority: 0.5,
+    //   })
+    // })
+  })
+
+  return entries
 }
