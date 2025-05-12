@@ -119,9 +119,7 @@ type = "blogs";
                       }}
                       className="flex-shrink-0 snap-start"
                     >
-                      
-                      <p className="text-black">{slug} / {item.slug}</p>
-                      <BlogCard
+                                            <BlogCard
                         id={item.slug}
                         imageUrls={item.images.map((image: any) => ({
                           title: image.title,
@@ -176,7 +174,7 @@ type = "blogs";
             {data && type === "images" && (
               <ImagegalleryFromPost
                
-              
+
                 images={data.posts.flatMap((post) =>
                   post.images?.map((img) => img)
                 )}
