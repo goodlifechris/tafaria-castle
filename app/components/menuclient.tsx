@@ -3,7 +3,7 @@
 "use client";
 
 import BlogCard from "../components/blogcard";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ImagegalleryFromPost from "../components/imagegalleryfrompost";
 import TopBar from "../components/topbar";
 import Cart from "../components/cart/cart";
@@ -19,6 +19,27 @@ export interface Session {
   title: string;
   description: string;
 }
+const useMobileDetect = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener for resizes
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
+
+  return isMobile;
+};
 
 export default function MenuClient({
   initialName,
@@ -45,8 +66,6 @@ type = "blogs";
   console.log("Title: ", slug); //Country%20Lodge
   console.log("type: ", type);
 
-  const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["categories", slug],
@@ -54,26 +73,53 @@ type = "blogs";
   });
 
   const title=data?.name;
+  const isMobile = useMobileDetect();
+  const cardRefs = useRef<{[key: string]: HTMLDivElement | null}>({});
+  
   useEffect(() => {
     if (cardSlug && cardRefs.current[cardSlug]) {
+      const element = cardRefs.current[cardSlug];
+      if (!element) return;
+
+      // Mobile-optimized scroll settings
+      const scrollSettings = {
+        headerHeight: isMobile ? 280 : 80,
+        scrollDelay: isMobile ? 50 : 100,
+        extraOffset: isMobile ? 20 : 0,
+        behavior: isMobile ? 'auto' : 'smooth' as ScrollBehavior
+      };
+
       const timer = setTimeout(() => {
-        const element = cardRefs.current[cardSlug];
-        if (element) {
-          // Calculate position considering any fixed headers
-          const headerHeight = 70; // Adjust this to match your header height
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-  
+        try {
+          // Calculate position with all offsets
+          const elementRect = element.getBoundingClientRect();
+          const offsetPosition = 
+            elementRect.top + 
+            window.pageYOffset - 
+            scrollSettings.headerHeight - 
+            scrollSettings.extraOffset;
+
+          // Scroll with appropriate behavior
           window.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth'
+            behavior: scrollSettings.behavior
           });
+
+          // Fallback for browsers that don't support smooth scroll
+          if (scrollSettings.behavior === 'smooth' && !('scrollBehavior' in document.documentElement.style)) {
+            window.scrollTo(0, offsetPosition);
+          }
+        } catch (error) {
+          console.error('Scroll error:', error);
+          // Basic fallback
+          element.scrollIntoView();
         }
-      }, 100);
-      
+      }, scrollSettings.scrollDelay);
+
       return () => clearTimeout(timer);
     }
-  }, [cardSlug, data]);
+  }, [cardSlug, data, isMobile]);
+  
 
   if (isLoading)
     return (
