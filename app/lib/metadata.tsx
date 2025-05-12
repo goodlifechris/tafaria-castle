@@ -15,7 +15,7 @@ export const generateMenuMetadata = async (params: MenuMetadataParams): Promise<
     openGraph: {
       title: `${encodeURIComponent(title)} | Tafaria Castle`,
       description: `Discover ${title} at Tafaria Castle`,
-      url: `https://tafaria.com/menu?name=${encodeURIComponent(title)}${params.type ? `&type=${params.type}` : ''}`,
+      url: `https://tafaria.com/${encodeURIComponent(title)}/${params.type ? `&type=${params.type}` : ''}`,
       images: [
         {
           url: `https://tafaria.com/images/og-image.jpg`,

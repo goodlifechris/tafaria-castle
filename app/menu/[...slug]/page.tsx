@@ -35,6 +35,7 @@ export default async function MenuPage({
           <div className="animate-pulse">Loading...</div>
         </div>
       }>
+        <p></p>
         <MenuClient
           initialName={name}
           initialType={type}
