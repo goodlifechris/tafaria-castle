@@ -2,8 +2,8 @@
 import { GraphQLClient } from 'graphql-request';
 
 const graphqlClient = new GraphQLClient(
- 'http://localhost:3003/api/graphql',
-  // 'https://tafaria.com/api/graphql',
+//  'http://localhost:3003/api/graphql',
+  'https://tafaria.com/api/graphql',
   {
       headers: {
         'Content-Type': 'application/json', // Ensure the correct content type
