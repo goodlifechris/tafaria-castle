@@ -1,29 +1,25 @@
-
 import { Suspense } from 'react';
 import MenuClient from '../../app/components/menuclient';
 import { QueryProviders } from '../../app/providers/providers';
 import { fetchCategories } from '../querries/categories/getcategories';
 import { Metadata } from 'next';
- 
-  
+import StructuredData from '../../app/components/structureddata';
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug?: string[] }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
-
   const [categorySlug, postSlug] = resolvedParams.slug?.map(decodeURIComponent) ?? [];
   const categories = await fetchCategories();
   
-  // Find the current category and post
   const category = categories.find(c => c.slug === categorySlug);
   const post = category?.posts.find(p => p.slug === postSlug);
 
   if (postSlug && post) {
-    // This is a post page
     return {
-      title: `${post.title} | ${category?.name} `,
+      title: `${post.title} | ${category?.name}`,
       description: post.content.document?.children?.[0]?.children?.[0]?.text || 
                   `Read about ${post.title} in our ${category?.name} collection`,
       openGraph: {
@@ -38,7 +34,6 @@ export async function generateMetadata({
       },
     };
   } else if (category) {
-    // This is a category page
     return {
       title: category.name,
       description: category.description,
@@ -55,7 +50,6 @@ export async function generateMetadata({
     };
   }
 
-  // Fallback to default metadata
   return {
     title: 'Tafaria',
     description: 'Explore our collection of categories and posts',
@@ -64,7 +58,6 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const categories = await fetchCategories();
-  
   return categories.flatMap(category => [
     { slug: [category.slug] },
     ...category.posts.map(post => ({
@@ -72,14 +65,74 @@ export async function generateStaticParams() {
     }))
   ]);
 }
-// Page component
+
 export default async function MenuPage({
   params,
 }: {
   params: Promise<{ slug?: string[] }>;
 }) {
-  const resolvedParams = await  params;
-  const [name, type] = resolvedParams.slug?.map(decodeURIComponent) ?? [];
+  const resolvedParams = await params;
+  const [categorySlug, postSlug] = resolvedParams.slug?.map(decodeURIComponent) ?? [];
+  const categories = await fetchCategories();
+  
+  const category = categories.find(c => c.slug === categorySlug);
+  const post = category?.posts.find(p => p.slug === postSlug);
+
+  // Generate appropriate structured data
+  let structuredData;
+  
+  if (postSlug && post) {
+    // Schema for blog post
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.content.document?.children?.[0]?.children?.[0]?.text || '',
+      "author": {
+        "@type": "Organization",
+        "name": "Tafaria"
+      },
+      "datePublished": post.createdAt || new Date().toISOString(),
+      "image": post.images.length > 0 ? post.images[0].image.url : undefined,
+      "publisher": {
+        "@type": "Organization",
+        "name": "Tafaria",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://tafaria.com/logo.png"
+        }
+      }
+    };
+  } else if (category) {
+    // Schema for category page
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": category.name,
+      "description": category.description,
+      "image": category.image?.url || undefined,
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": category.posts.map((post, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "BlogPosting",
+            "name": post.title,
+            "url": `https://tafaria.com/${category.slug}/${post.slug}`
+          }
+        }))
+      }
+    };
+  } else {
+    // Fallback schema
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Tafaria",
+      "description": "Explore our collection of categories and posts"
+    };
+  }
 
   return (
     <QueryProviders>
@@ -88,10 +141,12 @@ export default async function MenuPage({
           <div className="animate-pulse">Loading...</div>
         </div>
       }>
-  
+        {/* Add StructuredData component */}
+        <StructuredData data={structuredData} />
+        
         <MenuClient
-          initialName={name}
-          initialType={type}
+          initialName={categorySlug}
+          initialType={postSlug}
         />
       </Suspense>
     </QueryProviders>

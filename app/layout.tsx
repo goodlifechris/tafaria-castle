@@ -11,6 +11,7 @@ import { NavigationProvider } from "./context/NavigationContext";
 import { CartProvider } from "./context/CartContext";
 import NextTopLoader from "nextjs-toploader";
 import type { Viewport } from 'next';
+import StructuredData from "./components/structureddata";
 
 
 // For the <head> section
@@ -255,10 +256,15 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+
 export default function RootLayout({
   children,
+  structuredData,
+
 }: Readonly<{
   children: React.ReactNode;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    structuredData?: any;
 }>) {
 
 
@@ -283,6 +289,8 @@ export default function RootLayout({
       </head>
 
       <body className="min-h-screen flex flex-col bg-white">
+                {structuredData && <StructuredData data={structuredData} />}
+
       <GoogleTagManagerBody />
         <NextTopLoader />
         <NavigationProvider>
